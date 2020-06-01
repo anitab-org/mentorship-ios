@@ -16,6 +16,7 @@
 		530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530F44212482752600B1FD0B /* LaunchScreen.storyboard */; };
 		530F442E2482752600B1FD0B /* mentorship_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* mentorship_iosTests.swift */; };
 		530F44392482752600B1FD0B /* mentorship_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* mentorship_iosUITests.swift */; };
+		531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531B75EB248524D600CEBF62 /* SignUpView.swift */; };
 		536B22F92484F70D00060CD7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B22F82484F70D00060CD7 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		530F44342482752600B1FD0B /* mentorship iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mentorship iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		530F44382482752600B1FD0B /* mentorship_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentorship_iosUITests.swift; sourceTree = "<group>"; };
 		530F443A2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		531B75EB248524D600CEBF62 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		536B22F82484F70D00060CD7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				536B22F82484F70D00060CD7 /* LoginView.swift */,
+				531B75EB248524D600CEBF62 /* SignUpView.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				530F44142482752500B1FD0B /* AppDelegate.swift in Sources */,
 				530F441B2482752500B1FD0B /* ContentView.swift in Sources */,
 				536B22F92484F70D00060CD7 /* LoginView.swift in Sources */,
+				531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */,
 				530F44162482752500B1FD0B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
