@@ -10,10 +10,10 @@ import SwiftUI
 
 struct CustomSecureField: View {
     let placeholder: String
-    @Binding var fieldValue: String
+    @Binding var text: String
     
     var body: some View {
-        SecureField(placeholder, text: $fieldValue)
+        SecureField(placeholder, text: $text)
             .padding(preferredPadding)
             .background(
                 RoundedRectangle(cornerRadius: preferredCornerRadius)
@@ -24,6 +24,6 @@ struct CustomSecureField: View {
 
 struct CustomSecureField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSecureField(placeholder: "Placeholder", fieldValue: .constant("Value"))
+        CustomSecureField(placeholder: "Placeholder", text: .constant("Value"))
     }
 }

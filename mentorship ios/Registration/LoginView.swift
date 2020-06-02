@@ -20,8 +20,8 @@ struct LoginView: View {
                 .scaledToFill()
             
             VStack(spacing: smallSpacing) {
-                CustomTextField(placeholder: "Username/Email", fieldValue: $username)
-                CustomSecureField(placeholder: "Password", fieldValue: $password)
+                CustomTextField(placeholder: "Username/Email", text: $username)
+                CustomSecureField(placeholder: "Password", text: $password)
             }
             
             VStack(spacing: minimalSpacing) {

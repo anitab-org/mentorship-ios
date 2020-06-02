@@ -10,10 +10,10 @@ import SwiftUI
 
 struct CustomTextField: View {
     let placeholder: String
-    @Binding var fieldValue: String
+    @Binding var text: String
     
     var body: some View {
-        TextField(placeholder, text: $fieldValue)
+        TextField(placeholder, text: $text)
             .padding(preferredPadding)
             .background(
                 RoundedRectangle(cornerRadius: preferredCornerRadius)
@@ -24,6 +24,6 @@ struct CustomTextField: View {
 
 struct CustomTextField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(placeholder: "Placeholder", fieldValue: .constant("Value"))
+        CustomTextField(placeholder: "Placeholder", text: .constant("Value"))
     }
 }
