@@ -1,5 +1,5 @@
 //
-//  CustomTextField.swift
+//  CustomSecureField.swift
 //  mentorship ios
 //
 //  Created by Yugantar Jain on 03/06/20.
@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-struct CustomTextField: View {
+struct CustomSecureField: View {
     let placeholder: String
     @Binding var fieldValue: String
     
     var body: some View {
-        TextField(placeholder, text: $fieldValue)
+        SecureField(placeholder, text: $fieldValue)
             .padding(preferredPadding)
             .background(
                 RoundedRectangle(cornerRadius: preferredCornerRadius)
@@ -22,8 +22,8 @@ struct CustomTextField: View {
     }
 }
 
-struct CustomTextField_Previews: PreviewProvider {
+struct CustomSecureField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTextField(placeholder: "Placeholder", fieldValue: .constant("Value"))
+        CustomSecureField(placeholder: "Placeholder", fieldValue: .constant("Value"))
     }
 }

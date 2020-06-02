@@ -10,7 +10,8 @@ import Foundation
 import SwiftUI
 
 let bigSpacing: CGFloat = 60
-let smallSpacing: CGFloat = 20
+let smallSpacing: CGFloat = 15
+let minimalSpacing: CGFloat = 5
 let preferredHeight: CGFloat = 40
 let preferredCornerRadius: CGFloat = 5
 let preferredPadding: CGFloat = 10

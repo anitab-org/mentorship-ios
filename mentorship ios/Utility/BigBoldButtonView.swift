@@ -14,7 +14,8 @@ struct BigBoldButtonView: View {
     var body: some View {
         GeometryReader { geo in
             Text(self.buttonText)
-                .frame(width: geo.size.width * 0.6, height: preferredHeight)
+                .frame(width: geo.size.width * 0.6)
+                .padding(.vertical, preferredPadding)
                 .background(defaultIndigoColor)
                 .foregroundColor(.white)
                 .cornerRadius(preferredCornerRadius)
@@ -24,6 +25,6 @@ struct BigBoldButtonView: View {
 
 struct BigBoldButton_Previews: PreviewProvider {
     static var previews: some View {
-        BigBoldButtonView(buttonText: "Login")
+        BigBoldButtonView(buttonText: "Text")
     }
 }

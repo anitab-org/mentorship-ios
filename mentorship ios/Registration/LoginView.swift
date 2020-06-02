@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var showSignUpPage = false
+    @State private var showSignUpPage: Bool = false
+    @State private var username: String = ""
+    @State private var password: String = ""
     
     var body: some View {
         VStack(spacing: bigSpacing) {
@@ -18,28 +20,20 @@ struct LoginView: View {
                 .scaledToFill()
             
             VStack(spacing: smallSpacing) {
-                TextField("Username/Email", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                    .padding(preferredPadding)
-                    .background(
-                        RoundedRectangle(cornerRadius: preferredCornerRadius)
-                            .fill(secondaryBackground)
-                )
-                
-                SecureField("Password", text: /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Value@*/.constant("Apple")/*@END_MENU_TOKEN@*/)
-                    .padding(preferredPadding)
-                    .background(
-                        RoundedRectangle(cornerRadius: preferredCornerRadius)
-                            .fill(secondaryBackground)
-                )
+                CustomTextField(placeholder: "Username/Email", fieldValue: $username)
+                CustomSecureField(placeholder: "Password", fieldValue: $password)
             }
             
-            VStack(spacing: smallSpacing) {
+            VStack(spacing: minimalSpacing) {
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                     BigBoldButtonView(buttonText: "Login")
                 }
                 
+                Text("Don't have an account?")
+                
                 Button.init(action: { self.showSignUpPage.toggle() }) {
                     Text("Signup")
+                        .foregroundColor(defaultIndigoColor)
                 }.sheet(isPresented: $showSignUpPage) {
                     SignUpView.init()
                 }
