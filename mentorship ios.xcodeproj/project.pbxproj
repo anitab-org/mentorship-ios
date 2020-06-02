@@ -17,6 +17,9 @@
 		530F442E2482752600B1FD0B /* mentorship_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* mentorship_iosTests.swift */; };
 		530F44392482752600B1FD0B /* mentorship_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* mentorship_iosUITests.swift */; };
 		531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531B75EB248524D600CEBF62 /* SignUpView.swift */; };
+		534AC02B2486D45100A34A46 /* GlobalValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02A2486D45100A34A46 /* GlobalValues.swift */; };
+		534AC02D2486D5CB00A34A46 /* BigBoldButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02C2486D5CB00A34A46 /* BigBoldButtonView.swift */; };
+		534AC02F2486DF3A00A34A46 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02E2486DF3A00A34A46 /* CustomTextField.swift */; };
 		536B22F92484F70D00060CD7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B22F82484F70D00060CD7 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +57,9 @@
 		530F44382482752600B1FD0B /* mentorship_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentorship_iosUITests.swift; sourceTree = "<group>"; };
 		530F443A2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		531B75EB248524D600CEBF62 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		534AC02A2486D45100A34A46 /* GlobalValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalValues.swift; sourceTree = "<group>"; };
+		534AC02C2486D5CB00A34A46 /* BigBoldButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoldButtonView.swift; sourceTree = "<group>"; };
+		534AC02E2486DF3A00A34A46 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		536B22F82484F70D00060CD7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +111,7 @@
 		530F44122482752500B1FD0B /* mentorship ios */ = {
 			isa = PBXGroup;
 			children = (
+				534AC0292486D43200A34A46 /* Utility */,
 				536B22F62484F6BE00060CD7 /* Registration */,
 				530F44132482752500B1FD0B /* AppDelegate.swift */,
 				530F44152482752500B1FD0B /* SceneDelegate.swift */,
@@ -142,6 +149,16 @@
 				530F443A2482752600B1FD0B /* Info.plist */,
 			);
 			path = "mentorship iosUITests";
+			sourceTree = "<group>";
+		};
+		534AC0292486D43200A34A46 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				534AC02A2486D45100A34A46 /* GlobalValues.swift */,
+				534AC02C2486D5CB00A34A46 /* BigBoldButtonView.swift */,
+				534AC02E2486DF3A00A34A46 /* CustomTextField.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		536B22F62484F6BE00060CD7 /* Registration */ = {
@@ -289,7 +306,10 @@
 				530F441B2482752500B1FD0B /* ContentView.swift in Sources */,
 				536B22F92484F70D00060CD7 /* LoginView.swift in Sources */,
 				531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */,
+				534AC02D2486D5CB00A34A46 /* BigBoldButtonView.swift in Sources */,
 				530F44162482752500B1FD0B /* SceneDelegate.swift in Sources */,
+				534AC02B2486D45100A34A46 /* GlobalValues.swift in Sources */,
+				534AC02F2486DF3A00A34A46 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
