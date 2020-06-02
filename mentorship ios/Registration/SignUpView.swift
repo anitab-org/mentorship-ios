@@ -14,56 +14,76 @@ struct SignUpView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
+    @State private var availabilityPickerSelection: Int = 2
+    @State private var haveAcceptedTerms: Bool = false
+    @Environment(\.presentationMode) var presentationMode
+    
+    var signupDisabled: Bool {
+        if name == "" || username == "" || email == "" || password != confirmPassword || !haveAcceptedTerms {
+            return true
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: bigSpacing) {
-                
-                //Sign Up heading
-                Text("Sign Up")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.top)
-                
-                //input fields for name, email, password, etc.
-                VStack(spacing: smallSpacing) {
-                    CustomTextField(placeholder: "Name", text: $name)
-                    CustomTextField(placeholder: "Username", text: $username)
-                    CustomTextField(placeholder: "Email", text: $email)
-                    CustomSecureField(placeholder: "Password", text: $password)
-                    CustomSecureField(placeholder: "Confirm Password", text: $confirmPassword)
-                }
-                
-                //select availability as mentor, mentee, or both
-                VStack {
-                    Text("Available to be a:").font(.headline)
+        NavigationView {
+            ScrollView {
+                VStack(spacing: bigSpacing) {
                     
-                    Picker(selection: .constant(2), label: Text("")) {
-                        Text("Mentor").tag(1)
-                        Text("Mentee").tag(2)
-                        Text("Both").tag(3)
+                    //input fields for name, email, password, etc.
+                    VStack(spacing: smallSpacing) {
+                        CustomTextField(placeholder: "Name", text: $name)
+                        CustomTextField(placeholder: "Username", text: $username)
+                        CustomTextField(placeholder: "Email", text: $email)
+                        CustomSecureField(placeholder: "Password", text: $password)
+                        CustomSecureField(placeholder: "Confirm Password", text: $confirmPassword)
                     }
-                    .labelsHidden()
-                    .pickerStyle(SegmentedPickerStyle())
-                }
-                
-                //sign up button
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                    BigBoldButtonView(buttonText: "Sign Up")
-                }
-                
-                //spacer to separate tncview and push remaining view to top
-                Spacer()
-                
-                //consent view, to accept terms and conditions
-                HStack {
-                    Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
-                        Text("I confirm that I have read and accept to be bound by the AnitaB.org Code of Conduct, Terms, and Privacy Policy. Further, I consent to the use of my information for the stated purpose.")
-                            .font(.caption)
-                            .fixedSize(horizontal: false, vertical: true)
+                    
+                    //select availability as mentor, mentee, or both
+                    VStack {
+                        Text("Available to be a:").font(.headline)
+                        
+                        Picker(selection: $availabilityPickerSelection, label: Text("")) {
+                            Text("Mentor").tag(1)
+                            Text("Mentee").tag(2)
+                            Text("Both").tag(3)
+                        }
+                        .labelsHidden()
+                        .pickerStyle(SegmentedPickerStyle())
                     }
+                    
+                    //sign up button
+                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                        BigBoldButtonView(buttonText: "Sign Up")
+                            .opacity(signupDisabled ? disabledViewOpacity : 1.0)
+                    }
+                    .disabled(signupDisabled)
+                    
+                    //consent view, to accept terms and conditions
+                    HStack {
+                        Toggle(isOn: $haveAcceptedTerms) {
+                            Text("I confirm that I have read and accept to be bound by the AnitaB.org Code of Conduct, Terms, and Privacy Policy. Further, I consent to the use of my information for the stated purpose.")
+                                .font(.caption)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    
+                    //spacer to push content to top and have bottom space for scroll view
+                    Spacer()
                 }
-            }.padding()
+                .padding()
+            }
+            .navigationBarTitle("Sign Up")
+            .navigationBarItems(leading:
+                Button.init(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "x.circle.fill")
+                        .font(.headline)
+                        .accentColor(.secondary)
+                })
+            )
         }
     }
 }

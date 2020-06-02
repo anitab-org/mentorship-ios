@@ -13,22 +13,36 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     
+    var loginDisabled: Bool {
+        if username == "" || password == "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var body: some View {
         VStack(spacing: bigSpacing) {
+            //top image of mentorship logo
             Image(mentorshipLogoImageName)
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
             
+            //username and password text fields
             VStack(spacing: smallSpacing) {
                 CustomTextField(placeholder: "Username/Email", text: $username)
                 CustomSecureField(placeholder: "Password", text: $password)
             }
             
+            //login button
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                BigBoldButtonView(buttonText: "Login")
+                    .opacity(loginDisabled ? disabledViewOpacity : 1.0)
+            }
+            .disabled(loginDisabled)
+            
+            //text and sign up button
             VStack(spacing: minimalSpacing) {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                    BigBoldButtonView(buttonText: "Login")
-                }
-                
                 Text("Don't have an account?")
                 
                 Button.init(action: { self.showSignUpPage.toggle() }) {
@@ -39,6 +53,7 @@ struct LoginView: View {
                 }
             }
             
+            //spacer to push content to top
             Spacer()
         }
         .padding()

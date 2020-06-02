@@ -12,14 +12,14 @@ struct BigBoldButtonView: View {
     let buttonText: String
     
     var body: some View {
-        GeometryReader { geo in
+//        GeometryReader { geo in
             Text(self.buttonText)
-                .frame(width: geo.size.width * 0.6)
+                .frame(width: 200)
                 .padding(.vertical, preferredPadding)
                 .background(defaultIndigoColor)
-                .foregroundColor(.white)
+                .foregroundColor(Color(.systemBackground))
                 .cornerRadius(preferredCornerRadius)
-        }
+//        }
     }
 }
 
