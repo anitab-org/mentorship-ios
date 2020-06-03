@@ -55,9 +55,9 @@ struct SignUpView: View {
                     
                     //sign up button
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                        BigBoldButtonView(buttonText: "Sign Up")
-                            .opacity(signupDisabled ? disabledViewOpacity : 1.0)
+                        Text("Sign Up")
                     }
+                    .buttonStyle(BigBoldButtonStyle(disabled: signupDisabled))
                     .disabled(signupDisabled)
                     
                     //consent view, to accept terms and conditions

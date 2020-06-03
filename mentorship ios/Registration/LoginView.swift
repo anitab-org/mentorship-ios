@@ -36,9 +36,9 @@ struct LoginView: View {
             
             //login button
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                BigBoldButtonView(buttonText: "Login")
-                    .opacity(loginDisabled ? disabledViewOpacity : 1.0)
+                Text("Login")
             }
+            .buttonStyle(BigBoldButtonStyle(disabled: loginDisabled))
             .disabled(loginDisabled)
             
             //text and sign up button
