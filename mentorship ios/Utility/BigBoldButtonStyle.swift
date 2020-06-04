@@ -14,11 +14,11 @@ struct BigBoldButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 200)
-            .padding(.vertical, preferredPadding)
-            .background(defaultIndigoColor)
+            .padding(.vertical, DesignConstants.Padding.frameExpansionPadding)
+            .background(DesignConstants.Colors.defaultIndigoColor)
             .foregroundColor(Color(.systemBackground))
-            .cornerRadius(preferredCornerRadius)
-            .opacity(configuration.isPressed ? 0.5 : 1.0)
-            .opacity(disabled ? 0.5 : 1.0)
+            .cornerRadius(DesignConstants.CornerRadius.preferredCornerRadius)
+            .opacity(configuration.isPressed ? DesignConstants.Opacity.tapHighlightingOpacity : 1.0)
+            .opacity(disabled ? DesignConstants.Opacity.disabledViewOpacity : 1.0)
     }
 }

@@ -17,11 +17,11 @@
 		530F442E2482752600B1FD0B /* mentorship_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* mentorship_iosTests.swift */; };
 		530F44392482752600B1FD0B /* mentorship_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* mentorship_iosUITests.swift */; };
 		531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531B75EB248524D600CEBF62 /* SignUpView.swift */; };
-		534AC02B2486D45100A34A46 /* GlobalValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02A2486D45100A34A46 /* GlobalValues.swift */; };
 		534AC02D2486D5CB00A34A46 /* BigBoldButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */; };
-		534AC02F2486DF3A00A34A46 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02E2486DF3A00A34A46 /* CustomTextField.swift */; };
-		534AC0312486E20F00A34A46 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC0302486E20F00A34A46 /* CustomSecureField.swift */; };
+		534AC02F2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */; };
 		536B22F92484F70D00060CD7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B22F82484F70D00060CD7 /* LoginView.swift */; };
+		53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46E92488CBBF005656B9 /* DesignConstants.swift */; };
+		53EB46EC2488D5AA005656B9 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46EB2488D5AA005656B9 /* ImageNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +58,11 @@
 		530F44382482752600B1FD0B /* mentorship_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentorship_iosUITests.swift; sourceTree = "<group>"; };
 		530F443A2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		531B75EB248524D600CEBF62 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		534AC02A2486D45100A34A46 /* GlobalValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalValues.swift; sourceTree = "<group>"; };
 		534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoldButtonStyle.swift; sourceTree = "<group>"; };
-		534AC02E2486DF3A00A34A46 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		534AC0302486E20F00A34A46 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
+		534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFilledTextFieldStyle.swift; sourceTree = "<group>"; };
 		536B22F82484F70D00060CD7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		53EB46E92488CBBF005656B9 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
+		53EB46EB2488D5AA005656B9 /* ImageNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +156,10 @@
 		534AC0292486D43200A34A46 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				534AC02A2486D45100A34A46 /* GlobalValues.swift */,
+				53EB46E92488CBBF005656B9 /* DesignConstants.swift */,
+				53EB46EB2488D5AA005656B9 /* ImageNames.swift */,
 				534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */,
-				534AC02E2486DF3A00A34A46 /* CustomTextField.swift */,
-				534AC0302486E20F00A34A46 /* CustomSecureField.swift */,
+				534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -306,14 +306,14 @@
 			files = (
 				530F44192482752500B1FD0B /* mentorship_ios.xcdatamodeld in Sources */,
 				530F44142482752500B1FD0B /* AppDelegate.swift in Sources */,
-				534AC0312486E20F00A34A46 /* CustomSecureField.swift in Sources */,
 				530F441B2482752500B1FD0B /* ContentView.swift in Sources */,
+				53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */,
+				53EB46EC2488D5AA005656B9 /* ImageNames.swift in Sources */,
 				536B22F92484F70D00060CD7 /* LoginView.swift in Sources */,
 				531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */,
 				534AC02D2486D5CB00A34A46 /* BigBoldButtonStyle.swift in Sources */,
 				530F44162482752500B1FD0B /* SceneDelegate.swift in Sources */,
-				534AC02B2486D45100A34A46 /* GlobalValues.swift in Sources */,
-				534AC02F2486DF3A00A34A46 /* CustomTextField.swift in Sources */,
+				534AC02F2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

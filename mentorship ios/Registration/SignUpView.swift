@@ -19,7 +19,7 @@ struct SignUpView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var signupDisabled: Bool {
-        if name == "" || username == "" || email == "" || password != confirmPassword || !haveAcceptedTerms {
+        if name.isEmpty || username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty || !haveAcceptedTerms {
             return true
         } else {
             return false
@@ -29,15 +29,19 @@ struct SignUpView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: bigSpacing) {
-                    
+                VStack(spacing: DesignConstants.Spacing.bigSpacing) {
                     //input fields for name, email, password, etc.
-                    VStack(spacing: smallSpacing) {
-                        CustomTextField(placeholder: "Name", text: $name)
-                        CustomTextField(placeholder: "Username", text: $username)
-                        CustomTextField(placeholder: "Email", text: $email)
-                        CustomSecureField(placeholder: "Password", text: $password)
-                        CustomSecureField(placeholder: "Confirm Password", text: $confirmPassword)
+                    VStack(spacing: DesignConstants.Spacing.smallSpacing) {
+                        TextField("Name", text: $name)
+                            .textFieldStyle(RoundFilledTextFieldStyle())
+                        TextField("Username", text: $username)
+                            .textFieldStyle(RoundFilledTextFieldStyle())
+                        TextField("Email", text: $email)
+                            .textFieldStyle(RoundFilledTextFieldStyle())
+                        SecureField("Password", text: $password)
+                            .textFieldStyle(RoundFilledTextFieldStyle())
+                        SecureField("Confirm Password", text: $confirmPassword)
+                            .textFieldStyle(RoundFilledTextFieldStyle())
                     }
                     
                     //select availability as mentor, mentee, or both
@@ -72,7 +76,10 @@ struct SignUpView: View {
                     //spacer to push content to top and have bottom space for scroll view
                     Spacer()
                 }
-                .padding()
+                .padding(.top, DesignConstants.Padding.topPadding)
+                .padding(.bottom, DesignConstants.Padding.bottomPadding)
+                .padding(.leading, DesignConstants.Padding.leadingPadding)
+                .padding(.trailing, DesignConstants.Padding.trailingPadding)
             }
             .navigationBarTitle("Sign Up")
             .navigationBarItems(leading:

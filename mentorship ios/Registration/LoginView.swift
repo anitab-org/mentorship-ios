@@ -14,7 +14,7 @@ struct LoginView: View {
     @State private var password: String = ""
     
     var loginDisabled: Bool {
-        if username == "" || password == "" {
+        if username.isEmpty || password.isEmpty {
             return true
         } else {
             return false
@@ -22,16 +22,19 @@ struct LoginView: View {
     }
     
     var body: some View {
-        VStack(spacing: bigSpacing) {
+        VStack(spacing: DesignConstants.Spacing.bigSpacing) {
             //top image of mentorship logo
-            Image(mentorshipLogoImageName)
+            Image(ImageNames.mentorshipLogoImageName)
                 .resizable()
                 .scaledToFit()
             
             //username and password text fields
-            VStack(spacing: smallSpacing) {
-                CustomTextField(placeholder: "Username/Email", text: $username)
-                CustomSecureField(placeholder: "Password", text: $password)
+            VStack(spacing: DesignConstants.Spacing.smallSpacing) {
+                TextField("Username/Email", text: $username)
+                    .textFieldStyle(RoundFilledTextFieldStyle())
+                
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundFilledTextFieldStyle())
             }
             
             //login button
@@ -42,12 +45,12 @@ struct LoginView: View {
             .disabled(loginDisabled)
             
             //text and sign up button
-            VStack(spacing: minimalSpacing) {
+            VStack(spacing: DesignConstants.Spacing.minimalSpacing) {
                 Text("Don't have an account?")
                 
                 Button.init(action: { self.showSignUpPage.toggle() }) {
                     Text("Signup")
-                        .foregroundColor(defaultIndigoColor)
+                        .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
                 }.sheet(isPresented: $showSignUpPage) {
                     SignUpView.init()
                 }
@@ -56,7 +59,10 @@ struct LoginView: View {
             //spacer to push content to top
             Spacer()
         }
-        .padding()
+        .padding(.top, DesignConstants.Padding.topPadding)
+        .padding(.bottom, DesignConstants.Padding.bottomPadding)
+        .padding(.leading, DesignConstants.Padding.leadingPadding)
+        .padding(.trailing, DesignConstants.Padding.trailingPadding)
     }
 }
 
