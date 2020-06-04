@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 struct DesignConstants {
     
     struct Spacing {

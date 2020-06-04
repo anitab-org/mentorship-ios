@@ -24,7 +24,7 @@ struct LoginView: View {
     var body: some View {
         VStack(spacing: DesignConstants.Spacing.bigSpacing) {
             //top image of mentorship logo
-            Image(ImageNames.mentorshipLogoImageName)
+            Image(ImageNameConstants.mentorshipLogoImageName)
                 .resizable()
                 .scaledToFit()
             

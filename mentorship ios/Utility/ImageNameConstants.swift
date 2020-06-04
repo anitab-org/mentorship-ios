@@ -6,6 +6,6 @@
 //  Copyright © 2020 Yugantar Jain. All rights reserved.
 //
 
-struct ImageNames {
+struct ImageNameConstants {
     static let mentorshipLogoImageName = "mentorship_system_logo"
 }

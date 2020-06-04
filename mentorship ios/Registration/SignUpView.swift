@@ -67,7 +67,7 @@ struct SignUpView: View {
                     //consent view, to accept terms and conditions
                     HStack {
                         Toggle(isOn: $haveAcceptedTerms) {
-                            Text("I confirm that I have read and accept to be bound by the AnitaB.org Code of Conduct, Terms, and Privacy Policy. Further, I consent to the use of my information for the stated purpose.")
+                            Text(LocalizableStringConstants.tncString)
                                 .font(.caption)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
@@ -97,6 +97,12 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        Group {
+            SignUpView()
+                .environment(\.locale, .init(identifier: "en"))
+                
+            SignUpView()
+                .environment(\.locale, .init(identifier: "pl"))
+        }
     }
 }
