@@ -30,7 +30,7 @@ struct LoginView: View {
             
             //username and password text fields
             VStack(spacing: DesignConstants.Spacing.smallSpacing) {
-                TextField("Username/Email", text: $username)
+                TextField("Username" , text: $username)
                     .textFieldStyle(RoundFilledTextFieldStyle())
                 
                 SecureField("Password", text: $password)
@@ -46,7 +46,7 @@ struct LoginView: View {
             
             //text and sign up button
             VStack(spacing: DesignConstants.Spacing.minimalSpacing) {
-                Text("Don't have an account?")
+                Text(LocalizableStringConstants.noAccountText)
                 
                 Button.init(action: { self.showSignUpPage.toggle() }) {
                     Text("Signup")

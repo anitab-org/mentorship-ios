@@ -46,7 +46,7 @@ struct SignUpView: View {
                     
                     //select availability as mentor, mentee, or both
                     VStack {
-                        Text("Available to be a:").font(.headline)
+                        Text(LocalizableStringConstants.availabilityText).font(.headline)
                         
                         Picker(selection: $availabilityPickerSelection, label: Text("")) {
                             Text("Mentor").tag(1)
