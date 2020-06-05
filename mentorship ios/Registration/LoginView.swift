@@ -59,10 +59,7 @@ struct LoginView: View {
             //spacer to push content to top
             Spacer()
         }
-        .padding(.top, DesignConstants.Padding.topPadding)
-        .padding(.bottom, DesignConstants.Padding.bottomPadding)
-        .padding(.leading, DesignConstants.Padding.leadingPadding)
-        .padding(.trailing, DesignConstants.Padding.trailingPadding)
+        .modifier(AllPadding(screenType: .screen))
     }
 }
 

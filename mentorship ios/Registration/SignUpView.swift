@@ -76,10 +76,7 @@ struct SignUpView: View {
                     //spacer to push content to top and have bottom space for scroll view
                     Spacer()
                 }
-                .padding(.top, DesignConstants.Padding.topPadding)
-                .padding(.bottom, DesignConstants.Padding.bottomPadding)
-                .padding(.leading, DesignConstants.Padding.leadingPadding)
-                .padding(.trailing, DesignConstants.Padding.trailingPadding)
+                .modifier(AllPadding(screenType: .screen))
             }
             .navigationBarTitle("Sign Up")
             .navigationBarItems(leading:

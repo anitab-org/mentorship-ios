@@ -19,6 +19,7 @@
 		531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531B75EB248524D600CEBF62 /* SignUpView.swift */; };
 		534AC02D2486D5CB00A34A46 /* BigBoldButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */; };
 		534AC02F2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */; };
+		53569279248AECF400EB9522 /* AllPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53569278248AECF400EB9522 /* AllPadding.swift */; };
 		5366ED712488EDA9006A3543 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5366ED732488EDA9006A3543 /* Localizable.strings */; };
 		536B22F92484F70D00060CD7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B22F82484F70D00060CD7 /* LoginView.swift */; };
 		53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46E92488CBBF005656B9 /* DesignConstants.swift */; };
@@ -62,6 +63,7 @@
 		531B75EB248524D600CEBF62 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoldButtonStyle.swift; sourceTree = "<group>"; };
 		534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFilledTextFieldStyle.swift; sourceTree = "<group>"; };
+		53569278248AECF400EB9522 /* AllPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPadding.swift; sourceTree = "<group>"; };
 		5366ED6E2488ED8F006A3543 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5366ED722488EDA9006A3543 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5366ED742488EDAF006A3543 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		530F44122482752500B1FD0B /* mentorship ios */ = {
 			isa = PBXGroup;
 			children = (
+				53569277248AECCA00EB9522 /* Modifiers */,
 				534AC0292486D43200A34A46 /* Utility */,
 				536B22F62484F6BE00060CD7 /* Registration */,
 				530F44132482752500B1FD0B /* AppDelegate.swift */,
@@ -170,6 +173,14 @@
 				534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		53569277248AECCA00EB9522 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				53569278248AECF400EB9522 /* AllPadding.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		536B22F62484F6BE00060CD7 /* Registration */ = {
@@ -321,6 +332,7 @@
 				53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */,
 				53EB46EC2488D5AA005656B9 /* ImageNameConstants.swift in Sources */,
 				536B22F92484F70D00060CD7 /* LoginView.swift in Sources */,
+				53569279248AECF400EB9522 /* AllPadding.swift in Sources */,
 				531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */,
 				534AC02D2486D5CB00A34A46 /* BigBoldButtonStyle.swift in Sources */,
 				530F44162482752500B1FD0B /* SceneDelegate.swift in Sources */,
