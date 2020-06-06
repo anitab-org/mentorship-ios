@@ -11,9 +11,9 @@ import SwiftUI
 struct DesignConstants {
     
     struct Spacing {
-        static let bigSpacing: CGFloat = 45
-        static let smallSpacing: CGFloat = 15
-        static let minimalSpacing: CGFloat = 5
+        static let bigSpacing: CGFloat = 48
+        static let smallSpacing: CGFloat = 16
+        static let minimalSpacing: CGFloat = 6
     }
     
     struct Screen {
@@ -27,12 +27,10 @@ struct DesignConstants {
     }
     
     struct Form {
-        struct Padding {
-            // default SwiftUI padding value = 16
-            static let topPadding: CGFloat = 16
-            static let bottomPadding: CGFloat = 16
-            static let leadingPadding: CGFloat = 16
-            static let trailingPadding: CGFloat = 16
+        struct Spacing {
+                static let bigSpacing: CGFloat = 46
+                static let smallSpacing: CGFloat = 16
+                static let minimalSpacing: CGFloat = 6
         }
     }
     

@@ -22,14 +22,14 @@ struct LoginView: View {
     }
     
     var body: some View {
-        VStack(spacing: DesignConstants.Spacing.bigSpacing) {
+        VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
             //top image of mentorship logo
             Image(ImageNameConstants.mentorshipLogoImageName)
                 .resizable()
                 .scaledToFit()
             
             //username and password text fields
-            VStack(spacing: DesignConstants.Spacing.smallSpacing) {
+            VStack(spacing: DesignConstants.Form.Spacing.smallSpacing) {
                 TextField("Username" , text: $username)
                     .textFieldStyle(RoundFilledTextFieldStyle())
                 
@@ -45,7 +45,7 @@ struct LoginView: View {
             .disabled(loginDisabled)
             
             //text and sign up button
-            VStack(spacing: DesignConstants.Spacing.minimalSpacing) {
+            VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing) {
                 Text(LocalizableStringConstants.noAccountText)
                 
                 Button.init(action: { self.showSignUpPage.toggle() }) {
@@ -59,7 +59,7 @@ struct LoginView: View {
             //spacer to push content to top
             Spacer()
         }
-        .modifier(AllPadding(screenType: .screen))
+        .modifier(AllPadding())
     }
 }
 

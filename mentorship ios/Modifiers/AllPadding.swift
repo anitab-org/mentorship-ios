@@ -8,26 +8,13 @@
 
 import SwiftUI
 
-enum ScreenType {
-    case screen, form
-}
-
 struct AllPadding: ViewModifier {
-    let screenType: ScreenType
     
     func body(content: Content) -> some View {
-        if screenType == .screen {
-            return content
-                .padding(.top, DesignConstants.Screen.Padding.topPadding)
-                .padding(.bottom, DesignConstants.Screen.Padding.bottomPadding)
-                .padding(.leading, DesignConstants.Screen.Padding.leadingPadding)
-                .padding(.trailing, DesignConstants.Screen.Padding.trailingPadding)
-        } else {
-            return content
-                .padding(.top, DesignConstants.Form.Padding.topPadding)
-                .padding(.bottom, DesignConstants.Form.Padding.bottomPadding)
-                .padding(.leading, DesignConstants.Form.Padding.leadingPadding)
-                .padding(.trailing, DesignConstants.Form.Padding.trailingPadding)
-        }
+        content
+            .padding(.top, DesignConstants.Screen.Padding.topPadding)
+            .padding(.bottom, DesignConstants.Screen.Padding.bottomPadding)
+            .padding(.leading, DesignConstants.Screen.Padding.leadingPadding)
+            .padding(.trailing, DesignConstants.Screen.Padding.trailingPadding)
     }
 }

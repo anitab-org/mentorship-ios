@@ -29,9 +29,9 @@ struct SignUpView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: DesignConstants.Spacing.bigSpacing) {
+                VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
                     //input fields for name, email, password, etc.
-                    VStack(spacing: DesignConstants.Spacing.smallSpacing) {
+                    VStack(spacing: DesignConstants.Form.Spacing.smallSpacing) {
                         TextField("Name", text: $name)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                         TextField("Username", text: $username)
@@ -65,18 +65,21 @@ struct SignUpView: View {
                     .disabled(signupDisabled)
                     
                     //consent view, to accept terms and conditions
-                    HStack {
+                    VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing + 2) {
                         Toggle(isOn: $haveAcceptedTerms) {
-                            Text(LocalizableStringConstants.tncString)
-                                .font(.caption)
-                                .fixedSize(horizontal: false, vertical: true)
+                            Text("Terms and Conditions")
+                                .font(.headline)
                         }
+                        
+                        Text(LocalizableStringConstants.tncString)
+                            .font(.caption)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     
                     //spacer to push content to top and have bottom space for scroll view
                     Spacer()
                 }
-                .modifier(AllPadding(screenType: .screen))
+                .modifier(AllPadding())
             }
             .navigationBarTitle("Sign Up")
             .navigationBarItems(leading:
@@ -92,12 +95,13 @@ struct SignUpView: View {
     }
 }
 
+
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             SignUpView()
                 .environment(\.locale, .init(identifier: "en"))
-                
+            
             SignUpView()
                 .environment(\.locale, .init(identifier: "pl"))
         }
