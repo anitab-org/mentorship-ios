@@ -16,6 +16,15 @@
 		530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530F44212482752600B1FD0B /* LaunchScreen.storyboard */; };
 		530F442E2482752600B1FD0B /* mentorship_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* mentorship_iosTests.swift */; };
 		530F44392482752600B1FD0B /* mentorship_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* mentorship_iosUITests.swift */; };
+		531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531B75EB248524D600CEBF62 /* SignUpView.swift */; };
+		534AC02D2486D5CB00A34A46 /* BigBoldButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */; };
+		534AC02F2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */; };
+		53569279248AECF400EB9522 /* AllPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53569278248AECF400EB9522 /* AllPadding.swift */; };
+		5366ED712488EDA9006A3543 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5366ED732488EDA9006A3543 /* Localizable.strings */; };
+		536B22F92484F70D00060CD7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536B22F82484F70D00060CD7 /* LoginView.swift */; };
+		53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46E92488CBBF005656B9 /* DesignConstants.swift */; };
+		53EB46EC2488D5AA005656B9 /* ImageNameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46EB2488D5AA005656B9 /* ImageNameConstants.swift */; };
+		53EB47012488EBAF005656B9 /* LocalizableStringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB47002488EBAF005656B9 /* LocalizableStringConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +60,17 @@
 		530F44342482752600B1FD0B /* mentorship iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mentorship iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		530F44382482752600B1FD0B /* mentorship_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentorship_iosUITests.swift; sourceTree = "<group>"; };
 		530F443A2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		531B75EB248524D600CEBF62 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigBoldButtonStyle.swift; sourceTree = "<group>"; };
+		534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFilledTextFieldStyle.swift; sourceTree = "<group>"; };
+		53569278248AECF400EB9522 /* AllPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPadding.swift; sourceTree = "<group>"; };
+		5366ED6E2488ED8F006A3543 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5366ED722488EDA9006A3543 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5366ED742488EDAF006A3543 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		536B22F82484F70D00060CD7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		53EB46E92488CBBF005656B9 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
+		53EB46EB2488D5AA005656B9 /* ImageNameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameConstants.swift; sourceTree = "<group>"; };
+		53EB47002488EBAF005656B9 /* LocalizableStringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStringConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +121,9 @@
 		530F44122482752500B1FD0B /* mentorship ios */ = {
 			isa = PBXGroup;
 			children = (
+				53569277248AECCA00EB9522 /* Modifiers */,
+				534AC0292486D43200A34A46 /* Utility */,
+				536B22F62484F6BE00060CD7 /* Registration */,
 				530F44132482752500B1FD0B /* AppDelegate.swift */,
 				530F44152482752500B1FD0B /* SceneDelegate.swift */,
 				530F441A2482752500B1FD0B /* ContentView.swift */,
@@ -108,6 +131,7 @@
 				530F44212482752600B1FD0B /* LaunchScreen.storyboard */,
 				530F44242482752600B1FD0B /* Info.plist */,
 				530F44172482752500B1FD0B /* mentorship_ios.xcdatamodeld */,
+				5366ED732488EDA9006A3543 /* Localizable.strings */,
 				530F441E2482752600B1FD0B /* Preview Content */,
 			);
 			path = "mentorship ios";
@@ -137,6 +161,35 @@
 				530F443A2482752600B1FD0B /* Info.plist */,
 			);
 			path = "mentorship iosUITests";
+			sourceTree = "<group>";
+		};
+		534AC0292486D43200A34A46 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				53EB46E92488CBBF005656B9 /* DesignConstants.swift */,
+				53EB47002488EBAF005656B9 /* LocalizableStringConstants.swift */,
+				53EB46EB2488D5AA005656B9 /* ImageNameConstants.swift */,
+				534AC02C2486D5CB00A34A46 /* BigBoldButtonStyle.swift */,
+				534AC02E2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		53569277248AECCA00EB9522 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				53569278248AECF400EB9522 /* AllPadding.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		536B22F62484F6BE00060CD7 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				536B22F82484F70D00060CD7 /* LoginView.swift */,
+				531B75EB248524D600CEBF62 /* SignUpView.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +278,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = 530F44072482752500B1FD0B;
 			productRefGroup = 530F44112482752500B1FD0B /* Products */;
@@ -244,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */,
+				5366ED712488EDA9006A3543 /* Localizable.strings in Resources */,
 				530F44202482752600B1FD0B /* Preview Assets.xcassets in Resources */,
 				530F441D2482752600B1FD0B /* Assets.xcassets in Resources */,
 			);
@@ -271,9 +326,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				530F44192482752500B1FD0B /* mentorship_ios.xcdatamodeld in Sources */,
+				53EB47012488EBAF005656B9 /* LocalizableStringConstants.swift in Sources */,
 				530F44142482752500B1FD0B /* AppDelegate.swift in Sources */,
 				530F441B2482752500B1FD0B /* ContentView.swift in Sources */,
+				53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */,
+				53EB46EC2488D5AA005656B9 /* ImageNameConstants.swift in Sources */,
+				536B22F92484F70D00060CD7 /* LoginView.swift in Sources */,
+				53569279248AECF400EB9522 /* AllPadding.swift in Sources */,
+				531B75EC248524D600CEBF62 /* SignUpView.swift in Sources */,
+				534AC02D2486D5CB00A34A46 /* BigBoldButtonStyle.swift in Sources */,
 				530F44162482752500B1FD0B /* SceneDelegate.swift in Sources */,
+				534AC02F2486DF3A00A34A46 /* RoundFilledTextFieldStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +376,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				530F44222482752600B1FD0B /* Base */,
+				5366ED6E2488ED8F006A3543 /* pl */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5366ED732488EDA9006A3543 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5366ED722488EDA9006A3543 /* en */,
+				5366ED742488EDAF006A3543 /* pl */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -324,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -384,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
