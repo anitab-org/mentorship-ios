@@ -31,7 +31,7 @@ struct KeychainManager {
         }
     }
 
-    static func readKeychain() throws {
+    static func readKeychain() throws -> String {
         let server = baseURL
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrServer as String: server,
@@ -47,11 +47,11 @@ struct KeychainManager {
         guard let existingItem = item as? [String : Any],
             let tokenData = existingItem[kSecValueData as String] as? Data,
             let token = String(data: tokenData, encoding: String.Encoding.utf8),
-            let account = existingItem[kSecAttrAccount as String] as? String
+            let _ = existingItem[kSecAttrAccount as String] as? String
             else {
                 throw KeychainError.unexpectedPasswordData
         }
-        print(token, account)
+        return token
     }
 
     static func replaceKeychainItem(username: String, tokenString: String) throws {
