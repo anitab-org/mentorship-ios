@@ -8,19 +8,10 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct Login: View {
     @State private var showSignUpPage: Bool = false
-    @State private var username: String = ""
-    @State private var password: String = ""
-    
-    var loginDisabled: Bool {
-        if username.isEmpty || password.isEmpty {
-            return true
-        } else {
-            return false
-        }
-    }
-    
+    @ObservedObject var loginModel = LoginModel()
+            
     var body: some View {
         VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
             //top image of mentorship logo
@@ -30,19 +21,28 @@ struct LoginView: View {
             
             //username and password text fields
             VStack(spacing: DesignConstants.Form.Spacing.smallSpacing) {
-                TextField("Username" , text: $username)
+                TextField("Username/Email", text: $loginModel.loginData.username)
                     .textFieldStyle(RoundFilledTextFieldStyle())
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $loginModel.loginData.password)
                     .textFieldStyle(RoundFilledTextFieldStyle())
             }
             
             //login button
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                Text("Login")
+            Button("Login") {
+                self.loginModel.login()
             }
-            .buttonStyle(BigBoldButtonStyle(disabled: loginDisabled))
-            .disabled(loginDisabled)
+            .buttonStyle(BigBoldButtonStyle(disabled: loginModel.loginDisabled))
+            .disabled(loginModel.loginDisabled)
+            
+            //activity indicator or show user message text
+            if self.loginModel.inActivity {
+                ActivityIndicator(isAnimating: $loginModel.inActivity, style: .medium)
+            } else {
+                Text(self.loginModel.loginResponseData.message ?? "")
+                .font(DesignConstants.Fonts.userError)
+                .foregroundColor(DesignConstants.Colors.userError)
+            }
             
             //text and sign up button
             VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing) {
@@ -52,10 +52,10 @@ struct LoginView: View {
                     Text("Signup")
                         .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
                 }.sheet(isPresented: $showSignUpPage) {
-                    SignUpView.init()
+                    SignUp(isPresented: self.$showSignUpPage)
                 }
             }
-            
+                        
             //spacer to push content to top
             Spacer()
         }
@@ -65,6 +65,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        Login()
     }
 }
