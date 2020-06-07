@@ -17,12 +17,17 @@ struct Members: View {
                     ActivityIndicator(isAnimating: self.$membersModel.inActivity, style: .medium)
                 }
                 ForEach(membersModel.membersResponseData) { member in
-                    MembersListCell(member: member, membersModel: self.membersModel)
+                    NavigationLink(destination: Text("member page")) {
+                        MembersListCell(member: member, membersModel: self.membersModel)
+                    }
                 }
             }
             .navigationBarTitle("Members")
-            .onAppear(perform: membersModel.fetchMembers)
-            .padding(.horizontal, DesignConstants.Screen.Padding.leadingPadding)
+            .onAppear {
+                if self.membersModel.membersResponseData.count == 0 {
+                    self.membersModel.fetchMembers()
+                }
+            }
         }
     }
 }
