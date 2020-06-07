@@ -65,8 +65,11 @@ final class SignUpModel: ObservableObject {
         var username: String
         var password: String
         var email: String
+         // swiftlint:disable:next all
         var terms_and_conditions_checked: Bool
+         // swiftlint:disable:next all
         var need_mentoring: Bool
+         // swiftlint:disable:next all
         var available_to_mentor: Bool
     }
     

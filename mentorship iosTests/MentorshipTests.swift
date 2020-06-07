@@ -9,7 +9,7 @@
 import XCTest
 @testable import mentorship_ios
 
-class mentorship_iosTests: XCTestCase {
+class MentorshipTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

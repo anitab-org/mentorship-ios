@@ -61,6 +61,7 @@ final class LoginModel: ObservableObject {
 
     struct LoginResponseData: Decodable {
         let message: String?
+         // swiftlint:disable:next all
         let access_token: String?
     }
 }

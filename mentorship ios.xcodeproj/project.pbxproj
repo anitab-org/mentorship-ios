@@ -14,8 +14,8 @@
 		530F441D2482752600B1FD0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530F441C2482752600B1FD0B /* Assets.xcassets */; };
 		530F44202482752600B1FD0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530F441F2482752600B1FD0B /* Preview Assets.xcassets */; };
 		530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530F44212482752600B1FD0B /* LaunchScreen.storyboard */; };
-		530F442E2482752600B1FD0B /* mentorship_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* mentorship_iosTests.swift */; };
-		530F44392482752600B1FD0B /* mentorship_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* mentorship_iosUITests.swift */; };
+		530F442E2482752600B1FD0B /* MentorshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* MentorshipTests.swift */; };
+		530F44392482752600B1FD0B /* MentorshipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* MentorshipUITests.swift */; };
 		5314C184248B9EC2000AA386 /* AllPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5314C183248B9EC2000AA386 /* AllPadding.swift */; };
 		531B75EC248524D600CEBF62 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531B75EB248524D600CEBF62 /* SignUp.swift */; };
 		531C8065248A477700AE81EF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531C8064248A477700AE81EF /* LoginModel.swift */; };
@@ -65,10 +65,10 @@
 		530F44222482752600B1FD0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		530F44242482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		530F44292482752600B1FD0B /* mentorship iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mentorship iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		530F442D2482752600B1FD0B /* mentorship_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentorship_iosTests.swift; sourceTree = "<group>"; };
+		530F442D2482752600B1FD0B /* MentorshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipTests.swift; sourceTree = "<group>"; };
 		530F442F2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		530F44342482752600B1FD0B /* mentorship iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mentorship iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		530F44382482752600B1FD0B /* mentorship_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mentorship_iosUITests.swift; sourceTree = "<group>"; };
+		530F44382482752600B1FD0B /* MentorshipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipUITests.swift; sourceTree = "<group>"; };
 		530F443A2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5314C183248B9EC2000AA386 /* AllPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPadding.swift; sourceTree = "<group>"; };
 		531B75EB248524D600CEBF62 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		530F442C2482752600B1FD0B /* mentorship iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				530F442D2482752600B1FD0B /* mentorship_iosTests.swift */,
+				530F442D2482752600B1FD0B /* MentorshipTests.swift */,
 				530F442F2482752600B1FD0B /* Info.plist */,
 			);
 			path = "mentorship iosTests";
@@ -183,7 +183,7 @@
 		530F44372482752600B1FD0B /* mentorship iosUITests */ = {
 			isa = PBXGroup;
 			children = (
-				530F44382482752600B1FD0B /* mentorship_iosUITests.swift */,
+				530F44382482752600B1FD0B /* MentorshipUITests.swift */,
 				530F443A2482752600B1FD0B /* Info.plist */,
 			);
 			path = "mentorship iosUITests";
@@ -432,7 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				530F442E2482752600B1FD0B /* mentorship_iosTests.swift in Sources */,
+				530F442E2482752600B1FD0B /* MentorshipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				530F44392482752600B1FD0B /* mentorship_iosUITests.swift in Sources */,
+				530F44392482752600B1FD0B /* MentorshipUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
