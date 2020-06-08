@@ -10,9 +10,9 @@ import SwiftUI
 import Combine
 
 final class LoginModel: ObservableObject {
-    //MARK: - Variables
+    // MARK: - Variables
     @Published var loginData = LoginUploadData(username: "", password: "")
-    @Published var loginResponseData = LoginResponseData(message: "", access_token: "")
+    @Published var loginResponseData = LoginResponseData(message: "", accessToken: "")
     @Published var inActivity: Bool = false
     private var cancellable: AnyCancellable?
     
@@ -23,7 +23,7 @@ final class LoginModel: ObservableObject {
         return false
     }
      
-    //MARK: - Main Function
+    // MARK: - Main Function
     func login() {
         self.inActivity = true
         
@@ -40,11 +40,12 @@ final class LoginModel: ObservableObject {
             }, receiveValue: { value in
                 self.loginResponseData = value
                 //if login successful, store access token in keychain
-                if var token = value.access_token {
+                if var token = value.accessToken {
                     token = "Bearer " + token
                     do {
                         try KeychainManager.addToKeychain(username: self.loginData.username, tokenString: token)
                         print("added")
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     } catch {
                         print("not added")
                         return
@@ -53,7 +54,7 @@ final class LoginModel: ObservableObject {
             })
     }
     
-    //MARK: - Structures
+    // MARK: - Structures
     struct LoginUploadData: Encodable {
         var username: String
         var password: String
@@ -61,7 +62,11 @@ final class LoginModel: ObservableObject {
 
     struct LoginResponseData: Decodable {
         let message: String?
-         // swiftlint:disable:next all
-        let access_token: String?
+        let accessToken: String?
+        
+        enum CodingKeys: String, CodingKey {
+            case message
+            case accessToken = "access_token"
+        }
     }
 }

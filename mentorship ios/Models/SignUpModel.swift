@@ -10,8 +10,8 @@ import SwiftUI
 import Combine
 
 final class SignUpModel: ObservableObject {
-    //MARK: - Variables
-    @Published var signUpData = SignUpUploadData(name: "", username: "", password: "", email: "", terms_and_conditions_checked: false, need_mentoring: true, available_to_mentor: false)
+    // MARK: - Variables
+    @Published var signUpData = SignUpUploadData(name: "", username: "", password: "", email: "", tncChecked: false, needMentoring: true, availableToMentor: false)
     @Published var signUpResponseData = SignUpResponseData(message: "")
     @Published var confirmPassword: String = ""
     @Published var availabilityPickerSelection: Int = 2
@@ -19,21 +19,21 @@ final class SignUpModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     var signupDisabled: Bool {
-        if signUpData.name.isEmpty || signUpData.username.isEmpty || signUpData.email.isEmpty || signUpData.password.isEmpty || confirmPassword.isEmpty || !signUpData.terms_and_conditions_checked {
+        if signUpData.name.isEmpty || signUpData.username.isEmpty || signUpData.email.isEmpty || signUpData.password.isEmpty || confirmPassword.isEmpty || !signUpData.tncChecked {
             return true
         } else {
             return false
         }
     }
     
-    //MARK: - Main Function
+    // MARK: - Main Function
     func signUp() {
         //assign availability values as per picker selection
         if self.availabilityPickerSelection > 1 {
-            self.signUpData.need_mentoring = true
+            self.signUpData.needMentoring = true
         }
         if self.availabilityPickerSelection != 2 {
-            self.signUpData.available_to_mentor = true
+            self.signUpData.availableToMentor = true
         }
         
         //check password fields
@@ -59,18 +59,23 @@ final class SignUpModel: ObservableObject {
             })
     }
     
-    //MARK: - Structures
+    // MARK: - Structures
     struct SignUpUploadData: Encodable {
         var name: String
         var username: String
         var password: String
         var email: String
-         // swiftlint:disable:next all
-        var terms_and_conditions_checked: Bool
-         // swiftlint:disable:next all
-        var need_mentoring: Bool
-         // swiftlint:disable:next all
-        var available_to_mentor: Bool
+
+        var tncChecked: Bool
+        var needMentoring: Bool
+        var availableToMentor: Bool
+        
+        enum CodingKeys: String, CodingKey {
+            case name, username, password, email
+            case tncChecked = "terms_and_conditions_checked"
+            case needMentoring = "need_mentoring"
+            case availableToMentor = "available_to_mentor"
+        }
     }
     
     struct SignUpResponseData: Decodable {

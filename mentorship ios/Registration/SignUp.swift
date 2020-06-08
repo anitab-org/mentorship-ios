@@ -61,7 +61,7 @@ struct SignUp: View {
                     
                     //consent view, to accept terms and conditions
                     VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing + 2) {
-                        Toggle(isOn: $signUpModel.signUpData.terms_and_conditions_checked) {
+                        Toggle(isOn: $signUpModel.signUpData.tncChecked) {
                             Text("Terms and Conditions")
                                 .font(.headline)
                         }

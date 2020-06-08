@@ -16,7 +16,7 @@ struct MembersListCell: View {
             Text(member.name ?? "")
                 .font(.headline)
             
-            Text(self.membersModel.availabilityString(canBeMentee: member.need_mentoring ?? false, canBeMentor: member.available_to_mentor ?? false))
+            Text(self.membersModel.availabilityString(canBeMentee: member.needMentoring ?? false, canBeMentor: member.availableToMentor ?? false))
                 .font(.subheadline)
             
             Text(self.membersModel.skillsString(skills: member.skills ?? ""))

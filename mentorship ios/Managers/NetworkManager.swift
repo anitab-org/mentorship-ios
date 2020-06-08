@@ -10,6 +10,8 @@ import Foundation
 import Combine
 
 struct NetworkManager {
+    static var responseCode: Int = 0
+    
     static func callAPI<T: Decodable>(urlString: String, httpMethod: String, uploadData: Data, token: String = "") -> AnyPublisher<T, Error> {
         let url = URL(string: urlString)!
         
@@ -23,7 +25,12 @@ struct NetworkManager {
         
         return URLSession.shared
             .dataTaskPublisher(for: request)
-            .map { $0.data }
+            .tryMap {
+                if let response = $0.response as? HTTPURLResponse {
+                    self.responseCode = response.statusCode
+                }
+                return $0.data
+            }
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
