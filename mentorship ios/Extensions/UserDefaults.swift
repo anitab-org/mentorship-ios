@@ -1,9 +1,7 @@
 //
-//  UserDefaults.swift
-//  mentorship ios
-//
-//  Created by Yugantar Jain on 08/06/20.
-//  Copyright © 2020 Yugantar Jain. All rights reserved.
+// UserDefaults.swift
+// Created on 08/06/20.
+// Created for AnitaB.org Mentorship-iOS
 //
 
 import Foundation

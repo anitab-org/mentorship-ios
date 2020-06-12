@@ -1,9 +1,7 @@
 //
 //  mentorship_iosUITests.swift
-//  mentorship iosUITests
-//
-//  Created by Yugantar Jain on 30/05/20.
-//  Copyright © 2020 Yugantar Jain. All rights reserved.
+//  Created on 30/05/20.
+//  Created for AnitaB.org Mentorship-iOS
 //
 
 import XCTest
