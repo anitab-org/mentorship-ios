@@ -7,12 +7,12 @@
 import SwiftUI
 
 struct BigBoldButtonStyle: ButtonStyle {
-    var disabled: Bool
-    
+    var disabled: Bool = false
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(width: 200)
-            .padding(.vertical, DesignConstants.Padding.frameExpansionPadding)
+            .padding(.vertical, DesignConstants.Padding.textFieldFrameExpansion)
             .background(DesignConstants.Colors.defaultIndigoColor)
             .foregroundColor(Color(.systemBackground))
             .cornerRadius(DesignConstants.CornerRadius.preferredCornerRadius)

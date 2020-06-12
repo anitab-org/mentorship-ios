@@ -6,4 +6,10 @@
 
 struct ImageNameConstants {
     static let mentorshipLogoImageName = "mentorship_system_logo"
+    
+    struct SFSymbolConstants {
+        static let xCircle = "x.circle.fill"
+        static let home = "house.fill"
+        static let members = "person.3.fill"
+    }
 }

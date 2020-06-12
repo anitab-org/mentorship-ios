@@ -9,7 +9,7 @@ import SwiftUI
 struct SignUp: View {
     @ObservedObject var signUpModel = SignUpModel()
     @Binding var isPresented: Bool
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -22,32 +22,33 @@ struct SignUp: View {
                             .textFieldStyle(RoundFilledTextFieldStyle())
                         TextField("Email", text: $signUpModel.signUpData.email)
                             .textFieldStyle(RoundFilledTextFieldStyle())
+                            .autocapitalization(.none)
                         SecureField("Password", text: $signUpModel.signUpData.password)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                         SecureField("Confirm Password", text: $signUpModel.confirmPassword)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                     }
-                    
+
                     //select availability as mentor, mentee, or both
                     VStack {
                         Text(LocalizableStringConstants.availabilityText).font(.headline)
-                        
+
                         Picker(selection: $signUpModel.availabilityPickerSelection, label: Text("")) {
-                            Text("Mentor").tag(1)
-                            Text("Mentee").tag(2)
+                            Text(LocalizableStringConstants.mentor).tag(1)
+                            Text(LocalizableStringConstants.mentee).tag(2)
                             Text("Both").tag(3)
                         }
                         .labelsHidden()
                         .pickerStyle(SegmentedPickerStyle())
                     }
-                    
+
                     //sign up button
                     Button("Sign Up") {
                         self.signUpModel.signUp()
                     }
                     .buttonStyle(BigBoldButtonStyle(disabled: signUpModel.signupDisabled))
                     .disabled(signUpModel.signupDisabled)
-                    
+
                     //activity indicator or message for user if present
                     if signUpModel.inActivity {
                         ActivityIndicator(isAnimating: $signUpModel.inActivity, style: .medium)
@@ -56,19 +57,19 @@ struct SignUp: View {
                             .font(DesignConstants.Fonts.userError)
                             .foregroundColor(DesignConstants.Colors.userError)
                     }
-                    
+
                     //consent view, to accept terms and conditions
                     VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing + 2) {
                         Toggle(isOn: $signUpModel.signUpData.tncChecked) {
                             Text("Terms and Conditions")
                                 .font(.headline)
                         }
-                        
+
                         Text(LocalizableStringConstants.tncString)
                             .font(.caption)
                             .fixedSize(horizontal: false, vertical: true)
                     }
-                    
+
                     //spacer to push content to top and have bottom space for scroll view
                     Spacer()
                 }
@@ -79,7 +80,7 @@ struct SignUp: View {
                 Button.init(action: {
                     self.isPresented = false
                 }, label: {
-                    Image(systemName: "x.circle.fill")
+                    Image(systemName: ImageNameConstants.SFSymbolConstants.xCircle)
                         .font(.headline)
                         .accentColor(.secondary)
                 })
@@ -87,7 +88,6 @@ struct SignUp: View {
         }
     }
 }
-
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {

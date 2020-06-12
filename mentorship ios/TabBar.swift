@@ -8,22 +8,22 @@ import SwiftUI
 
 struct TabBar: View {
     @Binding var selection: Int
-    
+
     var body: some View {
         TabView(selection: $selection) {
             Home()
                 .tabItem {
                     VStack {
-                        Image("first")
-                        Text("First")
+                        Image(systemName: ImageNameConstants.SFSymbolConstants.home)
+                        Text("Home")
                     }
             }.tag(0)
-            
+
             Members()
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Image(systemName: ImageNameConstants.SFSymbolConstants.members)
+                        Text("Members")
                     }
             }.tag(1)
         }

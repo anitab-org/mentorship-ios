@@ -8,7 +8,6 @@ import UIKit
 import SwiftUI
 
 struct ActivityIndicator: UIViewRepresentable {
-
     @Binding var isAnimating: Bool
     let style: UIActivityIndicatorView.Style
 

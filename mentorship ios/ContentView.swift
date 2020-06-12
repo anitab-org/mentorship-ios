@@ -10,7 +10,7 @@ import Combine
 struct ContentView: View {
     @State private var selection = 0
     @ObservedObject var authModel = AuthModel()
-    
+
     var body: some View {
         if authModel.isLogged! {
             return AnyView(

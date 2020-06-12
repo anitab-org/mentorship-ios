@@ -10,7 +10,7 @@ struct RoundFilledTextFieldStyle: TextFieldStyle {
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
-            .padding(DesignConstants.Padding.frameExpansionPadding)
+            .padding(DesignConstants.Padding.textFieldFrameExpansion)
             .background(
                 RoundedRectangle(cornerRadius: DesignConstants.CornerRadius.preferredCornerRadius)
                     .fill(DesignConstants.Colors.secondaryBackground)

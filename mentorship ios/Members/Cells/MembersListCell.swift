@@ -10,15 +10,17 @@ struct MembersListCell: View {
     var member: MembersModel.MembersResponseData
     var membersModel: MembersModel
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: DesignConstants.Spacing.minimalSpacing) {
             Text(member.name ?? "")
                 .font(.headline)
-            
-            Text(self.membersModel.availabilityString(canBeMentee: member.needMentoring ?? false, canBeMentor: member.availableToMentor ?? false))
-                .font(.subheadline)
-            
-            Text(self.membersModel.skillsString(skills: member.skills ?? ""))
-                .font(.subheadline)
+
+            Group {
+                Text(self.membersModel.availabilityString(canBeMentee: member.needMentoring ?? false, canBeMentor: member.availableToMentor ?? false))
+
+                Text(self.membersModel.skillsString(skills: member.skills ?? ""))
+            }
+            .font(.subheadline)
+            .foregroundColor(DesignConstants.Colors.subtitleText)
         }
     }
 }

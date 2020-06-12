@@ -12,7 +12,7 @@ struct KeychainManager {
         case unexpectedPasswordData
         case unhandledError(status: OSStatus)
     }
-    
+
     static func addToKeychain(username: String, tokenString: String) throws {
         let account = username
         let token = tokenString.data(using: String.Encoding.utf8)!
@@ -36,13 +36,13 @@ struct KeychainManager {
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecReturnAttributes as String: true,
                                     kSecReturnData as String: true]
-        
+
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         guard status != errSecItemNotFound else { throw KeychainError.noPassword }
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-        
-        guard let existingItem = item as? [String : Any],
+
+        guard let existingItem = item as? [String: Any],
             let tokenData = existingItem[kSecValueData as String] as? Data,
             let token = String(data: tokenData, encoding: String.Encoding.utf8),
             let _ = existingItem[kSecAttrAccount as String] as? String
@@ -60,10 +60,10 @@ struct KeychainManager {
         let token = tokenString.data(using: String.Encoding.utf8)!
         let attributes: [String: Any] = [kSecAttrAccount as String: account,
                                          kSecValueData as String: token]
-        
+
         let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
         guard status != errSecItemNotFound else { throw KeychainError.noPassword }
         guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
     }
-    
+
 }

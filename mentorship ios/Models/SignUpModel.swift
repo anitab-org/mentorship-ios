@@ -23,7 +23,7 @@ final class SignUpModel: ObservableObject {
             return false
         }
     }
-    
+
     // MARK: - Main Function
     func signUp() {
         //assign availability values as per picker selection
@@ -33,16 +33,16 @@ final class SignUpModel: ObservableObject {
         if self.availabilityPickerSelection != 2 {
             self.signUpData.availableToMentor = true
         }
-        
+
         //check password fields
         if self.signUpData.password != self.confirmPassword {
             self.signUpResponseData.message = "Passwords do not match"
             return
         }
-        
+
         //show activity indicator
         self.inActivity = true
-        
+
         guard let uploadData = try? JSONEncoder().encode(signUpData) else {
             self.inActivity = false
             return
@@ -50,13 +50,13 @@ final class SignUpModel: ObservableObject {
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.signUp, httpMethod: "POST", uploadData: uploadData)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.signUpResponseData) }
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { _ in
                 self.inActivity = false
             }, receiveValue: { value in
                 self.signUpResponseData = value
             })
     }
-    
+
     // MARK: - Structures
     struct SignUpUploadData: Encodable {
         var name: String
@@ -67,7 +67,7 @@ final class SignUpModel: ObservableObject {
         var tncChecked: Bool
         var needMentoring: Bool
         var availableToMentor: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case name, username, password, email
             case tncChecked = "terms_and_conditions_checked"
@@ -75,7 +75,7 @@ final class SignUpModel: ObservableObject {
             case availableToMentor = "available_to_mentor"
         }
     }
-    
+
     struct SignUpResponseData: Decodable {
         var message: String?
     }

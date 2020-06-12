@@ -7,13 +7,13 @@
 import SwiftUI
 
 struct DesignConstants {
-    
+
     struct Spacing {
         static let bigSpacing: CGFloat = 48
         static let smallSpacing: CGFloat = 16
         static let minimalSpacing: CGFloat = 6
     }
-    
+
     struct Screen {
         struct Padding {
             // default SwiftUI padding value = 16
@@ -23,7 +23,7 @@ struct DesignConstants {
             static let trailingPadding: CGFloat = 16
         }
     }
-    
+
     struct Form {
         struct Spacing {
                 static let bigSpacing: CGFloat = 46
@@ -31,24 +31,24 @@ struct DesignConstants {
                 static let minimalSpacing: CGFloat = 6
         }
     }
-    
+
     struct Padding {
         //used to expand frame, eg. of textfield
         static let frameExpansionPadding: CGFloat = 10
     }
-    
+
     struct CornerRadius {
         static let preferredCornerRadius: CGFloat = 5
     }
-    
+
     struct Opacity {
         static let disabledViewOpacity: Double = 0.75
         static let tapHighlightingOpacity: Double = 0.75
     }
-    
+
     struct Colors {
         static let defaultIndigoColor = Color(.systemIndigo)
         static let secondaryBackground = Color(.secondarySystemBackground)
     }
-    
+
 }
