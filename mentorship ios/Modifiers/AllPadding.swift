@@ -7,7 +7,6 @@
 import SwiftUI
 
 struct AllPadding: ViewModifier {
-
     func body(content: Content) -> some View {
         content
             .padding(.top, DesignConstants.Screen.Padding.topPadding)

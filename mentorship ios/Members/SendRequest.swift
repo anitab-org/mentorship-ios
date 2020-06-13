@@ -1,27 +1,39 @@
 //
 //  SendRequest.swift
-//  mentorship ios
-//
-//  Created by Yugantar Jain on 09/06/20.
-//  Copyright © 2020 Yugantar Jain. All rights reserved.
+//  Created on 09/06/20.
+//  Created for AnitaB.org Mentorship-iOS
 //
 
 import SwiftUI
 import Combine
 
 struct SendRequest: View {
-    var name: String
+    @ObservedObject var membersModel = MembersModel()
+    var memberID: Int
+    var memberName: String
     @State private var pickerSelection = 1
     @State private var endDate = Date()
-    @State private var notesText = ""
+    @State private var notes = ""
     @State private var offsetValue: CGFloat = 0
     @Environment(\.presentationMode) var presentationMode
+    
+    func sendRequest() {
+        let myID = ProfileModel().getProfile().id
+        let endDateTimestamp = Int(self.endDate.timeIntervalSince1970)
+        var menteeID = myID
+        var mentorID = memberID
+        if pickerSelection == 2 {
+            menteeID = memberID
+            mentorID = myID
+        }
+        membersModel.sendRequest(menteeID: menteeID, mentorID: mentorID, endDate: endDateTimestamp, notes: notes)
+    }
     
     var body: some View {
         NavigationView {
             Form {
                 //heading
-                Section(header: Text("To \(name)").font(.title).fontWeight(.heavy)) {
+                Section(header: Text("To \(memberName)").font(.title).fontWeight(.heavy)) {
                     EmptyView()
                 }
                 
@@ -36,27 +48,49 @@ struct SendRequest: View {
                         Text(LocalizableStringConstants.endDate)
                     }
 
-                    TextField(LocalizableStringConstants.notes, text: $notesText)
+                    TextField(LocalizableStringConstants.notes, text: $notes)
                 }
                 .padding(.vertical, DesignConstants.Padding.listCellFrameExpansion)
 
                 //send button
                 Section {
-                    Button(action: {}) {
+                    Button(action: sendRequest) {
                         Text(LocalizableStringConstants.send)
                     }
+                }
+                
+                //Activity indicator or error text
+                if membersModel.inActivity || !(membersModel.sendRequestResponseData.message ?? "").isEmpty {
+                    Section {
+                        if membersModel.inActivity {
+                            ActivityIndicator(isAnimating: $membersModel.inActivity, style: .medium)
+                        } else if !membersModel.requestSentSuccesfully {
+                            Text(membersModel.sendRequestResponseData.message ?? "")
+                                .modifier(ErrorText())
+                        }
+                    }
+                    .listRowBackground(DesignConstants.Colors.formBackgroundColor)
                 }
             }
             .navigationBarTitle(LocalizableStringConstants.relationRequest)
             .navigationBarItems(leading: Button(LocalizableStringConstants.cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
             }))
+            .alert(isPresented: $membersModel.requestSentSuccesfully) {
+                Alert(
+                    title: Text("Success"),
+                    message: Text(membersModel.sendRequestResponseData.message ?? "Mentorship relation was sent successfully."),
+                    dismissButton: .cancel(Text("Okay"), action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+                )
+            }
         }
     }
 }
 
 struct SendRequest_Previews: PreviewProvider {
     static var previews: some View {
-        SendRequest(name: "Name")
+        SendRequest(memberID: 0, memberName: "demo name")
     }
 }

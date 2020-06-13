@@ -23,7 +23,7 @@ struct KeychainManager {
                                     kSecValueData as String: token]
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
-            //            throw KeychainError.unhandledError(status: status)
+            //throw KeychainError.unhandledError(status: status)
             do { try replaceKeychainItem(username: username, tokenString: tokenString) } catch { return }
             return
         }

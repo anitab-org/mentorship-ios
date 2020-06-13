@@ -1,9 +1,7 @@
 //
 //  MemberDetail.swift
-//  mentorship ios
-//
-//  Created by Yugantar Jain on 08/06/20.
-//  Copyright © 2020 Yugantar Jain. All rights reserved.
+//  Created on 08/06/20.
+//  Created for AnitaB.org Mentorship-iOS
 //
 
 import SwiftUI
@@ -35,7 +33,7 @@ struct MemberDetail: View {
             }
         )
             .sheet(isPresented: $showSendRequestSheet) {
-                SendRequest(name: self.member.name ?? "-")
+                SendRequest(memberID: self.member.id ?? 0, memberName: self.member.name ?? "-")
         }
     }
 }

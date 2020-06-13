@@ -1,11 +1,9 @@
-////
-////  KeyboardManager.swift
-////  mentorship ios
-////
-////  Created by Yugantar Jain on 09/06/20.
-////  Copyright © 2020 Yugantar Jain. All rights reserved.
-////
 //
+//  KeyboardManager.swift
+//  Created on 09/06/20.
+//  Created for AnitaB.org Mentorship-iOS
+//
+
 //import Foundation
 //import Combine
 //import SwiftUI

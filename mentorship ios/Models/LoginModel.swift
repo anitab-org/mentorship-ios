@@ -30,7 +30,7 @@ final class LoginModel: ObservableObject {
             return
         }
 
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.login, httpMethod: "POST", uploadData: uploadData)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.login, httpMethod: "POST", uploadData: uploadData)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.loginResponseData) }
             .sink(receiveCompletion: { _ in
@@ -43,7 +43,7 @@ final class LoginModel: ObservableObject {
                     do {
                         try KeychainManager.addToKeychain(username: self.loginData.username, tokenString: token)
                         print("added")
-                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                        UserDefaults.standard.set(true, forKey: UserDefaultsConstants.isLoggedIn)
                     } catch {
                         print("not added")
                         return

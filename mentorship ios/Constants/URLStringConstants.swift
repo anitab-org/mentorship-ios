@@ -7,7 +7,15 @@
 let baseURL: String = "https://mentorship-backend-temp.herokuapp.com/"
 
 struct URLStringConstants {
-    static let login: String = baseURL + "login"
-    static let signUp: String = baseURL + "register"
-    static let members: String = baseURL + "users"
+    struct Users {
+        static let login: String = baseURL + "login"
+        static let signUp: String = baseURL + "register"
+        static let members: String = baseURL + "users"
+        static let home: String = baseURL + "dashboard"
+        static let getProfile: String = baseURL + "user"
+    }
+    
+    struct MentorshipRelation {
+        static let sendRequest: String = baseURL + "mentorship_relation/send_request"
+    }
 }

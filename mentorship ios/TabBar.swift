@@ -15,6 +15,7 @@ struct TabBar: View {
                 .tabItem {
                     VStack {
                         Image(systemName: ImageNameConstants.SFSymbolConstants.home)
+                            .imageScale(.large)
                         Text("Home")
                     }
             }.tag(0)
@@ -23,6 +24,7 @@ struct TabBar: View {
                 .tabItem {
                     VStack {
                         Image(systemName: ImageNameConstants.SFSymbolConstants.members)
+                            .imageScale(.large)
                         Text("Members")
                     }
             }.tag(1)

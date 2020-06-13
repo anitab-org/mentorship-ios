@@ -11,7 +11,9 @@ final class MembersModel: ObservableObject {
 
     // MARK: - Variables
     @Published var membersResponseData = [MembersResponseData]()
-    @Published var inActivity: Bool = false
+    @Published var sendRequestResponseData = SendRequestResponseData(message: "")
+    @Published var inActivity = false
+    @Published var requestSentSuccesfully = false
     private var cancellable: AnyCancellable?
 
     // MARK: - Functions
@@ -23,7 +25,7 @@ final class MembersModel: ObservableObject {
         self.inActivity = true
 
         // Debug comment: cache policy to be changed later to revalidateCache
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.members, httpMethod: "GET", uploadData: Data(), token: token, cachePolicy: .reloadRevalidatingCacheData)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members, token: token, cachePolicy: .returnCacheDataElseLoad)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.membersResponseData) }
             .sink(receiveCompletion: { completion in
@@ -35,20 +37,50 @@ final class MembersModel: ObservableObject {
             })
     }
 
-    func availabilityString(canBeMentee: Bool, canBeMentor: Bool) -> String {
+    func availabilityString(canBeMentee: Bool, canBeMentor: Bool) -> LocalizedStringKey {
         if canBeMentor && canBeMentor {
-            return "Available to be a Mentor and Mentee both"
+            return LocalizableStringConstants.canBeBoth
         } else if canBeMentee {
-            return "Available to be a Mentee"
+            return LocalizableStringConstants.canBeMentee
         } else if canBeMentor {
-            return "Availbe to be a Mentor"
+            return LocalizableStringConstants.canBeMentor
         } else {
-            return "Not available"
+            return LocalizableStringConstants.notAvailable
         }
     }
 
     func skillsString(skills: String) -> String {
         return "Skills: \(skills)"
+    }
+    
+    func sendRequest(menteeID: Int, mentorID: Int, endDate: Int, notes: String) {
+        //token
+        guard let token = try? KeychainManager.readKeychain() else {
+            return
+        }
+        
+        //upload data
+        let requestData = SendRequestUploadData(mentorID: mentorID, menteeID: menteeID, endDate: endDate, notes: notes)
+        print(requestData)
+        guard let uploadData = try? JSONEncoder().encode(requestData) else {
+            return
+        }
+         
+        //activity indicator
+        self.inActivity = true
+        
+        //api call
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.sendRequest, httpMethod: "POST", uploadData: uploadData, token: token)
+            .receive(on: RunLoop.main)
+            .catch { _ in Just(self.sendRequestResponseData) }
+            .sink(receiveCompletion: { _ in
+                self.inActivity = false
+                if NetworkManager.responseCode == 200 {
+                    self.requestSentSuccesfully = true
+                }
+            }, receiveValue: { value in
+                self.sendRequestResponseData = value
+            })
     }
 
     // MARK: - Structures
@@ -77,6 +109,24 @@ final class MembersModel: ObservableObject {
             case availableToMentor = "available_to_mentor"
             case isAvailable = "is_available"
         }
+    }
+    
+    struct SendRequestUploadData: Encodable {
+        var mentorID: Int
+        var menteeID: Int
+        var endDate: Int
+        var notes: String
+        
+        enum CodingKeys: String, CodingKey {
+            case notes
+            case mentorID = "mentor_id"
+            case menteeID = "mentee_id"
+            case endDate = "end_date"
+        }
+    }
+    
+    struct SendRequestResponseData: Decodable {
+        let message: String?
     }
 
 }

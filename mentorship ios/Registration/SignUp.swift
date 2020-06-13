@@ -54,8 +54,7 @@ struct SignUp: View {
                         ActivityIndicator(isAnimating: $signUpModel.inActivity, style: .medium)
                     } else if !(self.signUpModel.signUpResponseData.message?.isEmpty ?? true) {
                         Text(self.signUpModel.signUpResponseData.message ?? "")
-                            .font(DesignConstants.Fonts.userError)
-                            .foregroundColor(DesignConstants.Colors.userError)
+                        .modifier(ErrorText())
                     }
 
                     //consent view, to accept terms and conditions

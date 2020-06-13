@@ -12,8 +12,8 @@ struct NetworkManager {
     
     static func callAPI<T: Decodable>(
         urlString: String,
-        httpMethod: String,
-        uploadData: Data,
+        httpMethod: String = "GET",
+        uploadData: Data = Data(),
         token: String = "",
         cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
     ) -> AnyPublisher<T, Error> {
@@ -39,6 +39,5 @@ struct NetworkManager {
         }
         .decode(type: T.self, decoder: JSONDecoder())
         .eraseToAnyPublisher()
-        
     }
 }

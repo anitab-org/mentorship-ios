@@ -8,6 +8,6 @@ import Foundation
 
 extension UserDefaults {
     @objc dynamic var isLoggedIn: Bool {
-        return bool(forKey: "isLoggedIn")
+        return bool(forKey: UserDefaultsConstants.isLoggedIn)
     }
 }
