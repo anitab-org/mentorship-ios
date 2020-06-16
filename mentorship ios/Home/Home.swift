@@ -8,10 +8,12 @@ import SwiftUI
 
 struct Home: View {
     @ObservedObject var homeModel = HomeModel()
-    var relationsData: HomeModel.RelationsListData {
+    private var relationsData: HomeModel.RelationsListData {
         return homeModel.relationsListData
     }
-    private let profile = ProfileModel().getProfile()
+    private var profile: ProfileModel.ProfileData {
+        return homeModel.profileData
+    }
 
     var body: some View {
         NavigationView {

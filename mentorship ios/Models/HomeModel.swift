@@ -11,6 +11,7 @@ final class HomeModel: ObservableObject {
     // MARK: - Variables
     @Published var homeResponseData = HomeResponseData(asMentor: nil, asMentee: nil)
     @Published var relationsListData = RelationsListData()
+    @Published var profileData = ProfileModel().profileData
     var profileModel = ProfileModel()
     var isLoading: Bool = false
     private var cancellable: AnyCancellable?
@@ -36,6 +37,7 @@ final class HomeModel: ObservableObject {
                 print(home)
                 print(profile)
                 self.profileModel.saveProfile(profile: profile)
+                self.profileData = self.profileModel.getProfile()
                 self.updateCount(homeData: home)
                 self.isLoading = false
             }
