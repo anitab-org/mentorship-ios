@@ -17,6 +17,8 @@ final class MembersModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     // MARK: - Functions
+    
+    //Fetch Members
     func fetchMembers() {
         guard let token = try? KeychainManager.readKeychain() else {
             return
@@ -25,7 +27,7 @@ final class MembersModel: ObservableObject {
         self.inActivity = true
 
         // Debug comment: cache policy to be changed later to revalidateCache
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members, token: token, cachePolicy: .returnCacheDataElseLoad)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members, token: token)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.membersResponseData) }
             .sink(receiveCompletion: { completion in
@@ -52,23 +54,24 @@ final class MembersModel: ObservableObject {
     func skillsString(skills: String) -> String {
         return "Skills: \(skills)"
     }
-    
-    func sendRequest(menteeID: Int, mentorID: Int, endDate: Int, notes: String) {
+
+    //Send Request
+    func sendRequest(menteeID: Int, mentorID: Int, endDate: Double, notes: String) {
         //token
         guard let token = try? KeychainManager.readKeychain() else {
             return
         }
-        
+
         //upload data
         let requestData = SendRequestUploadData(mentorID: mentorID, menteeID: menteeID, endDate: endDate, notes: notes)
         print(requestData)
         guard let uploadData = try? JSONEncoder().encode(requestData) else {
             return
         }
-         
+
         //activity indicator
         self.inActivity = true
-        
+
         //api call
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.sendRequest, httpMethod: "POST", uploadData: uploadData, token: token)
             .receive(on: RunLoop.main)
@@ -110,13 +113,13 @@ final class MembersModel: ObservableObject {
             case isAvailable = "is_available"
         }
     }
-    
+
     struct SendRequestUploadData: Encodable {
         var mentorID: Int
         var menteeID: Int
-        var endDate: Int
+        var endDate: Double
         var notes: String
-        
+
         enum CodingKeys: String, CodingKey {
             case notes
             case mentorID = "mentor_id"
@@ -124,7 +127,7 @@ final class MembersModel: ObservableObject {
             case endDate = "end_date"
         }
     }
-    
+
     struct SendRequestResponseData: Decodable {
         let message: String?
     }

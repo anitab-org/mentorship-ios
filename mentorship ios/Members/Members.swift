@@ -13,7 +13,7 @@ struct Members: View {
         NavigationView {
             VStack {
                 if self.membersModel.inActivity {
-                    ActivityIndicator(isAnimating: self.$membersModel.inActivity, style: .large)
+                    ActivityIndicator(isAnimating: self.$membersModel.inActivity, style: .medium)
                 } else {
                     List {
                         ForEach(membersModel.membersResponseData) { member in

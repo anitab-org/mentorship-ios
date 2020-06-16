@@ -9,7 +9,7 @@ import SwiftUI
 struct MemberDetail: View {
     var member: MembersModel.MembersResponseData
     @State private var showSendRequestSheet = false
-    
+
     var body: some View {
         Form {
             Group {

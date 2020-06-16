@@ -8,7 +8,7 @@ import SwiftUI
 import Combine
 
 final class ProfileModel: ObservableObject {
-    
+
     // MARK: - Variables
     var profileData = ProfileData(
         id: 0,
@@ -33,7 +33,7 @@ final class ProfileModel: ObservableObject {
         }
         UserDefaults.standard.set(profileData, forKey: UserDefaultsConstants.profile)
     }
-    
+
     func getProfile() -> ProfileData {
         let profileData = UserDefaults.standard.data(forKey: UserDefaultsConstants.profile)
         guard let profile = try? JSONDecoder().decode(ProfileData.self, from: profileData!) else {
@@ -57,7 +57,7 @@ final class ProfileModel: ObservableObject {
         let interests: String?
         let needMentoring: Bool?
         let availableToMentor: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case id, name, username, email, bio, location, occupation, organization, skills, interests
             case slackUsername = "slack_username"
@@ -65,5 +65,5 @@ final class ProfileModel: ObservableObject {
             case availableToMentor = "available_to_mentor"
         }
     }
-    
+
 }

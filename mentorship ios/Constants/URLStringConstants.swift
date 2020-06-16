@@ -14,7 +14,7 @@ struct URLStringConstants {
         static let home: String = baseURL + "dashboard"
         static let getProfile: String = baseURL + "user"
     }
-    
+
     struct MentorshipRelation {
         static let sendRequest: String = baseURL + "mentorship_relation/send_request"
     }
