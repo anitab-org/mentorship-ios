@@ -15,10 +15,10 @@ This is the iOS client for the Mentorship System.
 
 For contributing, you first need to configure the remotes and then submit pull requests with your changes. Both of these steps are explained in detail in the links below and we recommend all contributors to go through them-<br />
 
-1. [Configuring Remotes](https://github.com/anitab-org/mentorship-ios/blob/yugantarjain-readme/Docs/Configuring%20Remotes.md)<br />
-2. [Contributing and developing a feature](https://github.com/anitab-org/mentorship-ios/blob/yugantarjain-readme/Docs/Contributing%20and%20Developing.md)<br />
+1. [Configuring Remotes](https://github.com/anitab-org/mentorship-ios/blob/develop/Docs/Configuring%20Remotes.md)<br />
+2. [Contributing and developing a feature](https://github.com/anitab-org/mentorship-ios/blob/develop/Docs/Contributing%20and%20Developing.md)<br />
 
-Please read our [Contributing Guidelines](https://github.com/anitab-org/mentorship-ios/blob/yugantarjain-readme/.github/contributing_guidelines.md), [Code of Conduct](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/code_of_conduct.md), and [Reporting Guidelines](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/reporting_guidelines.md).
+Please read our [Contributing Guidelines](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/contributing_guidelines.md), [Code of Conduct](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/code_of_conduct.md), and [Reporting Guidelines](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/reporting_guidelines.md).
 
 
 ## Contact
