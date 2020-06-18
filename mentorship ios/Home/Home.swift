@@ -1,7 +1,7 @@
 //
 //  Home.swift
 //  Created on 05/06/20.
-//  Created for AnitaB.org Mentorship-iOS 
+//  Created for AnitaB.org Mentorship-iOS
 //
 
 import SwiftUI
@@ -26,27 +26,45 @@ struct Home: View {
                 //Relation dashboard list
                 Section {
                     ForEach(0 ..< relationsData.relationTitle.count) { index in
-                        NavigationLink(destination: Text("Hi")) {
+                        NavigationLink(destination: RelationDetailList(
+                            index: index,
+                            navigationTitle: self.relationsData.relationTitle[index],
+                            homeModel: self.homeModel
+                        )) {
                             RelationListCell(
                                 systemImageName: self.relationsData.relationImageName[index],
                                 imageColor: self.relationsData.relationImageColor[index],
                                 title: self.relationsData.relationTitle[index],
                                 count: self.relationsData.relationCount[index]
                             )
-                                .opacity(self.homeModel.isLoading ? 0.5 : 1.0)
+                        }
+                        .disabled(self.homeModel.isLoading ? true : false)
+                    }
+                }
+
+                //Tasks To Do list
+                Section(header: Text(LocalizableStringConstants.tasksToDo).font(.headline)) {
+                    ForEach(homeModel.homeResponseData.tasksToDo ?? []) { task in
+                        HStack {
+                            Image(systemName: ImageNameConstants.SFSymbolConstants.circle)
+                                .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
+                                .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
+
+                            Text(task.description ?? "-")
+                                .font(.subheadline)
                         }
                     }
                 }
 
-                //Tasks done list
-                Section(header: Text("Tasks Done").font(.headline)) {
-                    ForEach(1..<3) { index in
+                //Tasks Done list
+                Section(header: Text(LocalizableStringConstants.tasksDone).font(.headline)) {
+                    ForEach(homeModel.homeResponseData.tasksDone ?? []) { task in
                         HStack {
-                            Image(systemName: "checkmark")
+                            Image(systemName: ImageNameConstants.SFSymbolConstants.checkmark)
                                 .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
-
                                 .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
-                            Text("Task \(index) description")
+
+                            Text(task.description ?? "-")
                                 .font(.subheadline)
                         }
                     }

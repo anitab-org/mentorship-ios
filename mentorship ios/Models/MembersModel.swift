@@ -17,7 +17,7 @@ final class MembersModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     // MARK: - Functions
-    
+
     //Fetch Members
     func fetchMembers() {
         guard let token = try? KeychainManager.readKeychain() else {

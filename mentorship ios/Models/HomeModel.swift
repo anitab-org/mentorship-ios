@@ -9,7 +9,7 @@ import Combine
 
 final class HomeModel: ObservableObject {
     // MARK: - Variables
-    @Published var homeResponseData = HomeResponseData(asMentor: nil, asMentee: nil)
+    @Published var homeResponseData = HomeResponseData(asMentor: nil, asMentee: nil, tasksToDo: nil, tasksDone: nil)
     @Published var relationsListData = RelationsListData()
     @Published var profileData = ProfileModel().profileData
     var profileModel = ProfileModel()
@@ -18,13 +18,16 @@ final class HomeModel: ObservableObject {
 
     // MARK: - Functions
     init() {
+        //get auth token
         guard let token = try? KeychainManager.readKeychain() else {
             return
         }
         print(token)
 
+        //used to express loading state in UI in home screen
         isLoading = true
 
+        //parallel request for profile and home
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.home, token: token)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.homeResponseData) }
@@ -34,11 +37,10 @@ final class HomeModel: ObservableObject {
                     .catch { _ in Just(self.profileModel.profileData) }
             )
             .sink { home, profile in
-                print(home)
-                print(profile)
                 self.profileModel.saveProfile(profile: profile)
-                self.profileData = self.profileModel.getProfile()
+                self.profileData = profile
                 self.updateCount(homeData: home)
+                self.homeResponseData = home
                 self.isLoading = false
             }
     }
@@ -72,100 +74,140 @@ final class HomeModel: ObservableObject {
         self.relationsListData.relationCount = [pendingCount, acceptedCount, rejectedCount, cancelledCount, completedCount]
     }
 
+    func getSentDetailListData(userType: UserType, index: Int) -> [HomeModel.HomeResponseData.RequestStructure]? {
+        if userType == .mentee {
+            let data1 = homeResponseData.asMentee?.sent
+            switch index {
+            case 0: return data1?.pending
+            case 1: return data1?.accepted
+            case 2: return data1?.rejected
+            case 3: return data1?.cancelled
+            case 4: return data1?.completed
+            default: return []
+            }
+        } else {
+            let data1 = homeResponseData.asMentor?.sent
+            switch index {
+            case 0: return data1?.pending
+            case 1: return data1?.accepted
+            case 2: return data1?.rejected
+            case 3: return data1?.cancelled
+            case 4: return data1?.completed
+            default: return []
+            }
+        }
+    }
+
+    func getReceivedDetailListData(userType: UserType, index: Int) -> [HomeModel.HomeResponseData.RequestStructure]? {
+        if userType == .mentee {
+            let data1 = homeResponseData.asMentee?.received
+            switch index {
+            case 0: return data1?.pending
+            case 1: return data1?.accepted
+            case 2: return data1?.rejected
+            case 3: return data1?.cancelled
+            case 4: return data1?.completed
+            default: return []
+            }
+        } else {
+            let data1 = homeResponseData.asMentor?.received
+            switch index {
+            case 0: return data1?.pending
+            case 1: return data1?.accepted
+            case 2: return data1?.rejected
+            case 3: return data1?.cancelled
+            case 4: return data1?.completed
+            default: return []
+            }
+        }
+    }
+
     // MARK: - Structures
     struct HomeResponseData: Decodable {
-        let asMentor: AsMentor?
-        struct AsMentor: Decodable {
-            let sent: Sent?
-            struct Sent: Decodable {
-                let accepted: [RequestStructure]?
-                let rejected: [RequestStructure]?
-                let completed: [RequestStructure]?
-                let cancelled: [RequestStructure]?
-                let pending: [RequestStructure]?
-            }
-            let received: Received?
-            struct Received: Decodable {
-                let accepted: [RequestStructure]?
-                let rejected: [RequestStructure]?
-                let completed: [RequestStructure]?
-                let cancelled: [RequestStructure]?
-                let pending: [RequestStructure]?
-            }
-        }
+        let asMentor: RequestsList?
+        let asMentee: RequestsList?
 
-        let asMentee: AsMentee?
-        struct AsMentee: Decodable {
-            let sent: Sent?
-            struct Sent: Decodable {
-                let accepted: [RequestStructure]?
-                let rejected: [RequestStructure]?
-                let completed: [RequestStructure]?
-                let cancelled: [RequestStructure]?
-                let pending: [RequestStructure]?
-            }
-            let received: Received?
-            struct Received: Decodable {
-                let accepted: [RequestStructure]?
-                let rejected: [RequestStructure]?
-                let completed: [RequestStructure]?
-                let cancelled: [RequestStructure]?
-                let pending: [RequestStructure]?
-            }
-        }
+        let tasksToDo: [TaskStructure]?
+        let tasksDone: [TaskStructure]?
 
         enum CodingKeys: String, CodingKey {
             case asMentor = "as_mentor"
             case asMentee = "as_mentee"
+            case tasksToDo = "tasks_todo"
+            case tasksDone = "tasks_done"
         }
-    }
 
-    struct RequestStructure: Decodable {
-        let id: Int?
-        let actionUserID: Int?
-        let mentor: Mentor
-        struct Mentor: Decodable {
-            let id: Int?
-            let userName: String?
+        //Nested structs
 
-            enum CodingKeys: String, CodingKey {
-                case id
-                case userName = "user_name"
+        struct RequestsList: Decodable {
+            let sent: Sent?
+            struct Sent: Decodable {
+                let accepted: [RequestStructure]?
+                let rejected: [RequestStructure]?
+                let completed: [RequestStructure]?
+                let cancelled: [RequestStructure]?
+                let pending: [RequestStructure]?
+            }
+            let received: Received?
+            struct Received: Decodable {
+                let accepted: [RequestStructure]?
+                let rejected: [RequestStructure]?
+                let completed: [RequestStructure]?
+                let cancelled: [RequestStructure]?
+                let pending: [RequestStructure]?
             }
         }
-        let mentee: Mentee
-        struct Mentee: Decodable {
+        struct RequestStructure: Decodable, Identifiable {
             let id: Int?
-            let userName: String?
+            let actionUserID: Int?
+            let mentor: Info?
+            let mentee: Info?
+            let acceptDate: Double?
+            let startDate: Double?
+            let endDate: Double?
+            let notes: String?
 
             enum CodingKeys: String, CodingKey {
-                case id
-                case userName = "user_name"
+                case id, mentor, mentee, notes
+                case actionUserID = "action_user_id"
+                case acceptDate = "accept_date"
+                case startDate = "start_date"
+                case endDate = "end_date"
+            }
+
+            //info struct for mentor/mentee information
+            struct Info: Decodable {
+                let id: Int?
+                let userName: String?
+
+                enum CodingKeys: String, CodingKey {
+                    case id
+                    case userName = "user_name"
+                }
             }
         }
-        let acceptDate: Double?
-        let startDate: Double?
-        let endDate: Double?
-        let notes: String?
+        struct TaskStructure: Decodable, Identifiable {
+            let id: Int?
+            let description: String?
+            let createdAt: Double?
+            let completedAt: Double?
 
-        enum CodingKeys: String, CodingKey {
-            case id, mentor, mentee, notes
-            case actionUserID = "action_user_id"
-            case acceptDate = "accept_date"
-            case startDate = "start_date"
-            case endDate = "end_date"
+            enum CodingKeys: String, CodingKey {
+                case id, description
+                case createdAt = "created_at"
+                case completedAt = "completed_at"
+            }
         }
     }
 
     struct RelationsListData {
         let relationTitle = [
-            "Pending Requests",
-            "Accepted Requests",
-            "Rejected Requests",
-            "Cancelled Relations",
-            "Completed Relations"
+            "Pending",
+            "Accepted",
+            "Rejected",
+            "Cancelled",
+            "Completed"
         ]
-
         let relationImageName = [
             ImageNameConstants.SFSymbolConstants.pending,
             ImageNameConstants.SFSymbolConstants.accepted,
@@ -173,7 +215,6 @@ final class HomeModel: ObservableObject {
             ImageNameConstants.SFSymbolConstants.cancelled,
             ImageNameConstants.SFSymbolConstants.completed
         ]
-
         let relationImageColor: [Color] = [
             DesignConstants.Colors.pending,
             DesignConstants.Colors.accepted,
@@ -181,8 +222,11 @@ final class HomeModel: ObservableObject {
             DesignConstants.Colors.cancelled,
             DesignConstants.Colors.defaultIndigoColor
         ]
-
         var relationCount = [0, 0, 0, 0, 0]
+    }
+
+    enum UserType {
+        case mentee, mentor
     }
 
 }

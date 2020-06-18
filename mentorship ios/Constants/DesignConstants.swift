@@ -70,14 +70,14 @@ struct DesignConstants {
         static let accepted = Color.green
         static let rejected = Color.pink
         static let cancelled = Color.gray
-        
+
         static let indigoUIColor = UIColor.systemIndigo
         static let secondaryUIBackground = UIColor.secondarySystemGroupedBackground
     }
 
     struct Fonts {
         static let userError = Font.subheadline
-        
+
         struct Size {
             static let insetListIcon: CGFloat = 20
         }

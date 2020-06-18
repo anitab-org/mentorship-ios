@@ -18,6 +18,8 @@ struct LocalizableStringConstants {
     static let availabilityText = LocalizedStringKey("Available to be a:")
     static let mentee = LocalizedStringKey("Mentee")
     static let mentor = LocalizedStringKey("Mentor")
+    static let tasksDone = LocalizedStringKey("Tasks Done")
+    static let tasksToDo = LocalizedStringKey("Tasks To Do")
     static let endDate = LocalizedStringKey("End Date")
     static let notes = LocalizedStringKey("Notes")
     static let send = LocalizedStringKey("Send")
