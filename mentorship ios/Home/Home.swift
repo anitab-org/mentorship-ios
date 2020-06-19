@@ -46,7 +46,7 @@ struct Home: View {
                 Section(header: Text(LocalizableStringConstants.tasksToDo).font(.headline)) {
                     ForEach(homeModel.homeResponseData.tasksToDo ?? []) { task in
                         HStack {
-                            Image(systemName: ImageNameConstants.SFSymbolConstants.circle)
+                            Image(systemName: ImageNameConstants.SFSymbolConstants.taskToDo)
                                 .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
                                 .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
 
@@ -60,7 +60,7 @@ struct Home: View {
                 Section(header: Text(LocalizableStringConstants.tasksDone).font(.headline)) {
                     ForEach(homeModel.homeResponseData.tasksDone ?? []) { task in
                         HStack {
-                            Image(systemName: ImageNameConstants.SFSymbolConstants.checkmark)
+                            Image(systemName: ImageNameConstants.SFSymbolConstants.taskDone)
                                 .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
                                 .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
 
@@ -74,6 +74,13 @@ struct Home: View {
             .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Welcome \(profile.name?.capitalized ?? "")!")
+            .navigationBarItems(trailing:
+                NavigationLink(destination: ProfileSummary()) {
+                        Image(systemName: ImageNameConstants.SFSymbolConstants.profileIcon)
+                            .padding([.leading, .vertical])
+                            .font(.system(size: DesignConstants.Fonts.Size.navBarIcon))
+                            .imageScale(.large)
+            })
         }
     }
 }

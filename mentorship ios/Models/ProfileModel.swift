@@ -27,6 +27,8 @@ final class ProfileModel: ObservableObject {
     )
 
     // MARK: - Functions
+    
+    //saves profile in user defaults
     func saveProfile(profile: ProfileData) {
         guard let profileData = try? JSONEncoder().encode(profile) else {
             return
@@ -34,6 +36,7 @@ final class ProfileModel: ObservableObject {
         UserDefaults.standard.set(profileData, forKey: UserDefaultsConstants.profile)
     }
 
+    //gets profile object from user defaults
     func getProfile() -> ProfileData {
         let profileData = UserDefaults.standard.data(forKey: UserDefaultsConstants.profile)
         guard let profile = try? JSONDecoder().decode(ProfileData.self, from: profileData!) else {
@@ -41,22 +44,44 @@ final class ProfileModel: ObservableObject {
         }
         return profile
     }
+    
+    //returns profile data with some processing to make it suitable for use in profile editor
+    func getEditProfileData() -> ProfileData {
+        var editProfileData = getProfile()
+        
+        //Replace nil values with empty values.
+        //Done to enable force-unwrap of binding, to be used in edit text field in profile editor.
+        //Optional bindings are not allowed.
+        if editProfileData.name == nil { editProfileData.name = "" }
+        if editProfileData.username == nil { editProfileData.username = "" }
+        if editProfileData.bio == nil { editProfileData.bio = "" }
+        if editProfileData.location == nil { editProfileData.location = "" }
+        if editProfileData.occupation == nil { editProfileData.occupation = "" }
+        if editProfileData.organization == nil { editProfileData.organization = "" }
+        if editProfileData.slackUsername == nil { editProfileData.slackUsername = "" }
+        if editProfileData.skills == nil { editProfileData.skills = "" }
+        if editProfileData.interests == nil { editProfileData.interests = "" }
+        if editProfileData.needMentoring == nil { editProfileData.needMentoring = false }
+        if editProfileData.availableToMentor == nil { editProfileData.availableToMentor = false }
+
+        return editProfileData
+    }
 
     // MARK: - Structures
-    struct ProfileData: Codable {
+    struct ProfileData: Codable, ProfileProperties {
         let id: Int
-        let name: String?
-        let username: String?
+        var name: String?
+        var username: String?
         let email: String?
-        let bio: String?
-        let location: String?
-        let occupation: String?
-        let organization: String?
-        let slackUsername: String?
-        let skills: String?
-        let interests: String?
-        let needMentoring: Bool?
-        let availableToMentor: Bool?
+        var bio: String?
+        var location: String?
+        var occupation: String?
+        var organization: String?
+        var slackUsername: String?
+        var skills: String?
+        var interests: String?
+        var needMentoring: Bool?
+        var availableToMentor: Bool?
 
         enum CodingKeys: String, CodingKey {
             case id, name, username, email, bio, location, occupation, organization, skills, interests

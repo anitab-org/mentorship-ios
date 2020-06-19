@@ -80,6 +80,16 @@ struct DesignConstants {
 
         struct Size {
             static let insetListIcon: CGFloat = 20
+            static let navBarIcon: CGFloat = 16
+        }
+    }
+    
+    struct DateFormat {
+        static var mediumDate: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            return formatter
         }
     }
 }

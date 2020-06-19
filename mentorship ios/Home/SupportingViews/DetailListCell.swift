@@ -10,12 +10,12 @@ struct DetailListCell: View {
     var requestData: HomeModel.HomeResponseData.RequestStructure
     var index: Int
 
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter
-    }
+//    static var dateFormatter: DateFormatter {
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .none
+//        return formatter
+//    }
 
     var endDate: Date {
         return Date(timeIntervalSince1970: requestData.endDate ?? 0)
@@ -35,7 +35,7 @@ struct DetailListCell: View {
                 .font(.headline)
                 .opacity(requestData.notes!.isEmpty ? DesignConstants.Opacity.disabledViewOpacity / 2 : 1.0)
 
-            Text("End Date: \(dateFormatter.string(from: endDate))")
+            Text("End Date: \(DesignConstants.DateFormat.mediumDate.string(from: endDate))")
                 .font(.caption)
         }
         .padding(.vertical)

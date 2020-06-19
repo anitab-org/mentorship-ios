@@ -6,17 +6,21 @@
 
 import SwiftUI
 
+//Used in Members.swift for the list of members
 struct MembersListCell: View {
     var member: MembersModel.MembersResponseData
     var membersModel: MembersModel
     var body: some View {
         VStack(alignment: .leading, spacing: DesignConstants.Spacing.minimalSpacing) {
+            //Name
             Text(member.name ?? "")
                 .font(.headline)
 
             Group {
+                //Availability: mentor and/or mentee
                 Text(self.membersModel.availabilityString(canBeMentee: member.needMentoring ?? false, canBeMentor: member.availableToMentor ?? false))
 
+                //Skills
                 Text(self.membersModel.skillsString(skills: member.skills ?? ""))
             }
             .font(.subheadline)

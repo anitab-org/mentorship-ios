@@ -7,33 +7,22 @@
 import SwiftUI
 
 struct MemberDetail: View {
-    var member: MembersModel.MembersResponseData
+    var memberData: MemberProperties
     @State private var showSendRequestSheet = false
-
+    let hideEmptyFields = true
+    
     var body: some View {
-        Form {
-            Group {
-                MemberDetailCell(title: "Username", value: member.username)
-                MemberDetailCell(title: "Slack Username", value: member.slackUsername)
-                MemberDetailCell(title: "Is a Mentor", value: member.availableToMentor ?? false ? "Yes" : "No")
-                MemberDetailCell(title: "Needs a Mentor", value: member.needMentoring ?? false ? "Yes" : "No")
-                MemberDetailCell(title: "Interests", value: member.interests)
-                MemberDetailCell(title: "Bio", value: member.bio)
-                MemberDetailCell(title: "Location", value: member.location)
-                MemberDetailCell(title: "Occupation", value: member.occupation)
-                MemberDetailCell(title: "Organization", value: member.organization)
-                MemberDetailCell(title: "Skills", value: member.skills)
-            }
+        List {
+            ProfileCommonDetailsSection(memberData: memberData, hideEmptyFields: hideEmptyFields)
         }
-        .navigationBarTitle(member.name ?? "Member Detail")
+        .navigationBarTitle(memberData.name ?? "memberData Detail")
         .navigationBarItems(trailing:
             Button(action: { self.showSendRequestSheet.toggle() }) {
                 Text("Send Request")
                     .font(.headline)
-            }
-        )
-            .sheet(isPresented: $showSendRequestSheet) {
-                SendRequest(memberID: self.member.id ?? 0, memberName: self.member.name ?? "-")
+        })
+        .sheet(isPresented: $showSendRequestSheet) {
+            SendRequest(memberID: self.memberData.id, memberName: self.memberData.name ?? "-")
         }
     }
 }
@@ -41,7 +30,7 @@ struct MemberDetail: View {
 struct MemberDetail_Previews: PreviewProvider {
     static var previews: some View {
         MemberDetail(
-            member: MembersModel.MembersResponseData.init(
+            memberData: MembersModel.MembersResponseData.init(
                 id: 1,
                 username: "username",
                 name: "yugantar",

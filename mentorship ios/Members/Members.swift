@@ -17,7 +17,7 @@ struct Members: View {
                 } else {
                     List {
                         ForEach(membersModel.membersResponseData) { member in
-                            NavigationLink(destination: MemberDetail(member: member)) {
+                            NavigationLink(destination: MemberDetail(memberData: member)) {
                                 MembersListCell(member: member, membersModel: self.membersModel)
                             }
                         }

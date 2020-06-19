@@ -87,8 +87,9 @@ final class MembersModel: ObservableObject {
     }
 
     // MARK: - Structures
-    struct MembersResponseData: Decodable, Identifiable {
-        let id: Int?
+    struct MembersResponseData: Decodable, Identifiable, MemberProperties {
+        
+        let id: Int
 
         let username: String?
         let name: String?

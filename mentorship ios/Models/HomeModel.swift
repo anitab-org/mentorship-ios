@@ -32,10 +32,9 @@ final class HomeModel: ObservableObject {
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.homeResponseData) }
             .combineLatest(
-                NetworkManager.callAPI(urlString: URLStringConstants.Users.getProfile, token: token, cachePolicy: .returnCacheDataElseLoad)
+                NetworkManager.callAPI(urlString: URLStringConstants.Users.getProfile, token: token)
                     .receive(on: RunLoop.main)
-                    .catch { _ in Just(self.profileModel.profileData) }
-            )
+                    .catch { _ in Just(self.profileModel.profileData) })
             .sink { home, profile in
                 self.profileModel.saveProfile(profile: profile)
                 self.profileData = profile
