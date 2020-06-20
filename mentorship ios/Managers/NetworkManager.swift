@@ -17,9 +17,13 @@ struct NetworkManager {
         token: String = "",
         cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
     ) -> AnyPublisher<T, Error> {
+        //set response code to 0
+        responseCode = 0
 
+        //convert url string to url
         let url = URL(string: urlString)!
 
+        //setup url request
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if !token.isEmpty {
@@ -29,6 +33,7 @@ struct NetworkManager {
         request.httpBody = uploadData
         request.cachePolicy = cachePolicy
 
+        //make the call using the url request
         return URLSession.shared
             .dataTaskPublisher(for: request)
             .tryMap {

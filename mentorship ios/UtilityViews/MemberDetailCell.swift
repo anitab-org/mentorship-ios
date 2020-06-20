@@ -21,7 +21,7 @@ struct MemberDetailCell: View {
                     .frame(width: DesignConstants.Width.listCellTitle)
                     .multilineTextAlignment(.center)
                 Divider()
-                Text(value ?? "-").font(.headline)
+                Text(value?.isEmpty ?? false ? "-" : value ?? "-").font(.headline)
             }
         )
     }

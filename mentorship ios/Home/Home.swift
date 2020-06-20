@@ -79,7 +79,6 @@ struct Home: View {
                         Image(systemName: ImageNameConstants.SFSymbolConstants.profileIcon)
                             .padding([.leading, .vertical])
                             .font(.system(size: DesignConstants.Fonts.Size.navBarIcon))
-                            .imageScale(.large)
             })
         }
     }

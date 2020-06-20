@@ -25,11 +25,15 @@ struct LocalizableStringConstants {
     static let send = LocalizedStringKey("Send")
     static let cancel = LocalizedStringKey("Cancel")
     static let save = LocalizedStringKey("Save")
+    static let okay = LocalizedStringKey("Okay")
+    static let success = LocalizedStringKey("Success")
+    static let failure = LocalizedStringKey("Failure")
     static let profile = LocalizedStringKey("Profile")
     static let editProfile = LocalizedStringKey("Edit Profile")
     static let relationRequest = LocalizedStringKey("Relation Request")
     static let notAvailable = LocalizedStringKey("Not available")
     
+    //Keys to be used for profile attributes. (Direct values for English)
     enum ProfileKeys: LocalizedStringKey {
         case name = "Name"
         case username = "Username"
@@ -43,5 +47,11 @@ struct LocalizableStringConstants {
         case organization = "Organization"
         case skills = "Skills"
         case email = "Email"
+    }
+    
+    //Keys to be used for text in ActivityWithText view. (Direct values for English)
+    //Value string convention: All capitalized
+    enum ActivityTextKeys: LocalizedStringKey {
+        case updating = "UPDATING"
     }
 }

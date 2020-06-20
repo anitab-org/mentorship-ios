@@ -80,7 +80,7 @@ struct DesignConstants {
 
         struct Size {
             static let insetListIcon: CGFloat = 20
-            static let navBarIcon: CGFloat = 16
+            static let navBarIcon: CGFloat = 30
         }
     }
     

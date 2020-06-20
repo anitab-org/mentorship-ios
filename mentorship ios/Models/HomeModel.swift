@@ -15,7 +15,7 @@ final class HomeModel: ObservableObject {
     var profileModel = ProfileModel()
     var isLoading: Bool = false
     private var cancellable: AnyCancellable?
-
+    
     // MARK: - Functions
     init() {
         //get auth token
@@ -23,56 +23,57 @@ final class HomeModel: ObservableObject {
             return
         }
         print(token)
-
+        
         //used to express loading state in UI in home screen
         isLoading = true
-
+        
         //parallel request for profile and home
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.home, token: token)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.homeResponseData) }
             .combineLatest(
-                NetworkManager.callAPI(urlString: URLStringConstants.Users.getProfile, token: token)
+                NetworkManager.callAPI(urlString: URLStringConstants.Users.profile, token: token)
                     .receive(on: RunLoop.main)
-                    .catch { _ in Just(self.profileModel.profileData) })
+                    .catch { _ in Just(self.profileModel.getProfile()) }
+            )
             .sink { home, profile in
                 self.profileModel.saveProfile(profile: profile)
                 self.profileData = profile
                 self.updateCount(homeData: home)
                 self.homeResponseData = home
                 self.isLoading = false
-            }
+        }
     }
-
+    
     func updateCount(homeData: HomeResponseData) {
         var pendingCount = homeData.asMentee?.sent?.pending?.count ?? 0
         pendingCount += homeData.asMentee?.received?.pending?.count ?? 0
         pendingCount += homeData.asMentor?.sent?.pending?.count ?? 0
         pendingCount += homeData.asMentor?.received?.pending?.count ?? 0
-
+        
         var acceptedCount = homeData.asMentee?.sent?.accepted?.count ?? 0
         acceptedCount += homeData.asMentee?.received?.accepted?.count ?? 0
         acceptedCount += homeData.asMentor?.sent?.accepted?.count ?? 0
         acceptedCount += homeData.asMentor?.received?.accepted?.count ?? 0
-
+        
         var rejectedCount = homeData.asMentee?.sent?.rejected?.count ?? 0
         rejectedCount += homeData.asMentee?.received?.rejected?.count ?? 0
         rejectedCount += homeData.asMentor?.sent?.rejected?.count ?? 0
         rejectedCount += homeData.asMentor?.received?.rejected?.count ?? 0
-
+        
         var cancelledCount = homeData.asMentee?.sent?.cancelled?.count ?? 0
         cancelledCount += homeData.asMentee?.received?.cancelled?.count ?? 0
         cancelledCount += homeData.asMentor?.sent?.cancelled?.count ?? 0
         cancelledCount += homeData.asMentor?.received?.cancelled?.count ?? 0
-
+        
         var completedCount = homeData.asMentee?.sent?.completed?.count ?? 0
         completedCount += homeData.asMentee?.received?.completed?.count ?? 0
         completedCount += homeData.asMentor?.sent?.completed?.count ?? 0
         completedCount += homeData.asMentor?.received?.completed?.count ?? 0
-
+        
         self.relationsListData.relationCount = [pendingCount, acceptedCount, rejectedCount, cancelledCount, completedCount]
     }
-
+    
     func getSentDetailListData(userType: UserType, index: Int) -> [HomeModel.HomeResponseData.RequestStructure]? {
         if userType == .mentee {
             let data1 = homeResponseData.asMentee?.sent
@@ -96,7 +97,7 @@ final class HomeModel: ObservableObject {
             }
         }
     }
-
+    
     func getReceivedDetailListData(userType: UserType, index: Int) -> [HomeModel.HomeResponseData.RequestStructure]? {
         if userType == .mentee {
             let data1 = homeResponseData.asMentee?.received
@@ -120,24 +121,24 @@ final class HomeModel: ObservableObject {
             }
         }
     }
-
+    
     // MARK: - Structures
     struct HomeResponseData: Decodable {
         let asMentor: RequestsList?
         let asMentee: RequestsList?
-
+        
         let tasksToDo: [TaskStructure]?
         let tasksDone: [TaskStructure]?
-
+        
         enum CodingKeys: String, CodingKey {
             case asMentor = "as_mentor"
             case asMentee = "as_mentee"
             case tasksToDo = "tasks_todo"
             case tasksDone = "tasks_done"
         }
-
+        
         //Nested structs
-
+        
         struct RequestsList: Decodable {
             let sent: Sent?
             struct Sent: Decodable {
@@ -165,7 +166,7 @@ final class HomeModel: ObservableObject {
             let startDate: Double?
             let endDate: Double?
             let notes: String?
-
+            
             enum CodingKeys: String, CodingKey {
                 case id, mentor, mentee, notes
                 case actionUserID = "action_user_id"
@@ -173,12 +174,12 @@ final class HomeModel: ObservableObject {
                 case startDate = "start_date"
                 case endDate = "end_date"
             }
-
+            
             //info struct for mentor/mentee information
             struct Info: Decodable {
                 let id: Int?
                 let userName: String?
-
+                
                 enum CodingKeys: String, CodingKey {
                     case id
                     case userName = "user_name"
@@ -190,7 +191,7 @@ final class HomeModel: ObservableObject {
             let description: String?
             let createdAt: Double?
             let completedAt: Double?
-
+            
             enum CodingKeys: String, CodingKey {
                 case id, description
                 case createdAt = "created_at"
@@ -198,7 +199,7 @@ final class HomeModel: ObservableObject {
             }
         }
     }
-
+    
     struct RelationsListData {
         let relationTitle = [
             "Pending",
@@ -223,9 +224,9 @@ final class HomeModel: ObservableObject {
         ]
         var relationCount = [0, 0, 0, 0, 0]
     }
-
+    
     enum UserType {
         case mentee, mentor
     }
-
+    
 }

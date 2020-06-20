@@ -79,9 +79,9 @@ struct SendRequest: View {
             }))
             .alert(isPresented: $membersModel.requestSentSuccesfully) {
                 Alert(
-                    title: Text("Success"),
+                    title: Text(LocalizableStringConstants.success),
                     message: Text(membersModel.sendRequestResponseData.message ?? "Mentorship relation was sent successfully."),
-                    dismissButton: .cancel(Text("Okay"), action: {
+                    dismissButton: .cancel(Text(LocalizableStringConstants.okay), action: {
                         self.presentationMode.wrappedValue.dismiss()
                     })
                 )
