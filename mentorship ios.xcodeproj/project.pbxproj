@@ -38,6 +38,8 @@
 		5386012B2493775800D0E460 /* RelationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386012A2493775800D0E460 /* RelationListCell.swift */; };
 		53891257248AB08600E24F96 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53891256248AB08600E24F96 /* SignUpModel.swift */; };
 		538E22E9248EBD7900842835 /* MemberDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E22E8248EBD7900842835 /* MemberDetailCell.swift */; };
+		53A115D9249E1BD00065998C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A115D8249E1BD00065998C /* Settings.swift */; };
+		53A115DB249E1CDA0065998C /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A115DA249E1CDA0065998C /* SettingsModel.swift */; };
 		53C0206D249B88370000BEB5 /* ProfileProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0206C249B88370000BEB5 /* ProfileProperties.swift */; };
 		53C0206F249B8D270000BEB5 /* ProfileCommonDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0206E249B8D270000BEB5 /* ProfileCommonDetailsSection.swift */; };
 		53D127B1249C956A003B4756 /* ActivityWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D127B0249C956A003B4756 /* ActivityWithText.swift */; };
@@ -114,6 +116,8 @@
 		5386012A2493775800D0E460 /* RelationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationListCell.swift; sourceTree = "<group>"; };
 		53891256248AB08600E24F96 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		538E22E8248EBD7900842835 /* MemberDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailCell.swift; sourceTree = "<group>"; };
+		53A115D8249E1BD00065998C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		53A115DA249E1CDA0065998C /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		53C0206C249B88370000BEB5 /* ProfileProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProperties.swift; sourceTree = "<group>"; };
 		53C0206E249B8D270000BEB5 /* ProfileCommonDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommonDetailsSection.swift; sourceTree = "<group>"; };
 		53D127B0249C956A003B4756 /* ActivityWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityWithText.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				531C806E248AA98B00AE81EF /* Home */,
 				536BA472249AA567007ED21B /* Profile */,
 				53ED6B0B248D04860055DFF0 /* Members */,
+				53A115D7249E1B2F0065998C /* Settings */,
 				530F44132482752500B1FD0B /* AppDelegate.swift */,
 				530F44152482752500B1FD0B /* SceneDelegate.swift */,
 				530F441A2482752500B1FD0B /* ContentView.swift */,
@@ -330,6 +335,14 @@
 			path = UtilityViews;
 			sourceTree = "<group>";
 		};
+		53A115D7249E1B2F0065998C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				53A115D8249E1BD00065998C /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		53C0206B249B87ED0000BEB5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +367,7 @@
 				53EA66562492D98E007AEB04 /* HomeModel.swift */,
 				53EA66582492EA1E007AEB04 /* ProfileModel.swift */,
 				53ED6B0E248D04A80055DFF0 /* MembersModel.swift */,
+				53A115DA249E1CDA0065998C /* SettingsModel.swift */,
 				53EB022C248D71F40061E5C4 /* AuthModel.swift */,
 			);
 			path = Models;
@@ -529,6 +543,7 @@
 				5386012B2493775800D0E460 /* RelationListCell.swift in Sources */,
 				53EB46EC2488D5AA005656B9 /* ImageNameConstants.swift in Sources */,
 				536B22F92484F70D00060CD7 /* Login.swift in Sources */,
+				53A115D9249E1BD00065998C /* Settings.swift in Sources */,
 				53ED6B0D248D04970055DFF0 /* Members.swift in Sources */,
 				531B75EC248524D600CEBF62 /* SignUp.swift in Sources */,
 				531C8069248A918200AE81EF /* NetworkManager.swift in Sources */,
@@ -544,6 +559,7 @@
 				530F44162482752500B1FD0B /* SceneDelegate.swift in Sources */,
 				5314C184248B9EC2000AA386 /* AllPadding.swift in Sources */,
 				53F205E0249AE22500DDE52E /* ProfileEditField.swift in Sources */,
+				53A115DB249E1CDA0065998C /* SettingsModel.swift in Sources */,
 				53729E04248E318900E79C24 /* TabBar.swift in Sources */,
 				531B5C34249B9A9000CA5CCF /* KeyboardAware.swift in Sources */,
 				53C0206D249B88370000BEB5 /* ProfileProperties.swift in Sources */,

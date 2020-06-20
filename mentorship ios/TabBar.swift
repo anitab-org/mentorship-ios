@@ -11,6 +11,7 @@ struct TabBar: View {
 
     var body: some View {
         TabView(selection: $selection) {
+            //Home
             Home()
                 .tabItem {
                     VStack {
@@ -20,6 +21,7 @@ struct TabBar: View {
                     }
             }.tag(0)
 
+            //Members
             Members()
                 .tabItem {
                     VStack {
@@ -28,6 +30,16 @@ struct TabBar: View {
                         Text("Members")
                     }
             }.tag(1)
+            
+            //Settings
+            Settings()
+                .tabItem {
+                    VStack {
+                        Image(systemName: ImageNameConstants.SFSymbolConstants.settings)
+                            .imageScale(.large)
+                        Text("Settings")
+                    }
+            }.tag(2)
         }
     }
 }
