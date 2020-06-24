@@ -9,22 +9,22 @@ import SwiftUI
 struct RelationDetailList: View {
     var index: Int
     var navigationTitle: String
-    var homeModel: HomeModel
+    var homeViewModel: HomeViewModel
     @State private var pickerSelection = 1
 
     var sentData: [HomeModel.HomeResponseData.RequestStructure]? {
         if pickerSelection == 1 {
-            return homeModel.getSentDetailListData(userType: .mentee, index: index)
+            return homeViewModel.getSentDetailListData(userType: .mentee, index: index)
         } else {
-            return homeModel.getSentDetailListData(userType: .mentor, index: index)
+            return homeViewModel.getSentDetailListData(userType: .mentor, index: index)
         }
     }
 
     var receivedData: [HomeModel.HomeResponseData.RequestStructure]? {
         if pickerSelection == 1 {
-            return homeModel.getReceivedDetailListData(userType: .mentee, index: index)
+            return homeViewModel.getReceivedDetailListData(userType: .mentee, index: index)
         } else {
-            return homeModel.getReceivedDetailListData(userType: .mentor, index: index)
+            return homeViewModel.getReceivedDetailListData(userType: .mentor, index: index)
         }
     }
 
@@ -60,6 +60,6 @@ struct RelationDetailList: View {
 
 struct RelationDetailList_Previews: PreviewProvider {
     static var previews: some View {
-        RelationDetailList(index: 0, navigationTitle: "", homeModel: HomeModel())
+        RelationDetailList(index: 0, navigationTitle: "", homeViewModel: HomeViewModel())
     }
 }

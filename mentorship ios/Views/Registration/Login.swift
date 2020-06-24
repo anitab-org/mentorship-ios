@@ -8,7 +8,7 @@ import SwiftUI
 
 struct Login: View {
     @State private var showSignUpPage: Bool = false
-    @ObservedObject var loginModel = LoginModel()
+    @ObservedObject var loginViewModel = LoginViewModel()
 
     var body: some View {
         VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
@@ -19,26 +19,26 @@ struct Login: View {
 
             //username and password text fields
             VStack(spacing: DesignConstants.Form.Spacing.smallSpacing) {
-                TextField("Username/Email", text: $loginModel.loginData.username)
+                TextField("Username/Email", text: $loginViewModel.loginData.username)
                     .textFieldStyle(RoundFilledTextFieldStyle())
                     .autocapitalization(.none)
 
-                SecureField("Password", text: $loginModel.loginData.password)
+                SecureField("Password", text: $loginViewModel.loginData.password)
                     .textFieldStyle(RoundFilledTextFieldStyle())
             }
 
             //login button
             Button("Login") {
-                self.loginModel.login()
+                self.loginViewModel.login()
             }
-            .buttonStyle(BigBoldButtonStyle(disabled: loginModel.loginDisabled))
-            .disabled(loginModel.loginDisabled)
+            .buttonStyle(BigBoldButtonStyle(disabled: loginViewModel.loginDisabled))
+            .disabled(loginViewModel.loginDisabled)
 
             //activity indicator or show user message text
-            if self.loginModel.inActivity {
-                ActivityIndicator(isAnimating: $loginModel.inActivity, style: .medium)
+            if self.loginViewModel.inActivity {
+                ActivityIndicator(isAnimating: $loginViewModel.inActivity, style: .medium)
             } else {
-                Text(self.loginModel.loginResponseData.message ?? "")
+                Text(self.loginViewModel.loginResponseData.message ?? "")
                     .modifier(ErrorText())
             }
 

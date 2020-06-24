@@ -8,7 +8,7 @@ import SwiftUI
 import Combine
 
 struct SendRequest: View {
-    @ObservedObject var membersModel = MembersModel()
+    @ObservedObject var membersViewModel = MembersViewModel()
     var memberID: Int
     var memberName: String
     @State private var pickerSelection = 1
@@ -18,7 +18,7 @@ struct SendRequest: View {
     @Environment(\.presentationMode) var presentationMode
 
     func sendRequest() {
-        let myID = ProfileModel().getProfile().id
+        let myID = ProfileViewModel().getProfile().id
         let endDateTimestamp = self.endDate.timeIntervalSince1970
         var menteeID = myID
         var mentorID = memberID
@@ -26,7 +26,7 @@ struct SendRequest: View {
             menteeID = memberID
             mentorID = myID
         }
-        membersModel.sendRequest(menteeID: menteeID, mentorID: mentorID, endDate: endDateTimestamp, notes: notes)
+        membersViewModel.sendRequest(menteeID: menteeID, mentorID: mentorID, endDate: endDateTimestamp, notes: notes)
     }
 
     var body: some View {
@@ -60,12 +60,12 @@ struct SendRequest: View {
                 }
 
                 //Activity indicator or error text
-                if membersModel.inActivity || !(membersModel.sendRequestResponseData.message ?? "").isEmpty {
+                if membersViewModel.inActivity || !(membersViewModel.sendRequestResponseData.message ?? "").isEmpty {
                     Section {
-                        if membersModel.inActivity {
-                            ActivityIndicator(isAnimating: $membersModel.inActivity, style: .medium)
-                        } else if !membersModel.requestSentSuccesfully {
-                            Text(membersModel.sendRequestResponseData.message ?? "")
+                        if membersViewModel.inActivity {
+                            ActivityIndicator(isAnimating: $membersViewModel.inActivity, style: .medium)
+                        } else if !membersViewModel.requestSentSuccesfully {
+                            Text(membersViewModel.sendRequestResponseData.message ?? "")
                                 .modifier(ErrorText())
                         }
                     }
@@ -77,10 +77,10 @@ struct SendRequest: View {
             .navigationBarItems(leading: Button(LocalizableStringConstants.cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
             }))
-            .alert(isPresented: $membersModel.requestSentSuccesfully) {
+            .alert(isPresented: $membersViewModel.requestSentSuccesfully) {
                 Alert(
                     title: Text(LocalizableStringConstants.success),
-                    message: Text(membersModel.sendRequestResponseData.message ?? "Mentorship relation was sent successfully."),
+                    message: Text(membersViewModel.sendRequestResponseData.message ?? "Mentorship relation was sent successfully."),
                     dismissButton: .cancel(Text(LocalizableStringConstants.okay), action: {
                         self.presentationMode.wrappedValue.dismiss()
                     })

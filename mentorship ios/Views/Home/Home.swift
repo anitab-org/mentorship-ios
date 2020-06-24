@@ -7,12 +7,12 @@
 import SwiftUI
 
 struct Home: View {
-    @ObservedObject var homeModel = HomeModel()
-    private var relationsData: HomeModel.RelationsListData {
-        return homeModel.relationsListData
+    @ObservedObject var homeViewModel = HomeViewModel()
+    private var relationsData: UIHelper.HomeScreen.RelationsListData {
+        return homeViewModel.relationsListData
     }
     private var profile: ProfileModel.ProfileData {
-        return homeModel.profileData
+        return homeViewModel.profileData
     }
 
     var body: some View {
@@ -29,7 +29,7 @@ struct Home: View {
                         NavigationLink(destination: RelationDetailList(
                             index: index,
                             navigationTitle: self.relationsData.relationTitle[index],
-                            homeModel: self.homeModel
+                            homeViewModel: self.homeViewModel
                         )) {
                             RelationListCell(
                                 systemImageName: self.relationsData.relationImageName[index],
@@ -38,13 +38,13 @@ struct Home: View {
                                 count: self.relationsData.relationCount[index]
                             )
                         }
-                        .disabled(self.homeModel.isLoading ? true : false)
+                        .disabled(self.homeViewModel.isLoading ? true : false)
                     }
                 }
 
                 //Tasks To Do list
                 Section(header: Text(LocalizableStringConstants.tasksToDo).font(.headline)) {
-                    ForEach(homeModel.homeResponseData.tasksToDo ?? []) { task in
+                    ForEach(homeViewModel.homeResponseData.tasksToDo ?? []) { task in
                         HStack {
                             Image(systemName: ImageNameConstants.SFSymbolConstants.taskToDo)
                                 .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
@@ -58,7 +58,7 @@ struct Home: View {
 
                 //Tasks Done list
                 Section(header: Text(LocalizableStringConstants.tasksDone).font(.headline)) {
-                    ForEach(homeModel.homeResponseData.tasksDone ?? []) { task in
+                    ForEach(homeViewModel.homeResponseData.tasksDone ?? []) { task in
                         HStack {
                             Image(systemName: ImageNameConstants.SFSymbolConstants.taskDone)
                                 .foregroundColor(DesignConstants.Colors.defaultIndigoColor)

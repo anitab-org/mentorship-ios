@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct Settings: View {
-    var settingsModel = SettingsModel()
+    var settingsModel = UIHelper.SettingsScreen.SettingsData()
     //Alert used for logout and delete action, to confirm user's action before proceeding.
     @State var showAlert = false
     @State var alertTitle = ""

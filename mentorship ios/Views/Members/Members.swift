@@ -7,18 +7,18 @@
 import SwiftUI
 
 struct Members: View {
-    @ObservedObject var membersModel = MembersModel()
+    @ObservedObject var membersViewModel = MembersViewModel()
 
     var body: some View {
         NavigationView {
             VStack {
-                if self.membersModel.inActivity {
-                    ActivityIndicator(isAnimating: self.$membersModel.inActivity, style: .medium)
+                if self.membersViewModel.inActivity {
+                    ActivityIndicator(isAnimating: self.$membersViewModel.inActivity, style: .medium)
                 } else {
                     List {
-                        ForEach(membersModel.membersResponseData) { member in
+                        ForEach(membersViewModel.membersResponseData) { member in
                             NavigationLink(destination: MemberDetail(memberData: member)) {
-                                MembersListCell(member: member, membersModel: self.membersModel)
+                                MembersListCell(member: member, membersViewModel: self.membersViewModel)
                             }
                         }
                     }
@@ -26,8 +26,8 @@ struct Members: View {
             }
             .navigationBarTitle("Members")
             .onAppear {
-                if self.membersModel.membersResponseData.count == 0 {
-                    self.membersModel.fetchMembers()
+                if self.membersViewModel.membersResponseData.count == 0 {
+                    self.membersViewModel.fetchMembers()
                 }
             }
         }

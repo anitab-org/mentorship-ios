@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct SignUp: View {
-    @ObservedObject var signUpModel = SignUpModel()
+    @ObservedObject var signUpViewModel = SignUpViewModel()
     @Binding var isPresented: Bool
 
     var body: some View {
@@ -16,16 +16,16 @@ struct SignUp: View {
                 VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
                     //input fields for name, email, password, etc.
                     VStack(spacing: DesignConstants.Form.Spacing.smallSpacing) {
-                        TextField("Name", text: $signUpModel.signUpData.name)
+                        TextField("Name", text: $signUpViewModel.signUpData.name)
                             .textFieldStyle(RoundFilledTextFieldStyle())
-                        TextField("Username", text: $signUpModel.signUpData.username)
+                        TextField("Username", text: $signUpViewModel.signUpData.username)
                             .textFieldStyle(RoundFilledTextFieldStyle())
-                        TextField("Email", text: $signUpModel.signUpData.email)
+                        TextField("Email", text: $signUpViewModel.signUpData.email)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                             .autocapitalization(.none)
-                        SecureField("Password", text: $signUpModel.signUpData.password)
+                        SecureField("Password", text: $signUpViewModel.signUpData.password)
                             .textFieldStyle(RoundFilledTextFieldStyle())
-                        SecureField("Confirm Password", text: $signUpModel.confirmPassword)
+                        SecureField("Confirm Password", text: $signUpViewModel.confirmPassword)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                     }
 
@@ -33,7 +33,7 @@ struct SignUp: View {
                     VStack {
                         Text(LocalizableStringConstants.availabilityText).font(.headline)
 
-                        Picker(selection: $signUpModel.availabilityPickerSelection, label: Text("")) {
+                        Picker(selection: $signUpViewModel.availabilityPickerSelection, label: Text("")) {
                             Text(LocalizableStringConstants.mentor).tag(1)
                             Text(LocalizableStringConstants.mentee).tag(2)
                             Text("Both").tag(3)
@@ -44,22 +44,22 @@ struct SignUp: View {
 
                     //sign up button
                     Button("Sign Up") {
-                        self.signUpModel.signUp()
+                        self.signUpViewModel.signUp()
                     }
-                    .buttonStyle(BigBoldButtonStyle(disabled: signUpModel.signupDisabled))
-                    .disabled(signUpModel.signupDisabled)
+                    .buttonStyle(BigBoldButtonStyle(disabled: signUpViewModel.signupDisabled))
+                    .disabled(signUpViewModel.signupDisabled)
 
                     //activity indicator or message for user if present
-                    if signUpModel.inActivity {
-                        ActivityIndicator(isAnimating: $signUpModel.inActivity, style: .medium)
-                    } else if !(self.signUpModel.signUpResponseData.message?.isEmpty ?? true) {
-                        Text(self.signUpModel.signUpResponseData.message ?? "")
+                    if signUpViewModel.inActivity {
+                        ActivityIndicator(isAnimating: $signUpViewModel.inActivity, style: .medium)
+                    } else if !(self.signUpViewModel.signUpResponseData.message?.isEmpty ?? true) {
+                        Text(self.signUpViewModel.signUpResponseData.message ?? "")
                         .modifier(ErrorText())
                     }
 
                     //consent view, to accept terms and conditions
                     VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing + 2) {
-                        Toggle(isOn: $signUpModel.signUpData.tncChecked) {
+                        Toggle(isOn: $signUpViewModel.signUpData.tncChecked) {
                             Text("Terms and Conditions")
                                 .font(.headline)
                         }

@@ -8,8 +8,8 @@ import SwiftUI
 
 struct ProfileEditor: View {
     @Environment(\.presentationMode) var presentation
-    @State var editProfileData = ProfileModel().getEditProfileData()
-    @ObservedObject var profileModel = ProfileModel()
+    @State var editProfileData = ProfileViewModel().getEditProfileData()
+    @ObservedObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
         NavigationView {
@@ -42,10 +42,10 @@ struct ProfileEditor: View {
                         ProfileEditField(type: .interests, value: Binding($editProfileData.interests)!)
                     }
                 }
-                .disabled(profileModel.inActivity)
+                .disabled(profileViewModel.inActivity)
                 
-                if profileModel.inActivity {
-                    ActivityWithText(isAnimating: $profileModel.inActivity, textType: .updating)
+                if profileViewModel.inActivity {
+                    ActivityWithText(isAnimating: $profileViewModel.inActivity, textType: .updating)
                 }
                 
             }
@@ -55,14 +55,14 @@ struct ProfileEditor: View {
                 Button(action: { self.presentation.wrappedValue.dismiss() }) {
                     Text(LocalizableStringConstants.cancel)
                 }, trailing: Button(LocalizableStringConstants.save) {
-                    self.profileModel.updateProfile(updateProfileData: self.editProfileData)
+                    self.profileViewModel.updateProfile(updateProfileData: self.editProfileData)
                 })
-            .alert(isPresented: $profileModel.showAlert) {
+            .alert(isPresented: $profileViewModel.showAlert) {
                 Alert.init(
-                    title: Text(profileModel.alertTitle),
-                    message: Text(profileModel.updateProfileResponseData.message ?? ""),
+                    title: Text(profileViewModel.alertTitle),
+                    message: Text(profileViewModel.updateProfileResponseData.message ?? ""),
                     dismissButton: .default(Text(LocalizableStringConstants.okay), action: {
-                        if self.profileModel.alertTitle == LocalizableStringConstants.success {
+                        if self.profileViewModel.alertTitle == LocalizableStringConstants.success {
                             self.presentation.wrappedValue.dismiss()
                         }
                     }))

@@ -9,7 +9,7 @@ import SwiftUI
 //Used in Members.swift for the list of members
 struct MembersListCell: View {
     var member: MembersModel.MembersResponseData
-    var membersModel: MembersModel
+    var membersViewModel: MembersViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: DesignConstants.Spacing.minimalSpacing) {
             //Name
@@ -18,10 +18,10 @@ struct MembersListCell: View {
 
             Group {
                 //Availability: mentor and/or mentee
-                Text(self.membersModel.availabilityString(canBeMentee: member.needMentoring ?? false, canBeMentor: member.availableToMentor ?? false))
+                Text(self.membersViewModel.availabilityString(canBeMentee: member.needMentoring ?? false, canBeMentor: member.availableToMentor ?? false))
 
                 //Skills
-                Text(self.membersModel.skillsString(skills: member.skills ?? ""))
+                Text(self.membersViewModel.skillsString(skills: member.skills ?? ""))
             }
             .font(.subheadline)
             .foregroundColor(DesignConstants.Colors.subtitleText)

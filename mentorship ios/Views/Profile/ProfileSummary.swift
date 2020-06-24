@@ -7,9 +7,9 @@
 import SwiftUI
 
 struct ProfileSummary: View {
-    @ObservedObject var profileModel = ProfileModel()
+    @ObservedObject var profileViewModel = ProfileViewModel()
     var profileData: ProfileModel.ProfileData {
-        return profileModel.getProfile()
+        return profileViewModel.getProfile()
     }
     @State private var showProfileEditor = false
     
