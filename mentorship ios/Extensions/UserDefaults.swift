@@ -7,6 +7,9 @@
 import Foundation
 
 extension UserDefaults {
+    //used to do KVO using Combine
+    //observed for login state, login or home screen showed accordingly.
+    //Used in ContentView.swift
     @objc dynamic var isLoggedIn: Bool {
         return bool(forKey: UserDefaultsConstants.isLoggedIn)
     }

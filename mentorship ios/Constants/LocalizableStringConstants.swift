@@ -12,6 +12,7 @@ struct LocalizableStringConstants {
     static let canBeBoth = LocalizedStringKey("Can be both")
     static let canBeMentee = LocalizedStringKey("Can be mentee")
     static let canBeMentor = LocalizedStringKey("Can be mentor")
+    static let aboutText = LocalizedStringKey("About text")
 
     //Direct values for english. To be used as keys for other languages.
     static let noAccountText = LocalizedStringKey("Don't have an account?")
