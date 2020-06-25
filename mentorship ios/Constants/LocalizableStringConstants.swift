@@ -33,6 +33,8 @@ struct LocalizableStringConstants {
     static let editProfile = LocalizedStringKey("Edit Profile")
     static let relationRequest = LocalizedStringKey("Relation Request")
     static let notAvailable = LocalizedStringKey("Not available")
+    static let privacyPolicy = LocalizedStringKey("Privacy Policy")
+    static let termsOfUse = LocalizedStringKey("Terms of Use")
     
     //Keys to be used for profile attributes. (Direct values for English)
     enum ProfileKeys: LocalizedStringKey {

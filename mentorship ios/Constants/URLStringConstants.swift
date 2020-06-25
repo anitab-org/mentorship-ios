@@ -18,4 +18,9 @@ struct URLStringConstants {
     struct MentorshipRelation {
         static let sendRequest: String = baseURL + "mentorship_relation/send_request"
     }
+    
+    struct WebsiteURLs {
+        static let privacyPolicy = "https://anitab.org/privacy-policy/"
+        static let termsOfUse = "https://anitab.org/terms-of-use/"
+    }
 }
