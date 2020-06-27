@@ -7,9 +7,8 @@
 import SwiftUI
 
 class UIHelper {
-    
+    //helper for Home Screen relations list
     struct HomeScreen {
-        
         struct RelationsListData {
             let relationTitle = [
                 "Pending",
@@ -36,8 +35,8 @@ class UIHelper {
         }
     }
     
+    //helper for Settings Screen settings list
     struct SettingsScreen {
-        
         struct SettingsData {
             let settingsOptions = [
                 ["About", "Feedback", "Change Password"],
@@ -48,13 +47,13 @@ class UIHelper {
                 [ImageNameConstants.SFSymbolConstants.about,
                  ImageNameConstants.SFSymbolConstants.feedback,
                  ImageNameConstants.SFSymbolConstants.changePassword],
-                
                 [ImageNameConstants.SFSymbolConstants.logout,
                  ImageNameConstants.SFSymbolConstants.deleteAccount]
             ]
+            
+            let settingsViews: [AnyView] = [
+                AnyView(About()), AnyView(Text("Feedback")), AnyView(Text("Change"))
+            ]
         }
     }
-    
-    
-    
 }

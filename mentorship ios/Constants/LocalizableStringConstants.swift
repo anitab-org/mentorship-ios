@@ -12,6 +12,7 @@ struct LocalizableStringConstants {
     static let canBeBoth = LocalizedStringKey("Can be both")
     static let canBeMentee = LocalizedStringKey("Can be mentee")
     static let canBeMentor = LocalizedStringKey("Can be mentor")
+    static let aboutText = LocalizedStringKey("About text")
 
     //Direct values for english. To be used as keys for other languages.
     static let noAccountText = LocalizedStringKey("Don't have an account?")
@@ -32,6 +33,8 @@ struct LocalizableStringConstants {
     static let editProfile = LocalizedStringKey("Edit Profile")
     static let relationRequest = LocalizedStringKey("Relation Request")
     static let notAvailable = LocalizedStringKey("Not available")
+    static let privacyPolicy = LocalizedStringKey("Privacy Policy")
+    static let termsOfUse = LocalizedStringKey("Terms of Use")
     
     //Keys to be used for profile attributes. (Direct values for English)
     enum ProfileKeys: LocalizedStringKey {

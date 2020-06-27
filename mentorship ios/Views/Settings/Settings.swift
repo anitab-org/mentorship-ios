@@ -21,7 +21,7 @@ struct Settings: View {
                 //Section 1 of settings : about, feedback, and change password
                 Section {
                     ForEach(0 ..< settingsModel.settingsOptions[0].count, id: \.self) { index in
-                        NavigationLink(destination: Text("Section 1 setting")) {
+                        NavigationLink(destination: self.settingsModel.settingsViews[index]) {
                             //Setting list cell
                             HStack {
                                 //icon image
