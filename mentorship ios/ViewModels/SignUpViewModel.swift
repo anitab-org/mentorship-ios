@@ -44,10 +44,13 @@ class SignUpViewModel: ObservableObject {
         //show activity indicator
         self.inActivity = true
 
+        //encode upload data
         guard let uploadData = try? JSONEncoder().encode(signUpData) else {
             self.inActivity = false
             return
         }
+        
+        //api call
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.signUp, httpMethod: "POST", uploadData: uploadData)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.signUpResponseData) }

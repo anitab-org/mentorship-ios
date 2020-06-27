@@ -52,7 +52,7 @@ class UIHelper {
             ]
             
             let settingsViews: [AnyView] = [
-                AnyView(About()), AnyView(Text("Feedback")), AnyView(Text("Change"))
+                AnyView(About()), AnyView(Text("Feedback")), AnyView(ChangePassword())
             ]
         }
     }

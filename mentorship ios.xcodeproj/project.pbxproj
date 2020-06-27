@@ -46,6 +46,9 @@
 		53D24E0C2499F4FC0043C28F /* DetailListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D24E0B2499F4FC0043C28F /* DetailListCell.swift */; };
 		53D7C75B2494CA6C005DD606 /* ErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D7C75A2494CA6B005DD606 /* ErrorText.swift */; };
 		53E3BAF4248AD51A007F91C8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E3BAF3248AD51A007F91C8 /* ActivityIndicator.swift */; };
+		53E6F84624A6440D009214FC /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E6F84524A6440D009214FC /* ChangePassword.swift */; };
+		53E6F84824A644E3009214FC /* ChangePasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E6F84724A644E3009214FC /* ChangePasswordModel.swift */; };
+		53E6F84B24A645B1009214FC /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E6F84A24A645B1009214FC /* ChangePasswordViewModel.swift */; };
 		53EA66572492D98E007AEB04 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EA66562492D98E007AEB04 /* HomeModel.swift */; };
 		53EA66592492EA1E007AEB04 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EA66582492EA1E007AEB04 /* ProfileModel.swift */; };
 		53EB022D248D71F40061E5C4 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB022C248D71F40061E5C4 /* AuthModel.swift */; };
@@ -131,6 +134,9 @@
 		53D24E0B2499F4FC0043C28F /* DetailListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailListCell.swift; sourceTree = "<group>"; };
 		53D7C75A2494CA6B005DD606 /* ErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorText.swift; sourceTree = "<group>"; };
 		53E3BAF3248AD51A007F91C8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		53E6F84524A6440D009214FC /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		53E6F84724A644E3009214FC /* ChangePasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordModel.swift; sourceTree = "<group>"; };
+		53E6F84A24A645B1009214FC /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		53EA66562492D98E007AEB04 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		53EA66582492EA1E007AEB04 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		53EB022C248D71F40061E5C4 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
@@ -381,6 +387,7 @@
 				53EA66582492EA1E007AEB04 /* ProfileModel.swift */,
 				53ED6B0E248D04A80055DFF0 /* MembersModel.swift */,
 				53EB022C248D71F40061E5C4 /* AuthModel.swift */,
+				53E6F84724A644E3009214FC /* ChangePasswordModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -408,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				53FB664D24A411B900B02208 /* About.swift */,
+				53E6F84524A6440D009214FC /* ChangePassword.swift */,
 			);
 			path = IndividualSetting;
 			sourceTree = "<group>";
@@ -420,6 +428,7 @@
 				839761BC249F7FED0020535C /* HomeViewModel.swift */,
 				839761C0249F821A0020535C /* ProfileViewModel.swift */,
 				839761C2249F83860020535C /* MembersViewModel.swift */,
+				53E6F84A24A645B1009214FC /* ChangePasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -589,6 +598,7 @@
 				839761B9249F7E130020535C /* LoginViewModel.swift in Sources */,
 				530F441B2482752500B1FD0B /* ContentView.swift in Sources */,
 				536A4C42248E70880027E44D /* MemberDetail.swift in Sources */,
+				53E6F84824A644E3009214FC /* ChangePasswordModel.swift in Sources */,
 				535247EC248EED0D0091AD21 /* SendRequest.swift in Sources */,
 				53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */,
 				538E22E9248EBD7900842835 /* MemberDetailCell.swift in Sources */,
@@ -606,7 +616,9 @@
 				53FB664E24A411B900B02208 /* About.swift in Sources */,
 				53C0206F249B8D270000BEB5 /* ProfileCommonDetailsSection.swift in Sources */,
 				538105AE248B2EFB00542E9A /* KeychainManager.swift in Sources */,
+				53E6F84624A6440D009214FC /* ChangePassword.swift in Sources */,
 				536BA474249AA99B007ED21B /* ProfileSummary.swift in Sources */,
+				53E6F84B24A645B1009214FC /* ChangePasswordViewModel.swift in Sources */,
 				53D24E0C2499F4FC0043C28F /* DetailListCell.swift in Sources */,
 				53D24E0A2499F4C40043C28F /* RelationDetailList.swift in Sources */,
 				533704E1248D1B4900A314ED /* MembersListCell.swift in Sources */,
