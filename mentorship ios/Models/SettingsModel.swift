@@ -4,9 +4,6 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-import Foundation
-import SwiftUI
-
 class SettingsModel {
     
     //MARK: - Structures
@@ -22,10 +19,6 @@ class SettingsModel {
              ImageNameConstants.SFSymbolConstants.changePassword],
             [ImageNameConstants.SFSymbolConstants.logout,
              ImageNameConstants.SFSymbolConstants.deleteAccount]
-        ]
-        
-        let settingsViews: [AnyView] = [
-            AnyView(About()), AnyView(Text("Feedback")), AnyView(ChangePassword())
         ]
     }
     

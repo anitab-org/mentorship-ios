@@ -4,8 +4,6 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-import Foundation
-
 class ChangePasswordModel {
     struct ChangePasswordUploadData: Encodable {
         var currentPassword: String

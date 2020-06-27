@@ -4,7 +4,6 @@
 //  Created for AnitaB.org Mentorship-iOS
 //
 
-
 final class HomeModel {
     
     // MARK: - Structures

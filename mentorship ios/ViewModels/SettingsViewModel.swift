@@ -11,6 +11,7 @@ class SettingsViewModel: ObservableObject {
     
     //MARK: - Variables
     let settingsData = SettingsModel.SettingsData()
+    let destinationViews = UIHelper().settingsViews
     @Published var deleteAccountResponseData = SettingsModel.DeleteAccountResponseData(message: "")
     @Published var successfullyDeleted = false
     @Published var showUserDeleteAlert = false

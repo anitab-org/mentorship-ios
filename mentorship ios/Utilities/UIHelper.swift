@@ -34,4 +34,9 @@ class UIHelper {
             var relationCount = [0, 0, 0, 0, 0]
         }
     }
+    
+    //views for section 1 settings navigation destination
+    let settingsViews: [AnyView] = [
+        AnyView(About()), AnyView(Text("Feedback")), AnyView(ChangePassword())
+    ]
 }
