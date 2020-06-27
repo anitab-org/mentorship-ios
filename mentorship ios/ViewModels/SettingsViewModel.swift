@@ -4,14 +4,17 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
-class SettingsViewModel {
+class SettingsViewModel: ObservableObject {
     
     //MARK: - Variables
-    @Published var deleteAccountResponseData = SettingsModel.DeleteAccountResponseData(message: "")
     let settingsData = SettingsModel.SettingsData()
+    @Published var deleteAccountResponseData = SettingsModel.DeleteAccountResponseData(message: "")
+    @Published var successfullyDeleted = false
+    @Published var showUserDeleteAlert = false
+    var alertTitle = LocalizedStringKey("")
     private var cancellable: AnyCancellable?
     
     // MARK: - Functions
@@ -38,7 +41,14 @@ class SettingsViewModel {
             .catch { _ in Just(self.deleteAccountResponseData) }
             .sink {
                 self.deleteAccountResponseData = $0
-        }
-        
+                //Show alert after call completes
+                self.showUserDeleteAlert = true
+                if NetworkManager.responseCode == 200 {
+                    self.successfullyDeleted = true
+                    self.alertTitle = LocalizableStringConstants.success
+                } else {
+                    self.alertTitle = LocalizableStringConstants.failure
+                }
+            }
     }
 }

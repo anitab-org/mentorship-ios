@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct Settings: View {
-    var settingsViewModel = SettingsViewModel()
+    @ObservedObject var settingsViewModel = SettingsViewModel()
     //Alert used for logout and delete action, to confirm user's action before proceeding.
     @State var showAlert = false
     @State var alertTitle = ""
@@ -19,7 +19,7 @@ struct Settings: View {
         }
         //DELETE ACCOUNT
         else {
-            
+            settingsViewModel.deleteAccount()
         }
     }
     
@@ -63,20 +63,31 @@ struct Settings: View {
                                 self.showAlert.toggle()
                             }
                             .foregroundColor(.red)
+                            //alert shown after logout or delete account button pressed
+                            .alert(isPresented: self.$showAlert) {
+                                Alert(
+                                    title: Text("\(self.alertTitle)?"),
+                                    message: Text("Please confirm your action"),
+                                    primaryButton: .cancel(),
+                                    secondaryButton: .destructive(Text(self.alertTitle), action: {
+                                        self.logoutOrDelete(actionName: self.alertTitle)
+                                    })
+                                )
+                            }
                         }
                     }
                 }
             }
             .navigationBarTitle("Settings")
             .environment(\.horizontalSizeClass, .regular)
-            .alert(isPresented: $showAlert) {
+            //alert shown after delete account api call completes
+            .alert(isPresented: $settingsViewModel.showUserDeleteAlert) {
                 Alert(
-                    title: Text("\(self.alertTitle)?"),
-                    message: Text("Please confirm your action"),
-                    primaryButton: .cancel(),
-                    secondaryButton: .destructive(Text(self.alertTitle), action: {
-                        self.logoutOrDelete(actionName: self.alertTitle)
-                    }))
+                    title: Text(self.settingsViewModel.alertTitle),
+                    message: Text(self.settingsViewModel.deleteAccountResponseData.message ?? ""),
+                    dismissButton: .default(Text("Okay")) {
+                        self.settingsViewModel.logout()
+                    })
             }
         }
     }
