@@ -47,6 +47,7 @@ struct ChangePassword: View {
                 title: Text(LocalizableStringConstants.success),
                 message: Text(self.changePasswordViewModel.changePasswordResponseData.message ?? "Password updated successfully"),
                 dismissButton: .default(Text(LocalizableStringConstants.okay)) {
+                    //pop navigation view after okay button pressed
                     self.presentationMode.wrappedValue.dismiss()
                 })
         }

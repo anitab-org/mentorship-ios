@@ -66,6 +66,15 @@ struct KeychainManager {
         return token
     }
     
+    static func deleteTokenFromKeychain() throws {
+        let server = baseURL
+        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+        kSecAttrServer as String: server]
+        
+        let status = SecItemDelete(query as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else { throw KeychainError.unhandledError(status: status) }
+    }
+    
 }
 
 //objective c code given by apple engineer to fix keychain bug.

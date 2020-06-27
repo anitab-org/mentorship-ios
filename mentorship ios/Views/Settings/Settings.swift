@@ -12,6 +12,20 @@ struct Settings: View {
     @State var showAlert = false
     @State var alertTitle = ""
     
+    func logoutOrDelete(actionName: String) {
+        //LOG OUT
+        if actionName == self.settingsModel.settingsOptions[1][0] {
+            //delete keychain item
+            do {
+                try KeychainManager.deleteTokenFromKeychain()
+            } catch {
+                fatalError()
+            }
+            //go to login screen
+            UserDefaults.standard.set(false, forKey: UserDefaultsConstants.isLoggedIn)
+        }
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -64,7 +78,7 @@ struct Settings: View {
                     message: Text("Please confirm your action"),
                     primaryButton: .cancel(),
                     secondaryButton: .destructive(Text(self.alertTitle), action: {
-                        //add code
+                        self.logoutOrDelete(actionName: self.alertTitle)
                     }))
             }
         }
