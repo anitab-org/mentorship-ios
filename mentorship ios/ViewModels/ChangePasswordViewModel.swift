@@ -12,8 +12,9 @@ class ChangePasswordViewModel: ObservableObject {
     // MARK: - Variables
     @Published var changePasswordData = ChangePasswordModel.ChangePasswordUploadData(currentPassword: "", newPassword: "")
     @Published var changePasswordResponseData = ChangePasswordModel.ChangePasswordResponseData(message: "")
-    @Published var confirmPassword = ""
+    @Published var confirmPassword: String = ""
     @Published var inActivity: Bool = false
+    @Published var updatedSuccessfully: Bool = false
     private var cancellable: AnyCancellable?
     
     var changePasswordDisabled: Bool {
@@ -50,6 +51,9 @@ class ChangePasswordViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.changePasswordResponseData) }
             .sink { response in
+                if NetworkManager.responseCode == 201 {
+                    self.updatedSuccessfully = true
+                }
                 self.changePasswordResponseData = response
                 self.inActivity = false
         }

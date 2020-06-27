@@ -8,6 +8,7 @@ import SwiftUI
 
 struct ChangePassword: View {
     @ObservedObject var changePasswordViewModel = ChangePasswordViewModel()
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
@@ -31,7 +32,7 @@ struct ChangePassword: View {
             //activity indicator or show user message text
             if self.changePasswordViewModel.inActivity {
                 ActivityIndicator(isAnimating: $changePasswordViewModel.inActivity, style: .medium)
-            } else {
+            } else if !self.changePasswordViewModel.updatedSuccessfully {
                 Text(self.changePasswordViewModel.changePasswordResponseData.message ?? "")
                     .modifier(ErrorText())
             }
@@ -41,6 +42,14 @@ struct ChangePassword: View {
         }
         .modifier(AllPadding())
         .navigationBarTitle("Change Password")
+        .alert(isPresented: $changePasswordViewModel.updatedSuccessfully) {
+            Alert.init(
+                title: Text(LocalizableStringConstants.success),
+                message: Text(self.changePasswordViewModel.changePasswordResponseData.message ?? "Password updated successfully"),
+                dismissButton: .default(Text(LocalizableStringConstants.okay)) {
+                    self.presentationMode.wrappedValue.dismiss()
+                })
+        }
     }
 }
 
