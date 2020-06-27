@@ -34,26 +34,4 @@ class UIHelper {
             var relationCount = [0, 0, 0, 0, 0]
         }
     }
-    
-    //helper for Settings Screen settings list
-    struct SettingsScreen {
-        struct SettingsData {
-            let settingsOptions = [
-                ["About", "Feedback", "Change Password"],
-                ["Logout", "Delete Account"]
-            ]
-            
-            let settingsIcons = [
-                [ImageNameConstants.SFSymbolConstants.about,
-                 ImageNameConstants.SFSymbolConstants.feedback,
-                 ImageNameConstants.SFSymbolConstants.changePassword],
-                [ImageNameConstants.SFSymbolConstants.logout,
-                 ImageNameConstants.SFSymbolConstants.deleteAccount]
-            ]
-            
-            let settingsViews: [AnyView] = [
-                AnyView(About()), AnyView(Text("Feedback")), AnyView(ChangePassword())
-            ]
-        }
-    }
 }

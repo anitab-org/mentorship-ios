@@ -33,7 +33,7 @@ class HomeViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.homeResponseData) }
             .combineLatest(
-                NetworkManager.callAPI(urlString: URLStringConstants.Users.profile, token: token)
+                NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token)
                     .receive(on: RunLoop.main)
                     .catch { _ in Just(self.profileViewModel.getProfile()) }
             )

@@ -102,7 +102,7 @@ class ProfileViewModel: ObservableObject {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.profile, httpMethod: "PUT", uploadData: uploadData, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, httpMethod: "PUT", uploadData: uploadData, token: token)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.updateProfileResponseData) }
             .sink {

@@ -7,22 +7,19 @@
 import SwiftUI
 
 struct Settings: View {
-    var settingsModel = UIHelper.SettingsScreen.SettingsData()
+    var settingsViewModel = SettingsViewModel()
     //Alert used for logout and delete action, to confirm user's action before proceeding.
     @State var showAlert = false
     @State var alertTitle = ""
     
     func logoutOrDelete(actionName: String) {
         //LOG OUT
-        if actionName == self.settingsModel.settingsOptions[1][0] {
-            //delete keychain item
-            do {
-                try KeychainManager.deleteTokenFromKeychain()
-            } catch {
-                fatalError()
-            }
-            //go to login screen
-            UserDefaults.standard.set(false, forKey: UserDefaultsConstants.isLoggedIn)
+        if actionName == self.settingsViewModel.settingsData.settingsOptions[1][0] {
+            settingsViewModel.logout()
+        }
+        //DELETE ACCOUNT
+        else {
+            
         }
     }
     
@@ -34,17 +31,17 @@ struct Settings: View {
                 
                 //Section 1 of settings : about, feedback, and change password
                 Section {
-                    ForEach(0 ..< settingsModel.settingsOptions[0].count, id: \.self) { index in
-                        NavigationLink(destination: self.settingsModel.settingsViews[index]) {
+                    ForEach(0 ..< settingsViewModel.settingsData.settingsOptions[0].count, id: \.self) { index in
+                        NavigationLink(destination: self.settingsViewModel.settingsData.settingsViews[index]) {
                             //Setting list cell
                             HStack {
                                 //icon image
-                                Image(systemName: self.settingsModel.settingsIcons[0][index])
+                                Image(systemName: self.settingsViewModel.settingsData.settingsIcons[0][index])
                                     .imageScale(.large)
                                     .frame(width: 40, height: 40)
                                 
                                 //text
-                                Text(self.settingsModel.settingsOptions[0][index])
+                                Text(self.settingsViewModel.settingsData.settingsOptions[0][index])
                             }
                         }
                     }
@@ -52,17 +49,17 @@ struct Settings: View {
                 
                 //Section 2 of settings : logout, and delete account
                 Section {
-                    ForEach(0 ..< settingsModel.settingsOptions[1].count, id: \.self) { index in
+                    ForEach(0 ..< settingsViewModel.settingsData.settingsOptions[1].count, id: \.self) { index in
                         //setting list cell
                         HStack {
                             //icon image
-                            Image(systemName: self.settingsModel.settingsIcons[1][index])
+                            Image(systemName: self.settingsViewModel.settingsData.settingsIcons[1][index])
                                 .imageScale(.large)
                                 .frame(width: 40, height: 40)
                             
                             //button
-                            Button(self.settingsModel.settingsOptions[1][index]) {
-                                self.alertTitle = self.settingsModel.settingsOptions[1][index]
+                            Button(self.settingsViewModel.settingsData.settingsOptions[1][index]) {
+                                self.alertTitle = self.settingsViewModel.settingsData.settingsOptions[1][index]
                                 self.showAlert.toggle()
                             }
                             .foregroundColor(.red)
