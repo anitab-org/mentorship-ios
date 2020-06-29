@@ -35,25 +35,8 @@ class UIHelper {
         }
     }
     
-    //helper for Settings Screen settings list
-    struct SettingsScreen {
-        struct SettingsData {
-            let settingsOptions = [
-                ["About", "Feedback", "Change Password"],
-                ["Logout", "Delete Account"]
-            ]
-            
-            let settingsIcons = [
-                [ImageNameConstants.SFSymbolConstants.about,
-                 ImageNameConstants.SFSymbolConstants.feedback,
-                 ImageNameConstants.SFSymbolConstants.changePassword],
-                [ImageNameConstants.SFSymbolConstants.logout,
-                 ImageNameConstants.SFSymbolConstants.deleteAccount]
-            ]
-            
-            let settingsViews: [AnyView] = [
-                AnyView(About()), AnyView(Text("Feedback")), AnyView(Text("Change"))
-            ]
-        }
-    }
+    //views for section 1 settings navigation destination
+    let settingsViews: [AnyView] = [
+        AnyView(About()), AnyView(Text("Feedback")), AnyView(ChangePassword())
+    ]
 }

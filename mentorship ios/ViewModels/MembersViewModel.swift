@@ -9,7 +9,6 @@ import Combine
 
 final class MembersViewModel: ObservableObject {
     
-
     // MARK: - Variables
     @Published var membersResponseData = [MembersModel.MembersResponseData]()
     @Published var sendRequestResponseData = MembersModel.SendRequestResponseData(message: "")
