@@ -13,7 +13,12 @@ struct KeychainManager {
         case unhandledError(status: OSStatus)
     }
     
-    static func addToKeychain(username: String, tokenString: String) throws {
+    static func setToken(username: String, tokenString: String) throws {
+        //try deleting old items if present
+        do {
+            try deleteToken()
+        }
+        //add new token
         let account = username
         let token = tokenString.data(using: String.Encoding.utf8)!
         let server = baseURL
@@ -23,27 +28,11 @@ struct KeychainManager {
                                     kSecValueData as String: token]
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
-            //throw KeychainError.unhandledError(status: status)
-            do { try replaceKeychainItem(username: username, tokenString: tokenString) } catch { return }
-            return
+            fatalError(status.description)
         }
     }
     
-    static func replaceKeychainItem(username: String, tokenString: String) throws {
-        let server = baseURL
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: server]
-        let account = username
-        let token = tokenString.data(using: String.Encoding.utf8)!
-        let attributes: [String: Any] = [kSecAttrAccount as String: account,
-                                         kSecValueData as String: token]
-        
-        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
-        guard status != errSecItemNotFound else { throw KeychainError.noPassword }
-        guard status == errSecSuccess else { throw KeychainError.unhandledError(status: status) }
-    }
-    
-    static func readKeychain() throws -> String {
+    static func getToken() throws -> String {
         let server = baseURL
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrServer as String: server,
@@ -66,7 +55,7 @@ struct KeychainManager {
         return token
     }
     
-    static func deleteTokenFromKeychain() throws {
+    static func deleteToken() throws {
         let server = baseURL
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
         kSecAttrServer as String: server]
@@ -76,44 +65,3 @@ struct KeychainManager {
     }
     
 }
-
-//objective c code given by apple engineer to fix keychain bug.
-
-/*
-func temp() {
-    kSecAttrService
-    static bool
-    SecItemUpdateOrAdd(NSDictionary *query, NSDictionary *update, NSError **error)
-    {
-        OSStatus saveStatus = SecItemUpdate((CFDictionaryRef)query, (CFDictionaryRef)update);
-        
-        if (errSecItemNotFound == saveStatus) {
-            NSMutableDictionary *add = [query mutableCopy];
-            for (id key in update) {
-                add[key] = update[key];
-            }
-            saveStatus = SecItemAdd((CFDictionaryRef)add, NULL);
-        }
-        if (saveStatus && error) {
-            *error = ...
-            return false;
-        }
-        return true;
-    }
-    NSError *localError = nil;
-    NSDictionary *attributes = @{
-        (const NSString *)kSecClass:                (const NSString *)kSecClassGenericPassword,
-        (const NSString *)kSecAttrAccessGroup:      @"D23532.com.whateverr",
-        (const NSString *)kSecAttrService:          @"service",
-        (const NSString *)kSecAttrAccount:          @"account",
-    };
-    NSDictionary *update = @{
-        (const NSString *)kSecValueData:            blah.data,
-    };
-    /* Attempt to store keychain item. */
-    if (SecItemUpdateOrAdd(attributes, update, &localError)) {
-        ...
-        
-        
-    }
-    */

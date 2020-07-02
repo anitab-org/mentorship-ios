@@ -33,7 +33,7 @@ class ChangePasswordViewModel: ObservableObject {
         }
         
         //get auth token
-        guard let token = try? KeychainManager.readKeychain() else {
+        guard let token = try? KeychainManager.getToken() else {
             return
         }
         

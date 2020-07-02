@@ -20,7 +20,7 @@ final class MembersViewModel: ObservableObject {
 
     //Fetch Members
     func fetchMembers() {
-        guard let token = try? KeychainManager.readKeychain() else {
+        guard let token = try? KeychainManager.getToken() else {
             return
         }
 
@@ -58,7 +58,7 @@ final class MembersViewModel: ObservableObject {
     //Send Request
     func sendRequest(menteeID: Int, mentorID: Int, endDate: Double, notes: String) {
         //token
-        guard let token = try? KeychainManager.readKeychain() else {
+        guard let token = try? KeychainManager.getToken() else {
             return
         }
 

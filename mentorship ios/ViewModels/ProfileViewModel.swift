@@ -82,7 +82,7 @@ class ProfileViewModel: ObservableObject {
     //makes api call to update profile
     func updateProfile(updateProfileData: ProfileModel.ProfileData) {
         //get auth token
-        guard let token = try? KeychainManager.readKeychain() else {
+        guard let token = try? KeychainManager.getToken() else {
             return
         }
         

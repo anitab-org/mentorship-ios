@@ -20,7 +20,7 @@ class HomeViewModel: ObservableObject {
     // MARK: - Functions
     init() {
         //get auth token
-        guard let token = try? KeychainManager.readKeychain() else {
+        guard let token = try? KeychainManager.getToken() else {
             return
         }
         print(token)

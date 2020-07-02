@@ -22,7 +22,7 @@ class SettingsViewModel: ObservableObject {
     func logout() {
         //delete keychain item
         do {
-            try KeychainManager.deleteTokenFromKeychain()
+            try KeychainManager.deleteToken()
         } catch {
             fatalError()
         }
@@ -32,7 +32,7 @@ class SettingsViewModel: ObservableObject {
     
     func deleteAccount() {
         //get token
-        guard let token = try? KeychainManager.readKeychain() else {
+        guard let token = try? KeychainManager.getToken() else {
             return
         }
         
