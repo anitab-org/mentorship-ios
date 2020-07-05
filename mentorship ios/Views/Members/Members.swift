@@ -24,7 +24,7 @@ struct Members: View {
                     }
                 }
             }
-            .navigationBarTitle("Members")
+            .navigationBarTitle(LocalizableStringConstants.ScreenNames.members)
             .onAppear {
                 if self.membersViewModel.membersResponseData.count == 0 {
                     self.membersViewModel.fetchMembers()

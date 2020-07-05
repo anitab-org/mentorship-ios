@@ -70,7 +70,7 @@ final class HomeModel {
                 }
             }
         }
-        struct TaskStructure: Decodable, Identifiable {
+        struct TaskStructure: Decodable, TaskStructureProperties {
             let id: Int?
             let description: String?
             let createdAt: Double?

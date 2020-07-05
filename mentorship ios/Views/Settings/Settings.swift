@@ -78,14 +78,14 @@ struct Settings: View {
                     }
                 }
             }
-            .navigationBarTitle("Settings")
+            .navigationBarTitle(LocalizableStringConstants.ScreenNames.settings)
             .environment(\.horizontalSizeClass, .regular)
             //alert shown after delete account api call completes
             .alert(isPresented: $settingsViewModel.showUserDeleteAlert) {
                 Alert(
                     title: Text(self.settingsViewModel.alertTitle),
                     message: Text(self.settingsViewModel.deleteAccountResponseData.message ?? ""),
-                    dismissButton: .default(Text("Okay")) {
+                    dismissButton: .default(Text(LocalizableStringConstants.okay)) {
                         self.settingsViewModel.logout()
                     })
             }

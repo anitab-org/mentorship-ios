@@ -23,7 +23,7 @@ struct ChangePassword: View {
             }
             
             //change password button
-            Button("Confirm") {
+            Button(LocalizableStringConstants.confirm) {
                 self.changePasswordViewModel.changePassword()
             }
             .buttonStyle(BigBoldButtonStyle(disabled: changePasswordViewModel.changePasswordDisabled))

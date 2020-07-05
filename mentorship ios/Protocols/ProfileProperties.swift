@@ -4,7 +4,9 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-import Foundation
+//protocols used for member and self profile properties
+//helps in reusing profile page for both - member and user
+//done by using protocol as type in ProfileCommonDetailsSection.swift (Under Views)
 
 protocol MemberProperties {
     var id: Int { get }

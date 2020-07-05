@@ -42,33 +42,11 @@ struct Home: View {
                     }
                 }
 
-                //Tasks To Do list
-                Section(header: Text(LocalizableStringConstants.tasksToDo).font(.headline)) {
-                    ForEach(homeViewModel.homeResponseData.tasksToDo ?? []) { task in
-                        HStack {
-                            Image(systemName: ImageNameConstants.SFSymbolConstants.taskToDo)
-                                .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
-                                .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
+                //Tasks to do list section
+                TasksToDoSection(tasksToDo: homeViewModel.homeResponseData.tasksToDo)
 
-                            Text(task.description ?? "-")
-                                .font(.subheadline)
-                        }
-                    }
-                }
-
-                //Tasks Done list
-                Section(header: Text(LocalizableStringConstants.tasksDone).font(.headline)) {
-                    ForEach(homeViewModel.homeResponseData.tasksDone ?? []) { task in
-                        HStack {
-                            Image(systemName: ImageNameConstants.SFSymbolConstants.taskDone)
-                                .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
-                                .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
-
-                            Text(task.description ?? "-")
-                                .font(.subheadline)
-                        }
-                    }
-                }
+                //Tasks done list section
+                TasksDoneSection(tasksDone: homeViewModel.homeResponseData.tasksDone ?? [])
 
             }
             .listStyle(GroupedListStyle())

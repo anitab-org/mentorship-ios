@@ -27,6 +27,7 @@ struct LocalizableStringConstants {
     static let cancel = LocalizedStringKey("Cancel")
     static let save = LocalizedStringKey("Save")
     static let okay = LocalizedStringKey("Okay")
+    static let confirm = LocalizedStringKey("Confirm")
     static let success = LocalizedStringKey("Success")
     static let failure = LocalizedStringKey("Failure")
     static let profile = LocalizedStringKey("Profile")
@@ -35,6 +36,16 @@ struct LocalizableStringConstants {
     static let notAvailable = LocalizedStringKey("Not available")
     static let privacyPolicy = LocalizedStringKey("Privacy Policy")
     static let termsOfUse = LocalizedStringKey("Terms of Use")
+    
+    // MARK: - Categorized
+    
+    //Keys to be used for Screen Names. (Direct values for English)
+    struct ScreenNames {
+        static let home = LocalizedStringKey("Home")
+        static let relation = LocalizedStringKey("Relation")
+        static let members = LocalizedStringKey("Members")
+        static let settings = LocalizedStringKey("Settings")
+    }
     
     //Keys to be used for profile attributes. (Direct values for English)
     enum ProfileKeys: LocalizedStringKey {

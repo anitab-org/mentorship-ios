@@ -10,6 +10,7 @@ struct ImageNameConstants {
     struct SFSymbolConstants {
         //tab icons
         static let home = "house.fill"
+        static let relation = "command"
         static let members = "person.3.fill"
         static let settings = "gear"
         

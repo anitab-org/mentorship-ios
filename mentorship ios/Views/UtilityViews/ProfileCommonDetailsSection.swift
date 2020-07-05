@@ -25,9 +25,3 @@ struct ProfileCommonDetailsSection: View {
         }
     }
 }
-
-//struct ProfileDetailCellsGroup_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileDetailCellsList(memberData: <#T##MemberProperties#>, hideEmptyFields: <#T##Bool#>)
-//    }
-//}

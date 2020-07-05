@@ -11,15 +11,11 @@ struct ContentView: View {
     @State private var selection = 0
     @ObservedObject var authModel = AuthModel()
 
-    var body: some View {
+    @ViewBuilder var body: some View {
         if authModel.isLogged! {
-            return AnyView(
-                TabBar(selection: $selection)
-            )
+            TabBar(selection: $selection)
         } else {
-            return AnyView(
-                Login()
-            )
+            Login()
         }
     }
 }

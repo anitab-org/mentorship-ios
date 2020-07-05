@@ -59,6 +59,10 @@ struct DesignConstants {
         static let disabledViewOpacity: Double = 0.75
         static let tapHighlightingOpacity: Double = 0.75
     }
+    
+    struct Blur {
+        static let backgroundBlur: CGFloat = 8
+    }
 
     struct Colors {
         static let defaultIndigoColor = Color(.systemIndigo)
