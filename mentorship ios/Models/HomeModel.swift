@@ -63,23 +63,12 @@ final class HomeModel {
             struct Info: Decodable {
                 let id: Int?
                 let userName: String?
+                let name: String?
                 
                 enum CodingKeys: String, CodingKey {
-                    case id
+                    case id, name
                     case userName = "user_name"
                 }
-            }
-        }
-        struct TaskStructure: Decodable, TaskStructureProperties {
-            let id: Int?
-            let description: String?
-            let createdAt: Double?
-            let completedAt: Double?
-            
-            enum CodingKeys: String, CodingKey {
-                case id, description
-                case createdAt = "created_at"
-                case completedAt = "completed_at"
             }
         }
     }

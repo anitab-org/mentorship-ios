@@ -10,13 +10,6 @@ struct DetailListCell: View {
     var requestData: HomeModel.HomeResponseData.RequestStructure
     var index: Int
 
-//    static var dateFormatter: DateFormatter {
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .medium
-//        formatter.timeStyle = .none
-//        return formatter
-//    }
-
     var endDate: Date {
         return Date(timeIntervalSince1970: requestData.endDate ?? 0)
     }

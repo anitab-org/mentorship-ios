@@ -35,15 +35,14 @@ class HomeViewModel: ObservableObject {
             .combineLatest(
                 NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token)
                     .receive(on: RunLoop.main)
-                    .catch { _ in Just(self.profileViewModel.getProfile()) }
-            )
+                    .catch { _ in Just(self.profileViewModel.getProfile()) })
             .sink { home, profile in
                 self.profileViewModel.saveProfile(profile: profile)
                 self.profileData = profile
                 self.updateCount(homeData: home)
                 self.homeResponseData = home
                 self.isLoading = false
-        }
+            }
     }
     
     func updateCount(homeData: HomeModel.HomeResponseData) {

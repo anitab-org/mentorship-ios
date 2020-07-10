@@ -24,7 +24,7 @@ class ChangePasswordViewModel: ObservableObject {
         return false
     }
     
-    // MARK: - Change Password
+    // MARK: - Functions
     func changePassword() {
         //check password fields
         if self.changePasswordData.newPassword != self.confirmPassword {

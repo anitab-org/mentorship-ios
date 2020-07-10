@@ -8,53 +8,74 @@ import SwiftUI
 
 struct Relation: View {
     //sample data
-    @ObservedObject var sampleData = HomeViewModel()
+    @ObservedObject var relationViewModel = RelationViewModel()
     @State var showAlert = false
-    @State var addTask  = false
-    @State var newTaskDesc = ""
+    
+    var endDate: Date {
+        return Date(timeIntervalSince1970: relationViewModel.currentRelation.endDate ?? 0)
+    }
     
     var body: some View {
         NavigationView {
             ZStack {
                 Form {
                     //Top detail view
-                    VStack {
-                        //mentor/mentee and end date
+                    VStack(alignment: .leading, spacing: DesignConstants.Form.Spacing.minimalSpacing) {
+                        //mentor/mentee name and end date
                         HStack {
-                            Text("Vatsal").font(.title).fontWeight(.heavy)
+                            Text(relationViewModel.personName).font(.title).fontWeight(.heavy)
                             Spacer()
-                            Text("Ends on: Aug 24, 2020").font(.callout)
+                            Text(relationViewModel.personType).font(.title)//.fontWeight(.heavy)
                         }
                         .foregroundColor(DesignConstants.Colors.subtitleText)
                         
-                        //divider
+                        Text("Ends On: \(DesignConstants.DateFormat.mediumDate.string(from: endDate))")
+                            .font(.callout)
+                        
+                        //divider, adds a line below name and date
                         Divider()
                             .background(DesignConstants.Colors.defaultIndigoColor)
                     }
                     .listRowBackground(DesignConstants.Colors.formBackgroundColor)
                     
                     //Tasks To Do List section
-                    TasksToDoSection(tasksToDo: sampleData.homeResponseData.tasksToDo) {
+                    TasksToDoSection(tasksToDo: relationViewModel.toDoTasks) { task in
+                        //set tapped task
+                        RelationViewModel.taskTapped = task
+                        //show alert for marking as complete confirmation
                         self.showAlert.toggle()
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text(LocalizableStringConstants.markComplete),
+                            primaryButton: .cancel(),
+                            secondaryButton: .default(Text(LocalizableStringConstants.confirm)) {
+                                self.relationViewModel.markAsComplete()
+                            })
                     }
                     
                     //Tasks Done List section
-                    TasksDoneSection(tasksDone: sampleData.homeResponseData.tasksDone)
+                    TasksDoneSection(tasksDone: relationViewModel.doneTasks)
+                }
+                
+                //show activity spinner if in activity
+                if relationViewModel.inActivity {
+                    ActivityIndicator(isAnimating: $relationViewModel.inActivity, style: .medium)
                 }
             }
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Current Relation")
-            .navigationBarItems(trailing: Button("Add Task") {
-                self.addTask.toggle()
+            .navigationBarItems(trailing: Button(LocalizableStringConstants.addTask) {
+                self.relationViewModel.addTask.toggle()
             })
-            .sheet(isPresented: $addTask) {
-                AddTask()
+            .sheet(isPresented: $relationViewModel.addTask) {
+                AddTask(relationViewModel: self.relationViewModel)
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $relationViewModel.showErrorAlert) {
                 Alert(
-                    title: Text("Mark as completed?"),
-                    primaryButton: .cancel(),
-                    secondaryButton: .default(Text(LocalizableStringConstants.confirm)))
+                    title: Text(self.relationViewModel.alertTitle),
+                    message: Text(self.relationViewModel.alertMessage),
+                    dismissButton: .default(Text(LocalizableStringConstants.okay)))
             }
         }
     }

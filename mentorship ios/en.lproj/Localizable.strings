@@ -8,6 +8,8 @@
 
 "About text" = "Systers is an international community for all women involved in the technical aspects of computing. We welcome the participation of women technologists of all ages and at any stage of their studies or careers.\n\nMentorship System is an application that matches women in tech to mentor each other, on career development, through 1:1 relations during a certain period of time. This is the iOS application of this project.";
 
+"Operation failed" = "Unable to complete request. Please try again.";
+
 "Can be both" = "Available to be a Mentor or Mentee";
 "Can be mentee" = "Availabe to be a Mentee";
 "Can be mentor" = "Availabe to be a Mentor";
