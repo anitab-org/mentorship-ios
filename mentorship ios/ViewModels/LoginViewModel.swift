@@ -43,10 +43,8 @@ class LoginViewModel: ObservableObject {
                     token = "Bearer " + token
                     do {
                         try KeychainManager.setToken(username: self.loginData.username, tokenString: token)
-                        print("added")
                         UserDefaults.standard.set(true, forKey: UserDefaultsConstants.isLoggedIn)
                     } catch {
-                        print("not added")
                         return
                     }
                 }

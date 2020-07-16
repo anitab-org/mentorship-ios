@@ -64,7 +64,7 @@ final class MembersViewModel: ObservableObject {
 
         //upload data
         let requestData = MembersModel.SendRequestUploadData(mentorID: mentorID, menteeID: menteeID, endDate: endDate, notes: notes)
-        print(requestData)
+        NSLog("A relation request was made to the server.")
         guard let uploadData = try? JSONEncoder().encode(requestData) else {
             return
         }
