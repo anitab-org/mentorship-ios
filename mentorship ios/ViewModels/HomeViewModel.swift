@@ -16,6 +16,7 @@ class HomeViewModel: ObservableObject {
     var profileViewModel = ProfileViewModel()
     var isLoading: Bool = false
     private var cancellable: AnyCancellable?
+    private var profileCancellable: AnyCancellable?
     
     // MARK: - Functions
     init() {
@@ -29,20 +30,30 @@ class HomeViewModel: ObservableObject {
         isLoading = true
         
         //parallel request for profile and home
+        profileCancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token)
+            .receive(on: RunLoop.main)
+            .catch { _ in Just(self.profileViewModel.getProfile()) }
+            .sink { [weak self] profile in
+                self?.isLoading = false
+                self?.profileViewModel.saveProfile(profile: profile)
+                self?.profileData = profile
+            }
+    }
+    
+    func fetchDashboard() {
+        //get auth token
+        guard let token = try? KeychainManager.getToken() else {
+            return
+        }
+        
+        //api call
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.home, token: token)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.homeResponseData) }
-            .combineLatest(
-                NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token)
-                    .receive(on: RunLoop.main)
-                    .catch { _ in Just(self.profileViewModel.getProfile()) })
-            .sink { home, profile in
-                self.profileViewModel.saveProfile(profile: profile)
-                self.profileData = profile
+            .sink { home in
                 self.updateCount(homeData: home)
                 self.homeResponseData = home
-                self.isLoading = false
-            }
+        }
     }
     
     func updateCount(homeData: HomeModel.HomeResponseData) {

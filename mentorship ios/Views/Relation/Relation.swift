@@ -77,6 +77,11 @@ struct Relation: View {
                     message: Text(self.relationViewModel.alertMessage),
                     dismissButton: .default(Text(LocalizableStringConstants.okay)))
             }
+            .onAppear {
+                if !self.relationViewModel.firstTimeLoad {
+                    self.relationViewModel.fetchCurrentRelation()
+                }
+            }
         }
     }
 }

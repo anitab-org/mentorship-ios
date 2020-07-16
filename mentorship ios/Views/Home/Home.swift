@@ -58,6 +58,9 @@ struct Home: View {
                             .padding([.leading, .vertical])
                             .font(.system(size: DesignConstants.Fonts.Size.navBarIcon))
             })
+            .onAppear {
+                self.homeViewModel.fetchDashboard()
+            }
         }
     }
 }

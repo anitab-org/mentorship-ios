@@ -13,6 +13,7 @@ class RelationViewModel: ObservableObject {
     @Published var currentRelation = RelationModel().currentRelation
     @Published var responseData = RelationModel.ResponseData(message: "")
     var tasks = RelationModel().tasks
+    var firstTimeLoad = true
     @Published var newTask = RelationModel.AddTaskData(description: "")
     @Published var toDoTasks = RelationModel().tasks
     @Published var doneTasks = RelationModel().tasks
@@ -31,6 +32,8 @@ class RelationViewModel: ObservableObject {
     // MARK: - Functions
     init() {
         fetchCurrentRelation()
+        //for first time load, init used. after it is set to false, onAppear modifier in view used.
+        firstTimeLoad = false
     }
     
     func fetchCurrentRelation() {
@@ -48,18 +51,22 @@ class RelationViewModel: ObservableObject {
             .catch { _ in Just(self.currentRelation) }
             .sink { [weak self] current in
                 //use current relation data
+                self?.inActivity = false
                 self?.currentRelation = current
                 self?.personName = self?.getPersonNameAndType(data: current) ?? ""
-                self?.inActivity = false
                 //chain api call. get current tasks using id from current relation
-                if let currentID = current.id {
-                    self?.fetchTasks(id: currentID, token: token)
+                //if current relation invalid, delete all tasks and return
+                guard let currentID = current.id else {
+                    self?.toDoTasks.removeAll()
+                    self?.doneTasks.removeAll()
+                    return
                 }
+                self?.fetchTasks(id: currentID, token: token)
         }
     }
     
     func fetchTasks(id: Int, token: String) {
-        self.tasksCancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.getCurrentTasks(id: id), token: token)
+        tasksCancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.getCurrentTasks(id: id), token: token)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.tasks) }
             .sink { [weak self] tasks in

@@ -50,6 +50,14 @@ struct LocalizableStringConstants {
         static let settings = LocalizedStringKey("Settings")
     }
     
+    //Key to be used for relation request actions. (Direct values for English)
+    struct RequestActions {
+        static let accept = LocalizedStringKey("Accept")
+        static let reject = LocalizedStringKey("Reject")
+        static let delete = LocalizedStringKey("Delete")
+        static let cancel = LocalizedStringKey("Withdraw")
+    }
+    
     //Keys to be used for profile attributes. (Direct values for English)
     enum ProfileKeys: LocalizedStringKey {
         case name = "Name"

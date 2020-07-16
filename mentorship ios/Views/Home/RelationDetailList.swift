@@ -39,17 +39,17 @@ struct RelationDetailList: View {
             .padding()
 
             List {
-                //send data list
-                Section(header: Text("Sent").font(.headline)) {
-                    ForEach(sentData ?? []) { data in
-                        DetailListCell(requestData: data, index: self.index)
-                    }
-                }
-
                 //received data list
                 Section(header: Text("Received").font(.headline)) {
                     ForEach(receivedData ?? []) { data in
                         DetailListCell(requestData: data, index: self.index)
+                    }
+                }
+                
+                //sent data list
+                Section(header: Text("Sent").font(.headline)) {
+                    ForEach(sentData ?? []) { data in
+                        DetailListCell(requestData: data, index: self.index, sent: true)
                     }
                 }
             }

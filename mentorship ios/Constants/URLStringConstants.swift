@@ -15,12 +15,12 @@ struct URLStringConstants {
         static let members: String = baseURL + "users"
         static let home: String = baseURL + "dashboard"
         static let user: String = baseURL + "user"
-        static let changePassword: String = baseURL + "/user/change_password"
+        static let changePassword: String = baseURL + "user/change_password"
     }
 
     struct MentorshipRelation {
         static let sendRequest: String = baseURL + "mentorship_relation/send_request"
-        static let currentRelation: String = baseURL + "/mentorship_relations/current"
+        static let currentRelation: String = baseURL + "mentorship_relations/current"
         static func getCurrentTasks(id: Int) -> String {
             return baseURL + "mentorship_relation/\(id)/tasks"
         }
@@ -28,7 +28,19 @@ struct URLStringConstants {
             return baseURL + "mentorship_relation/\(reqID)/task/\(taskID)/complete"
         }
         static func addNewTask(reqID: Int) -> String {
-            return baseURL + "/mentorship_relation/\(reqID)/task"
+            return baseURL + "mentorship_relation/\(reqID)/task"
+        }
+        static func accept(reqID: Int) -> String {
+            return baseURL + "mentorship_relation/\(reqID)/accept"
+        }
+        static func reject(reqID: Int) -> String {
+            return baseURL + "mentorship_relation/\(reqID)/reject"
+        }
+        static func cancel(reqID: Int) -> String {
+            return baseURL + "mentorship_relation/\(reqID)/cancel"
+        }
+        static func delete(reqID: Int) -> String {
+            return baseURL + "mentorship_relation/\(reqID)"
         }
     }
     
