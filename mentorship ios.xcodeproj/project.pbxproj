@@ -1,10 +1,10 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {
-    };
-    objectVersion = 50;
-    objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
 
 /* Begin PBXBuildFile section */
 		530F44142482752500B1FD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44132482752500B1FD0B /* AppDelegate.swift */; };
@@ -80,20 +80,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-        530F442A2482752600B1FD0B /* PBXContainerItemProxy */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 530F44082482752500B1FD0B /* Project object */;
-            proxyType = 1;
-            remoteGlobalIDString = 530F440F2482752500B1FD0B;
-            remoteInfo = "mentorship ios";
-        };
-        530F44352482752600B1FD0B /* PBXContainerItemProxy */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 530F44082482752500B1FD0B /* Project object */;
-            proxyType = 1;
-            remoteGlobalIDString = 530F440F2482752500B1FD0B;
-            remoteInfo = "mentorship ios";
-        };
+		530F442A2482752600B1FD0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 530F44082482752500B1FD0B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 530F440F2482752500B1FD0B;
+			remoteInfo = "mentorship ios";
+		};
+		530F44352482752600B1FD0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 530F44082482752500B1FD0B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 530F440F2482752500B1FD0B;
+			remoteInfo = "mentorship ios";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -178,27 +178,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-        530F440D2482752500B1FD0B /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        530F44262482752600B1FD0B /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        530F44312482752600B1FD0B /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		530F440D2482752500B1FD0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		530F44262482752600B1FD0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		530F44312482752600B1FD0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -503,129 +503,129 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-        530F440F2482752500B1FD0B /* mentorship ios */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 530F443D2482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship ios" */;
-            buildPhases = (
-                530F440C2482752500B1FD0B /* Sources */,
-                530F440D2482752500B1FD0B /* Frameworks */,
-                530F440E2482752500B1FD0B /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-            );
-            name = "mentorship ios";
-            productName = "mentorship ios";
-            productReference = 530F44102482752500B1FD0B /* mentorship ios.app */;
-            productType = "com.apple.product-type.application";
-        };
-        530F44282482752600B1FD0B /* mentorship iosTests */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 530F44402482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosTests" */;
-            buildPhases = (
-                530F44252482752600B1FD0B /* Sources */,
-                530F44262482752600B1FD0B /* Frameworks */,
-                530F44272482752600B1FD0B /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-                530F442B2482752600B1FD0B /* PBXTargetDependency */,
-            );
-            name = "mentorship iosTests";
-            productName = "mentorship iosTests";
-            productReference = 530F44292482752600B1FD0B /* mentorship iosTests.xctest */;
-            productType = "com.apple.product-type.bundle.unit-test";
-        };
-        530F44332482752600B1FD0B /* mentorship iosUITests */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = 530F44432482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosUITests" */;
-            buildPhases = (
-                530F44302482752600B1FD0B /* Sources */,
-                530F44312482752600B1FD0B /* Frameworks */,
-                530F44322482752600B1FD0B /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-                530F44362482752600B1FD0B /* PBXTargetDependency */,
-            );
-            name = "mentorship iosUITests";
-            productName = "mentorship iosUITests";
-            productReference = 530F44342482752600B1FD0B /* mentorship iosUITests.xctest */;
-            productType = "com.apple.product-type.bundle.ui-testing";
-        };
+		530F440F2482752500B1FD0B /* mentorship ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 530F443D2482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship ios" */;
+			buildPhases = (
+				530F440C2482752500B1FD0B /* Sources */,
+				530F440D2482752500B1FD0B /* Frameworks */,
+				530F440E2482752500B1FD0B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "mentorship ios";
+			productName = "mentorship ios";
+			productReference = 530F44102482752500B1FD0B /* mentorship ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		530F44282482752600B1FD0B /* mentorship iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 530F44402482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosTests" */;
+			buildPhases = (
+				530F44252482752600B1FD0B /* Sources */,
+				530F44262482752600B1FD0B /* Frameworks */,
+				530F44272482752600B1FD0B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				530F442B2482752600B1FD0B /* PBXTargetDependency */,
+			);
+			name = "mentorship iosTests";
+			productName = "mentorship iosTests";
+			productReference = 530F44292482752600B1FD0B /* mentorship iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		530F44332482752600B1FD0B /* mentorship iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 530F44432482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosUITests" */;
+			buildPhases = (
+				530F44302482752600B1FD0B /* Sources */,
+				530F44312482752600B1FD0B /* Frameworks */,
+				530F44322482752600B1FD0B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				530F44362482752600B1FD0B /* PBXTargetDependency */,
+			);
+			name = "mentorship iosUITests";
+			productName = "mentorship iosUITests";
+			productReference = 530F44342482752600B1FD0B /* mentorship iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-        530F44082482752500B1FD0B /* Project object */ = {
-            isa = PBXProject;
-            attributes = {
-                LastSwiftUpdateCheck = 1150;
-                LastUpgradeCheck = 1150;
-                ORGANIZATIONNAME = "Yugantar Jain";
-                TargetAttributes = {
-                    530F440F2482752500B1FD0B = {
-                        CreatedOnToolsVersion = 11.5;
-                    };
-                    530F44282482752600B1FD0B = {
-                        CreatedOnToolsVersion = 11.5;
-                        TestTargetID = 530F440F2482752500B1FD0B;
-                    };
-                    530F44332482752600B1FD0B = {
-                        CreatedOnToolsVersion = 11.5;
-                        TestTargetID = 530F440F2482752500B1FD0B;
-                    };
-                };
-            };
-            buildConfigurationList = 530F440B2482752500B1FD0B /* Build configuration list for PBXProject "mentorship ios" */;
-            compatibilityVersion = "Xcode 9.3";
-            developmentRegion = en;
-            hasScannedForEncodings = 0;
-            knownRegions = (
-                en,
-                Base,
-                pl,
-            );
-            mainGroup = 530F44072482752500B1FD0B;
-            productRefGroup = 530F44112482752500B1FD0B /* Products */;
-            projectDirPath = "";
-            projectRoot = "";
-            targets = (
-                530F440F2482752500B1FD0B /* mentorship ios */,
-                530F44282482752600B1FD0B /* mentorship iosTests */,
-                530F44332482752600B1FD0B /* mentorship iosUITests */,
-            );
-        };
+		530F44082482752500B1FD0B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Yugantar Jain";
+				TargetAttributes = {
+					530F440F2482752500B1FD0B = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					530F44282482752600B1FD0B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 530F440F2482752500B1FD0B;
+					};
+					530F44332482752600B1FD0B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 530F440F2482752500B1FD0B;
+					};
+				};
+			};
+			buildConfigurationList = 530F440B2482752500B1FD0B /* Build configuration list for PBXProject "mentorship ios" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				pl,
+			);
+			mainGroup = 530F44072482752500B1FD0B;
+			productRefGroup = 530F44112482752500B1FD0B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				530F440F2482752500B1FD0B /* mentorship ios */,
+				530F44282482752600B1FD0B /* mentorship iosTests */,
+				530F44332482752600B1FD0B /* mentorship iosUITests */,
+			);
+		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-        530F440E2482752500B1FD0B /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */,
-                5366ED712488EDA9006A3543 /* Localizable.strings in Resources */,
-                530F44202482752600B1FD0B /* Preview Assets.xcassets in Resources */,
-                530F441D2482752600B1FD0B /* Assets.xcassets in Resources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        530F44272482752600B1FD0B /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
-        530F44322482752600B1FD0B /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		530F440E2482752500B1FD0B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */,
+				5366ED712488EDA9006A3543 /* Localizable.strings in Resources */,
+				530F44202482752600B1FD0B /* Preview Assets.xcassets in Resources */,
+				530F441D2482752600B1FD0B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		530F44272482752600B1FD0B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		530F44322482752600B1FD0B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -719,333 +719,333 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-        530F442B2482752600B1FD0B /* PBXTargetDependency */ = {
-            isa = PBXTargetDependency;
-            target = 530F440F2482752500B1FD0B /* mentorship ios */;
-            targetProxy = 530F442A2482752600B1FD0B /* PBXContainerItemProxy */;
-        };
-        530F44362482752600B1FD0B /* PBXTargetDependency */ = {
-            isa = PBXTargetDependency;
-            target = 530F440F2482752500B1FD0B /* mentorship ios */;
-            targetProxy = 530F44352482752600B1FD0B /* PBXContainerItemProxy */;
-        };
+		530F442B2482752600B1FD0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 530F440F2482752500B1FD0B /* mentorship ios */;
+			targetProxy = 530F442A2482752600B1FD0B /* PBXContainerItemProxy */;
+		};
+		530F44362482752600B1FD0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 530F440F2482752500B1FD0B /* mentorship ios */;
+			targetProxy = 530F44352482752600B1FD0B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-        530F44212482752600B1FD0B /* LaunchScreen.storyboard */ = {
-            isa = PBXVariantGroup;
-            children = (
-                530F44222482752600B1FD0B /* Base */,
-                5366ED6E2488ED8F006A3543 /* pl */,
-            );
-            name = LaunchScreen.storyboard;
-            sourceTree = "<group>";
-        };
-        5366ED732488EDA9006A3543 /* Localizable.strings */ = {
-            isa = PBXVariantGroup;
-            children = (
-                5366ED722488EDA9006A3543 /* en */,
-                5366ED742488EDAF006A3543 /* pl */,
-            );
-            name = Localizable.strings;
-            sourceTree = "<group>";
-        };
+		530F44212482752600B1FD0B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				530F44222482752600B1FD0B /* Base */,
+				5366ED6E2488ED8F006A3543 /* pl */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5366ED732488EDA9006A3543 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5366ED722488EDA9006A3543 /* en */,
+				5366ED742488EDAF006A3543 /* pl */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-        530F443B2482752600B1FD0B /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-                CLANG_CXX_LIBRARY = "libc++";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = dwarf;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                ENABLE_TESTABILITY = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu11;
-                GCC_DYNAMIC_NO_PIC = NO;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_OPTIMIZATION_LEVEL = 0;
-                GCC_PREPROCESSOR_DEFINITIONS = (
-                    "DEBUG=1",
-                    "$(inherited)",
-                );
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-                MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-                MTL_FAST_MATH = YES;
-                ONLY_ACTIVE_ARCH = YES;
-                SDKROOT = iphoneos;
-                SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-            };
-            name = Debug;
-        };
-        530F443C2482752600B1FD0B /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_SEARCH_USER_PATHS = NO;
-                CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-                CLANG_ANALYZER_NONNULL = YES;
-                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-                CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-                CLANG_CXX_LIBRARY = "libc++";
-                CLANG_ENABLE_MODULES = YES;
-                CLANG_ENABLE_OBJC_ARC = YES;
-                CLANG_ENABLE_OBJC_WEAK = YES;
-                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-                CLANG_WARN_BOOL_CONVERSION = YES;
-                CLANG_WARN_COMMA = YES;
-                CLANG_WARN_CONSTANT_CONVERSION = YES;
-                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-                CLANG_WARN_EMPTY_BODY = YES;
-                CLANG_WARN_ENUM_CONVERSION = YES;
-                CLANG_WARN_INFINITE_RECURSION = YES;
-                CLANG_WARN_INT_CONVERSION = YES;
-                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-                CLANG_WARN_STRICT_PROTOTYPES = YES;
-                CLANG_WARN_SUSPICIOUS_MOVE = YES;
-                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-                CLANG_WARN_UNREACHABLE_CODE = YES;
-                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-                COPY_PHASE_STRIP = NO;
-                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-                ENABLE_NS_ASSERTIONS = NO;
-                ENABLE_STRICT_OBJC_MSGSEND = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu11;
-                GCC_NO_COMMON_BLOCKS = YES;
-                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-                GCC_WARN_UNDECLARED_SELECTOR = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-                GCC_WARN_UNUSED_FUNCTION = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-                MTL_ENABLE_DEBUG_INFO = NO;
-                MTL_FAST_MATH = YES;
-                SDKROOT = iphoneos;
-                SWIFT_COMPILATION_MODE = wholemodule;
-                SWIFT_OPTIMIZATION_LEVEL = "-O";
-                VALIDATE_PRODUCT = YES;
-            };
-            name = Release;
-        };
-        530F443E2482752600B1FD0B /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                CODE_SIGN_STYLE = Automatic;
-                DEVELOPMENT_ASSET_PATHS = "\"mentorship ios/Preview Content\"";
-                DEVELOPMENT_TEAM = ZCF7ZR4CVF;
-                ENABLE_PREVIEWS = YES;
-                INFOPLIST_FILE = "mentorship ios/Info.plist";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                );
-                PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-ios";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-            };
-            name = Debug;
-        };
-        530F443F2482752600B1FD0B /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-                CODE_SIGN_STYLE = Automatic;
-                DEVELOPMENT_ASSET_PATHS = "\"mentorship ios/Preview Content\"";
-                DEVELOPMENT_TEAM = ZCF7ZR4CVF;
-                ENABLE_PREVIEWS = YES;
-                INFOPLIST_FILE = "mentorship ios/Info.plist";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                );
-                PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-ios";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-            };
-            name = Release;
-        };
-        530F44412482752600B1FD0B /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-                BUNDLE_LOADER = "$(TEST_HOST)";
-                CODE_SIGN_STYLE = Automatic;
-                DEVELOPMENT_TEAM = ZCF7ZR4CVF;
-                INFOPLIST_FILE = "mentorship iosTests/Info.plist";
-                IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@loader_path/Frameworks",
-                );
-                PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosTests";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mentorship ios.app/mentorship ios";
-            };
-            name = Debug;
-        };
-        530F44422482752600B1FD0B /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-                BUNDLE_LOADER = "$(TEST_HOST)";
-                CODE_SIGN_STYLE = Automatic;
-                DEVELOPMENT_TEAM = ZCF7ZR4CVF;
-                INFOPLIST_FILE = "mentorship iosTests/Info.plist";
-                IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@loader_path/Frameworks",
-                );
-                PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosTests";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-                TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mentorship ios.app/mentorship ios";
-            };
-            name = Release;
-        };
-        530F44442482752600B1FD0B /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-                CODE_SIGN_STYLE = Automatic;
-                DEVELOPMENT_TEAM = ZCF7ZR4CVF;
-                INFOPLIST_FILE = "mentorship iosUITests/Info.plist";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@loader_path/Frameworks",
-                );
-                PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosUITests";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-                TEST_TARGET_NAME = "mentorship ios";
-            };
-            name = Debug;
-        };
-        530F44452482752600B1FD0B /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-                CODE_SIGN_STYLE = Automatic;
-                DEVELOPMENT_TEAM = ZCF7ZR4CVF;
-                INFOPLIST_FILE = "mentorship iosUITests/Info.plist";
-                LD_RUNPATH_SEARCH_PATHS = (
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@loader_path/Frameworks",
-                );
-                PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosUITests";
-                PRODUCT_NAME = "$(TARGET_NAME)";
-                SWIFT_VERSION = 5.0;
-                TARGETED_DEVICE_FAMILY = "1,2";
-                TEST_TARGET_NAME = "mentorship ios";
-            };
-            name = Release;
-        };
+		530F443B2482752600B1FD0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		530F443C2482752600B1FD0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		530F443E2482752600B1FD0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"mentorship ios/Preview Content\"";
+				DEVELOPMENT_TEAM = ZCF7ZR4CVF;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "mentorship ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantar.mentorship-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		530F443F2482752600B1FD0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"mentorship ios/Preview Content\"";
+				DEVELOPMENT_TEAM = ZCF7ZR4CVF;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "mentorship ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantar.mentorship-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		530F44412482752600B1FD0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZCF7ZR4CVF;
+				INFOPLIST_FILE = "mentorship iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mentorship ios.app/mentorship ios";
+			};
+			name = Debug;
+		};
+		530F44422482752600B1FD0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZCF7ZR4CVF;
+				INFOPLIST_FILE = "mentorship iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mentorship ios.app/mentorship ios";
+			};
+			name = Release;
+		};
+		530F44442482752600B1FD0B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZCF7ZR4CVF;
+				INFOPLIST_FILE = "mentorship iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "mentorship ios";
+			};
+			name = Debug;
+		};
+		530F44452482752600B1FD0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZCF7ZR4CVF;
+				INFOPLIST_FILE = "mentorship iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "mentorship ios";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-        530F440B2482752500B1FD0B /* Build configuration list for PBXProject "mentorship ios" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                530F443B2482752600B1FD0B /* Debug */,
-                530F443C2482752600B1FD0B /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        530F443D2482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship ios" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                530F443E2482752600B1FD0B /* Debug */,
-                530F443F2482752600B1FD0B /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        530F44402482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosTests" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                530F44412482752600B1FD0B /* Debug */,
-                530F44422482752600B1FD0B /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        530F44432482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosUITests" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                530F44442482752600B1FD0B /* Debug */,
-                530F44452482752600B1FD0B /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
+		530F440B2482752500B1FD0B /* Build configuration list for PBXProject "mentorship ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				530F443B2482752600B1FD0B /* Debug */,
+				530F443C2482752600B1FD0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		530F443D2482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				530F443E2482752600B1FD0B /* Debug */,
+				530F443F2482752600B1FD0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		530F44402482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				530F44412482752600B1FD0B /* Debug */,
+				530F44422482752600B1FD0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		530F44432482752600B1FD0B /* Build configuration list for PBXNativeTarget "mentorship iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				530F44442482752600B1FD0B /* Debug */,
+				530F44452482752600B1FD0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-        530F44172482752500B1FD0B /* mentorship_ios.xcdatamodeld */ = {
-            isa = XCVersionGroup;
-            children = (
-                530F44182482752500B1FD0B /* mentorship_ios.xcdatamodel */,
-            );
-            currentVersion = 530F44182482752500B1FD0B /* mentorship_ios.xcdatamodel */;
-            path = mentorship_ios.xcdatamodeld;
-            sourceTree = "<group>";
-            versionGroupType = wrapper.xcdatamodel;
-        };
+		530F44172482752500B1FD0B /* mentorship_ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				530F44182482752500B1FD0B /* mentorship_ios.xcdatamodel */,
+			);
+			currentVersion = 530F44182482752500B1FD0B /* mentorship_ios.xcdatamodel */;
+			path = mentorship_ios.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 /* End XCVersionGroup section */
-    };
-    rootObject = 530F44082482752500B1FD0B /* Project object */;
+	};
+	rootObject = 530F44082482752500B1FD0B /* Project object */;
 }

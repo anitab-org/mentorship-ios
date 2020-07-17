@@ -12,7 +12,9 @@ struct URLStringConstants {
     struct Users {
         static let login: String = baseURL + "login"
         static let signUp: String = baseURL + "register"
-        static let members: String = baseURL + "users"
+        static func members(page: Int, perPage: Int) -> String {
+            return baseURL + "users?page=\(page)&per_page=\(perPage)"
+        }
         static let home: String = baseURL + "dashboard"
         static let user: String = baseURL + "user"
         static let changePassword: String = baseURL + "user/change_password"
