@@ -23,6 +23,7 @@ struct SignUp: View {
                         TextField("Email", text: $signUpViewModel.signUpData.email)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                             .autocapitalization(.none)
+                            .keyboardType(.emailAddress)
                         SecureField("Password", text: $signUpViewModel.signUpData.password)
                             .textFieldStyle(RoundFilledTextFieldStyle())
                         SecureField("Confirm Password", text: $signUpViewModel.confirmPassword)
