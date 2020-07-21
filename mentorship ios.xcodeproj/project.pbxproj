@@ -14,7 +14,6 @@
 		530F441D2482752600B1FD0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530F441C2482752600B1FD0B /* Assets.xcassets */; };
 		530F44202482752600B1FD0B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 530F441F2482752600B1FD0B /* Preview Assets.xcassets */; };
 		530F44232482752600B1FD0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530F44212482752600B1FD0B /* LaunchScreen.storyboard */; };
-		530F442E2482752600B1FD0B /* MentorshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F442D2482752600B1FD0B /* MentorshipTests.swift */; };
 		530F44392482752600B1FD0B /* MentorshipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530F44382482752600B1FD0B /* MentorshipUITests.swift */; };
 		5310E51E2492D398001AF464 /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5310E51D2492D398001AF464 /* UserDefaultsConstants.swift */; };
 		5311839524AB4D7B0006036F /* Relation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5311839424AB4D7B0006036F /* Relation.swift */; };
@@ -47,6 +46,8 @@
 		538E22E9248EBD7900842835 /* MemberDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538E22E8248EBD7900842835 /* MemberDetailCell.swift */; };
 		538FFE3224B11A1B00E4B6BF /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FFE3124B11A1B00E4B6BF /* TaskModel.swift */; };
 		53A115D9249E1BD00065998C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A115D8249E1BD00065998C /* Settings.swift */; };
+		53A6DDEC24BE512D00D5DFCE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A6DDE924BE512D00D5DFCE /* LoginViewModelTests.swift */; };
+		53A6DDEE24BE512D00D5DFCE /* SignUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A6DDEB24BE512D00D5DFCE /* SignUpViewModelTests.swift */; };
 		53C0206D249B88370000BEB5 /* ProfileProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0206C249B88370000BEB5 /* ProfileProperties.swift */; };
 		53C0206F249B8D270000BEB5 /* ProfileCommonDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0206E249B8D270000BEB5 /* ProfileCommonDetailsSection.swift */; };
 		53D127B1249C956A003B4756 /* ActivityWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D127B0249C956A003B4756 /* ActivityWithText.swift */; };
@@ -65,6 +66,7 @@
 		53EB46EA2488CBBF005656B9 /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46E92488CBBF005656B9 /* DesignConstants.swift */; };
 		53EB46EC2488D5AA005656B9 /* ImageNameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB46EB2488D5AA005656B9 /* ImageNameConstants.swift */; };
 		53EB47012488EBAF005656B9 /* LocalizableStringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EB47002488EBAF005656B9 /* LocalizableStringConstants.swift */; };
+		53ECF23024C3954C00FF8D24 /* MentorshipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ECF22F24C3954C00FF8D24 /* MentorshipTests.swift */; };
 		53ED6B0D248D04970055DFF0 /* Members.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ED6B0C248D04970055DFF0 /* Members.swift */; };
 		53ED6B0F248D04A80055DFF0 /* MembersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53ED6B0E248D04A80055DFF0 /* MembersModel.swift */; };
 		53F205DD249ADF9200DDE52E /* ProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F205DC249ADF9200DDE52E /* ProfileEditor.swift */; };
@@ -107,7 +109,6 @@
 		530F44222482752600B1FD0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		530F44242482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		530F44292482752600B1FD0B /* mentorship iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mentorship iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		530F442D2482752600B1FD0B /* MentorshipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipTests.swift; sourceTree = "<group>"; };
 		530F442F2482752600B1FD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		530F44342482752600B1FD0B /* mentorship iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mentorship iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		530F44382482752600B1FD0B /* MentorshipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipUITests.swift; sourceTree = "<group>"; };
@@ -145,6 +146,8 @@
 		538E22E8248EBD7900842835 /* MemberDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailCell.swift; sourceTree = "<group>"; };
 		538FFE3124B11A1B00E4B6BF /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		53A115D8249E1BD00065998C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		53A6DDE924BE512D00D5DFCE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
+		53A6DDEB24BE512D00D5DFCE /* SignUpViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModelTests.swift; sourceTree = "<group>"; };
 		53C0206C249B88370000BEB5 /* ProfileProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProperties.swift; sourceTree = "<group>"; };
 		53C0206E249B8D270000BEB5 /* ProfileCommonDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCommonDetailsSection.swift; sourceTree = "<group>"; };
 		53D127B0249C956A003B4756 /* ActivityWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityWithText.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		53EB46E92488CBBF005656B9 /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
 		53EB46EB2488D5AA005656B9 /* ImageNameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameConstants.swift; sourceTree = "<group>"; };
 		53EB47002488EBAF005656B9 /* LocalizableStringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStringConstants.swift; sourceTree = "<group>"; };
+		53ECF22F24C3954C00FF8D24 /* MentorshipTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentorshipTests.swift; sourceTree = "<group>"; };
 		53ED6B0C248D04970055DFF0 /* Members.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Members.swift; sourceTree = "<group>"; };
 		53ED6B0E248D04A80055DFF0 /* MembersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersModel.swift; sourceTree = "<group>"; };
 		53F205DC249ADF9200DDE52E /* ProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditor.swift; sourceTree = "<group>"; };
@@ -261,7 +265,9 @@
 		530F442C2482752600B1FD0B /* mentorship iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				530F442D2482752600B1FD0B /* MentorshipTests.swift */,
+				53ECF22F24C3954C00FF8D24 /* MentorshipTests.swift */,
+				53A6DDE924BE512D00D5DFCE /* LoginViewModelTests.swift */,
+				53A6DDEB24BE512D00D5DFCE /* SignUpViewModelTests.swift */,
 				530F442F2482752600B1FD0B /* Info.plist */,
 			);
 			path = "mentorship iosTests";
@@ -704,7 +710,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				530F442E2482752600B1FD0B /* MentorshipTests.swift in Sources */,
+				53A6DDEC24BE512D00D5DFCE /* LoginViewModelTests.swift in Sources */,
+				53A6DDEE24BE512D00D5DFCE /* SignUpViewModelTests.swift in Sources */,
+				53ECF23024C3954C00FF8D24 /* MentorshipTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,7 +890,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "yugantar.mentorship-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -902,7 +910,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "yugantar.mentorship-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "yugantarjain.mentorship-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
