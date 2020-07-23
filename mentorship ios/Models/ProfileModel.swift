@@ -7,7 +7,7 @@
 final class ProfileModel {
 
     // MARK: - Structures
-    struct ProfileData: Codable, ProfileProperties {
+    struct ProfileData: Codable, Equatable, ProfileProperties {
         let id: Int
         var name: String?
         var username: String?
