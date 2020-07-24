@@ -15,7 +15,7 @@ struct NetworkManager {
         httpMethod: String = "GET",
         uploadData: Data = Data(),
         token: String = "",
-        cachePolicy: NSURLRequest.CachePolicy = .useProtocolCachePolicy
+        session: URLSession = .shared
     ) -> AnyPublisher<T, Error> {
         //set response code to 0
         responseCode = 0
@@ -31,10 +31,9 @@ struct NetworkManager {
         }
         request.httpMethod = httpMethod
         request.httpBody = uploadData
-        request.cachePolicy = cachePolicy
 
         //make the call using the url request
-        return URLSession.shared
+        return session
             .dataTaskPublisher(for: request)
             .tryMap {
                 if let response = $0.response as? HTTPURLResponse {

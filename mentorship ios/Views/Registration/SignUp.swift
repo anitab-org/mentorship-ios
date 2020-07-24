@@ -7,8 +7,25 @@
 import SwiftUI
 
 struct SignUp: View {
+    var signUpService: SignUpService = SignUpAPI()
     @ObservedObject var signUpViewModel = SignUpViewModel()
     @Binding var isPresented: Bool
+    
+    // use service to sign up
+    func signUp() {
+        // set inAcitivty to true
+        self.signUpViewModel.inActivity = true
+        
+        // make sign up api call
+        self.signUpService.signUp(
+            availabilityPickerSelection: self.signUpViewModel.availabilityPickerSelection,
+            signUpData: self.signUpViewModel.signUpData,
+            confirmPassword: self.signUpViewModel.confirmPassword
+        ) { response in
+            self.signUpViewModel.update(using: response)
+            self.signUpViewModel.inActivity = false
+        }
+    }
 
     var body: some View {
         NavigationView {
@@ -45,7 +62,7 @@ struct SignUp: View {
 
                     //sign up button
                     Button("Sign Up") {
-                        self.signUpViewModel.signUp()
+                        self.signUp()
                     }
                     .buttonStyle(BigBoldButtonStyle(disabled: signUpViewModel.signupDisabled))
                     .disabled(signUpViewModel.signupDisabled)

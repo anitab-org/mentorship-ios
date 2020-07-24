@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityIndicator: UIViewRepresentable {
     @Binding var isAnimating: Bool
-    let style: UIActivityIndicatorView.Style
+    var style: UIActivityIndicatorView.Style = .medium
 
     func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
         return UIActivityIndicatorView(style: style)

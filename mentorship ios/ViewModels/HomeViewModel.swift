@@ -12,80 +12,12 @@ class HomeViewModel: ObservableObject {
     // MARK: - Variables
     @Published var homeResponseData = HomeModel.HomeResponseData(asMentor: nil, asMentee: nil, tasksToDo: nil, tasksDone: nil)
     @Published var relationsListData = UIHelper.HomeScreen.RelationsListData()
-    @Published var profileData = ProfileViewModel().profileData
-    var profileViewModel = ProfileViewModel()
-    var isLoading: Bool = false
-    private var cancellable: AnyCancellable?
-    private var profileCancellable: AnyCancellable?
+    @Published var userName = ProfileViewModel().profileData.name
+    @Published var isLoading = false
+    var firstTimeLoad = true
     
     // MARK: - Functions
-    init() {
-        //get auth token
-        guard let token = try? KeychainManager.getToken() else {
-            return
-        }
-        print(token)
-        
-        //used to express loading state in UI in home screen
-        isLoading = true
-        
-        //parallel request for profile and home
-        profileCancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token)
-            .receive(on: RunLoop.main)
-            .catch { _ in Just(self.profileViewModel.getProfile()) }
-            .sink { [weak self] profile in
-                self?.isLoading = false
-                self?.profileViewModel.saveProfile(profile: profile)
-                self?.profileData = profile
-            }
-    }
-    
-    func fetchDashboard() {
-        //get auth token
-        guard let token = try? KeychainManager.getToken() else {
-            return
-        }
-        
-        //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.home, token: token)
-            .receive(on: RunLoop.main)
-            .catch { _ in Just(self.homeResponseData) }
-            .sink { home in
-                self.updateCount(homeData: home)
-                self.homeResponseData = home
-        }
-    }
-    
-    func updateCount(homeData: HomeModel.HomeResponseData) {
-        var pendingCount = homeData.asMentee?.sent?.pending?.count ?? 0
-        pendingCount += homeData.asMentee?.received?.pending?.count ?? 0
-        pendingCount += homeData.asMentor?.sent?.pending?.count ?? 0
-        pendingCount += homeData.asMentor?.received?.pending?.count ?? 0
-        
-        var acceptedCount = homeData.asMentee?.sent?.accepted?.count ?? 0
-        acceptedCount += homeData.asMentee?.received?.accepted?.count ?? 0
-        acceptedCount += homeData.asMentor?.sent?.accepted?.count ?? 0
-        acceptedCount += homeData.asMentor?.received?.accepted?.count ?? 0
-        
-        var rejectedCount = homeData.asMentee?.sent?.rejected?.count ?? 0
-        rejectedCount += homeData.asMentee?.received?.rejected?.count ?? 0
-        rejectedCount += homeData.asMentor?.sent?.rejected?.count ?? 0
-        rejectedCount += homeData.asMentor?.received?.rejected?.count ?? 0
-        
-        var cancelledCount = homeData.asMentee?.sent?.cancelled?.count ?? 0
-        cancelledCount += homeData.asMentee?.received?.cancelled?.count ?? 0
-        cancelledCount += homeData.asMentor?.sent?.cancelled?.count ?? 0
-        cancelledCount += homeData.asMentor?.received?.cancelled?.count ?? 0
-        
-        var completedCount = homeData.asMentee?.sent?.completed?.count ?? 0
-        completedCount += homeData.asMentee?.received?.completed?.count ?? 0
-        completedCount += homeData.asMentor?.sent?.completed?.count ?? 0
-        completedCount += homeData.asMentor?.received?.completed?.count ?? 0
-        
-        self.relationsListData.relationCount = [pendingCount, acceptedCount, rejectedCount, cancelledCount, completedCount]
-    }
-    
-    func getSentDetailListData(userType: HomeModel.UserType, index: Int) -> [HomeModel.HomeResponseData.RequestStructure]? {
+    func getSentDetailListData(userType: HomeModel.UserType, index: Int) -> [RequestStructure]? {
         if userType == .mentee {
             let data1 = homeResponseData.asMentee?.sent
             switch index {
@@ -109,7 +41,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getReceivedDetailListData(userType: HomeModel.UserType, index: Int) -> [HomeModel.HomeResponseData.RequestStructure]? {
+    func getReceivedDetailListData(userType: HomeModel.UserType, index: Int) -> [RequestStructure]? {
         if userType == .mentee {
             let data1 = homeResponseData.asMentee?.received
             switch index {

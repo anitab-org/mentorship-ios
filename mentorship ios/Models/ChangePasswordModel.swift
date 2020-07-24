@@ -15,7 +15,8 @@ class ChangePasswordModel {
         }
     }
     
-    struct ChangePasswordResponseData: Decodable {
-        var message: String?
+    struct ChangePasswordResponseData {
+        let message: String?
+        var success: Bool
     }
 }

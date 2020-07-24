@@ -30,8 +30,22 @@ final class ProfileModel {
         }
     }
     
-    struct UpdateProfileResponseData: Decodable {
+    struct UpdateProfileResponseData {
+        let success: Bool?
         let message: String?
     }
 
+}
+
+// MARK: - API
+extension ProfileModel.ProfileData {
+    func update(viewModel: HomeViewModel) {
+        viewModel.userName = self.name
+    }
+}
+
+extension ProfileModel.UpdateProfileResponseData {
+    func update(viewModel: ProfileViewModel) {
+        viewModel.updateProfileResponseData = self
+    }
 }

@@ -7,12 +7,57 @@
 import SwiftUI
 
 struct Relation: View {
-    //sample data
+    var relationService: RelationService = RelationAPI()
     @ObservedObject var relationViewModel = RelationViewModel()
     @State var showAlert = false
     
     var endDate: Date {
         return Date(timeIntervalSince1970: relationViewModel.currentRelation.endDate ?? 0)
+    }
+    
+    // use service to fetch relation and tasks
+    func fetchRelationAndTasks() {
+        // For first time load set inactivity to true
+        self.relationViewModel.inActivity = self.relationViewModel.firstTimeLoad
+        
+        // make api call to fetch current relation
+        self.relationService.fetchCurrentRelation { response in
+            // map repsonse to view model
+            response.update(viewModel: self.relationViewModel)
+            self.relationViewModel.inActivity = false
+            self.relationViewModel.firstTimeLoad = false
+            //chain api call. get current tasks using id from current relation
+            if let currentID = response.id {
+                self.relationService.fetchTasks(id: currentID) { tasks, success in
+                    self.relationViewModel.handleFetchedTasks(tasks: tasks, success: success)
+                }
+            }
+        }
+    }
+    
+    // use relation service and mark task as complete
+    func markAsComplete() {
+        // get ids and make network request
+        let taskTapped = RelationViewModel.taskTapped
+        guard let taskID = taskTapped.id else { return }
+        guard let reqID = self.relationViewModel.currentRelation.id else { return }
+        // network request
+        self.relationService.markAsComplete(taskID: taskID, relationID: reqID) { response in
+            // map response
+            response.update(viewModel: self.relationViewModel)
+            // if success, update data
+            if response.success {
+                if let index = self.relationViewModel.toDoTasks.firstIndex(of: taskTapped) {
+                    self.relationViewModel.toDoTasks.remove(at: index)
+                    self.relationViewModel.doneTasks.append(taskTapped)
+                }
+            }
+            // else, show error message
+            else {
+                self.relationViewModel.showAlert = true
+                self.relationViewModel.alertMessage = LocalizableStringConstants.operationFail
+            }
+        }
     }
     
     var body: some View {
@@ -25,7 +70,7 @@ struct Relation: View {
                         HStack {
                             Text(relationViewModel.personName).font(.title).fontWeight(.heavy)
                             Spacer()
-                            Text(relationViewModel.personType).font(.title)//.fontWeight(.heavy)
+                            Text(relationViewModel.personType).font(.title)
                         }
                         .foregroundColor(DesignConstants.Colors.subtitleText)
                         
@@ -50,7 +95,7 @@ struct Relation: View {
                             title: Text(LocalizableStringConstants.markComplete),
                             primaryButton: .cancel(),
                             secondaryButton: .default(Text(LocalizableStringConstants.confirm)) {
-                                self.relationViewModel.markAsComplete()
+                                self.markAsComplete()
                             })
                     }
                     
@@ -78,9 +123,7 @@ struct Relation: View {
                     dismissButton: .default(Text(LocalizableStringConstants.okay)))
             }
             .onAppear {
-                if !self.relationViewModel.firstTimeLoad {
-                    self.relationViewModel.fetchCurrentRelation()
-                }
+                self.fetchRelationAndTasks()
             }
         }
     }

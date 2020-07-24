@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct Settings: View {
+    let settingsService: SettingsService = SettingsAPI()
     @ObservedObject var settingsViewModel = SettingsViewModel()
     //Alert used for logout and delete action, to confirm user's action before proceeding.
     @State var showAlert = false
@@ -19,7 +20,15 @@ struct Settings: View {
         }
         //DELETE ACCOUNT
         else {
-            settingsViewModel.deleteAccount()
+            settingsService.deleteAccount { response in
+                self.settingsViewModel.deleteAccountResponseData = response
+                self.settingsViewModel.showUserDeleteAlert = true
+                if response.success {
+                    self.settingsViewModel.alertTitle = LocalizableStringConstants.success
+                } else {
+                    self.settingsViewModel.alertTitle = LocalizableStringConstants.failure
+                }
+            }
         }
     }
     
@@ -86,7 +95,10 @@ struct Settings: View {
                     title: Text(self.settingsViewModel.alertTitle),
                     message: Text(self.settingsViewModel.deleteAccountResponseData.message ?? ""),
                     dismissButton: .default(Text(LocalizableStringConstants.okay)) {
-                        self.settingsViewModel.logout()
+                        // if deletion was successful, then logout
+                        if self.settingsViewModel.deleteAccountResponseData.success {
+                            self.settingsViewModel.logout()
+                        }
                     })
             }
         }

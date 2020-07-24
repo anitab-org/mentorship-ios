@@ -8,6 +8,7 @@ import SwiftUI
 import Combine
 
 struct SendRequest: View {
+    var membersService: MembersService = MembersAPI()
     @ObservedObject var membersViewModel = MembersViewModel()
     var memberID: Int
     var memberName: String
@@ -17,7 +18,12 @@ struct SendRequest: View {
     @State private var offsetValue: CGFloat = 0
     @Environment(\.presentationMode) var presentationMode
 
+    // use service to send request
     func sendRequest() {
+        // set inactivity to true
+        self.membersViewModel.inActivity = true
+        
+        // set parameters
         let myID = ProfileViewModel().getProfile().id
         let endDateTimestamp = self.endDate.timeIntervalSince1970
         var menteeID = myID
@@ -26,7 +32,11 @@ struct SendRequest: View {
             menteeID = memberID
             mentorID = myID
         }
-        membersViewModel.sendRequest(menteeID: menteeID, mentorID: mentorID, endDate: endDateTimestamp, notes: notes)
+        // make request
+        membersService.sendRequest(menteeID: menteeID, mentorID: mentorID, endDate: endDateTimestamp, notes: notes) { response in
+            self.membersViewModel.inActivity = false
+            self.membersViewModel.sendRequestResponseData = response
+        }
     }
 
     var body: some View {
@@ -64,7 +74,7 @@ struct SendRequest: View {
                     Section {
                         if membersViewModel.inActivity {
                             ActivityIndicator(isAnimating: $membersViewModel.inActivity, style: .medium)
-                        } else if !membersViewModel.requestSentSuccesfully {
+                        } else if !membersViewModel.sendRequestResponseData.success {
                             Text(membersViewModel.sendRequestResponseData.message ?? "")
                                 .modifier(ErrorText())
                         }
@@ -77,7 +87,7 @@ struct SendRequest: View {
             .navigationBarItems(leading: Button(LocalizableStringConstants.cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
             }))
-            .alert(isPresented: $membersViewModel.requestSentSuccesfully) {
+                .alert(isPresented: $membersViewModel.sendRequestResponseData.success) {
                 Alert(
                     title: Text(LocalizableStringConstants.success),
                     message: Text(membersViewModel.sendRequestResponseData.message ?? "Mentorship relation was sent successfully."),

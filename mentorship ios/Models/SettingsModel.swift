@@ -24,6 +24,7 @@ class SettingsModel {
     
     struct DeleteAccountResponseData: Decodable {
         let message: String?
+        let success: Bool
     }
     
 }

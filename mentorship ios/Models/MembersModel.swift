@@ -7,8 +7,7 @@
 final class MembersModel {
 
     // MARK: - Structures
-    struct MembersResponseData: Decodable, Identifiable, MemberProperties {
-        
+    struct MembersResponseData: Identifiable, MemberProperties {
         let id: Int
 
         let username: String?
@@ -25,14 +24,6 @@ final class MembersModel {
         let needMentoring: Bool?
         let availableToMentor: Bool?
         let isAvailable: Bool?
-
-        enum CodingKeys: String, CodingKey {
-            case id, username, name, bio, location, occupation, organization, interests, skills
-            case slackUsername = "slack_username"
-            case needMentoring = "need_mentoring"
-            case availableToMentor = "available_to_mentor"
-            case isAvailable = "is_available"
-        }
     }
 
     struct SendRequestUploadData: Encodable {
@@ -49,8 +40,9 @@ final class MembersModel {
         }
     }
 
-    struct SendRequestResponseData: Decodable {
+    struct SendRequestResponseData {
         let message: String?
+        var success: Bool
     }
 
 }

@@ -7,12 +7,17 @@
 import XCTest
 @testable import mentorship_ios
 
-class SignUpViewModelTests: XCTestCase {
+class SignUpTests: XCTestCase {
     //init sign up view model
     let signupVM = SignUpViewModel()
+    // custom urlsession for mock network calls
+    var urlSession: URLSession!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // Set url session for mock networking
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+        urlSession = URLSession(configuration: configuration)
     }
 
     override func tearDownWithError() throws {
@@ -20,15 +25,14 @@ class SignUpViewModelTests: XCTestCase {
     }
 
     func testNonMatchingPasswordSignUp() {
-        //set password and confirm password
-        signupVM.signUpData.password = "TestPassword"
-        signupVM.confirmPassword = "TestPassword1"
-        
-        //call signup
-        signupVM.signUp()
-        
-        //test
-        XCTAssertEqual(signupVM.signUpResponseData.message, "Passwords do not match")
+        //set sign up data
+        let signUpData = SignUpModel.SignUpUploadData(name: "testName", username: "test", password: "password", email: "test", tncChecked: true, needMentoring: false, availableToMentor: false)
+
+        // Call signup. Use mocking for safety (completion should be called before network request made).
+        SignUpAPI(urlSession: urlSession).signUp(availabilityPickerSelection: 0, signUpData: signUpData, confirmPassword: "password2") { response in
+            // Test
+            XCTAssertEqual(response.message, LocalizableStringConstants.passwordsDoNotMatch)
+        }
     }
     
     func testSignUpButtonDisabledState() {

@@ -7,24 +7,25 @@
 import SwiftUI
 
 struct DetailListCell: View {
-    var relationRequestActionAPI = RelationRequestActionAPI()
-    var requestData: HomeModel.HomeResponseData.RequestStructure
+    var requestActionService: RequestActionService = RequestActionAPI()
+    var cellVM: DetailListCellViewModel
     var index: Int
     var sent = false
+    @State private var actionType: ActionType!
     @State private var showAlert = false
     @State private var alertTitle = ""
     @State private var alertButtonText = LocalizedStringKey("")
-    @State private var actionType: RelationRequestActionAPI.ActionType!
     @Environment(\.presentationMode) var presentationMode
-
-    var endDate: Date {
-        return Date(timeIntervalSince1970: requestData.endDate ?? 0)
-    }
     
-    //alert action,. To accept, delete, reject, or withdraw a request
+    // Alert action. To accept, delete, reject, or withdraw a request
     func alertAction() {
-        guard let reqID = self.requestData.id else { return }
-        self.relationRequestActionAPI.actOnPendingRequest(action: self.actionType, reqID: reqID)
+        guard let reqID = self.cellVM.requestData.id else { return }
+        requestActionService.actOnPendingRequest(action: actionType, reqID: reqID) {_, success in
+            // if call successful, pop navigation controller and go back to home screen
+            if success {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        }
     }
     
     var alertActionButton: Alert.Button {
@@ -45,20 +46,21 @@ struct DetailListCell: View {
     var body: some View {
         VStack(alignment: .leading, spacing: DesignConstants.Form.Spacing.smallSpacing) {
             HStack {
-                Text("Mentee: \(requestData.mentee?.userName ?? "-")")
+                Text("Mentee: \(cellVM.requestData.mentee?.userName ?? "-")")
                 Spacer()
-                Text("Mentor: \(requestData.mentor?.userName ?? "-")")
+                Text("Mentor: \(cellVM.requestData.mentor?.userName ?? "-")")
             }
             .font(.subheadline)
             .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
 
-            Text(!requestData.notes!.isEmpty ? requestData.notes! : "No Note Present")
+            Text(!cellVM.requestData.notes!.isEmpty ? cellVM.requestData.notes! : "No Note Present")
                 .font(.headline)
-                .opacity(requestData.notes!.isEmpty ? DesignConstants.Opacity.disabledViewOpacity/2 : 1.0)
+                .opacity(cellVM.requestData.notes!.isEmpty ? DesignConstants.Opacity.disabledViewOpacity/2 : 1.0)
 
-            Text("End Date: \(DesignConstants.DateFormat.mediumDate.string(from: endDate))")
+            Text("End Date: \(self.cellVM.endDate)")
                 .font(.caption)
             
+            // MARK: - Action Buttons. For pending and accepted requests.
             //Buttons to accept, reject, delete for pending requests
             if index == 0 {
                 //show cancel button for sent requests
@@ -119,11 +121,6 @@ struct DetailListCell: View {
                 primaryButton: .cancel(),
                 secondaryButton: alertActionButton
             )
-        }
-        .onReceive(relationRequestActionAPI.$success) { actionSuccessful in
-            if actionSuccessful {
-                self.presentationMode.wrappedValue.dismiss()
-            }
         }
     }
 }

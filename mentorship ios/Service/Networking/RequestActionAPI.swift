@@ -7,22 +7,26 @@
 import Foundation
 import Combine
 
-class RelationRequestActionAPI: ObservableObject {
+enum ActionType {
+    case accept, reject, delete     //for pending requests
+    case cancel                     //for accepted request
+}
+
+class RequestActionAPI: RequestActionService {
     private var cancellable: AnyCancellable?
-    var response = ResponseMessage(message: "")
-    @Published var success = false
+    let urlSession: URLSession
     
-    enum ActionType {
-        case accept, reject, delete     //for pending requests
-        case cancel                     //for accepted request
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
     }
     
-    func actOnPendingRequest(action: ActionType, reqID: Int) {
+    func actOnPendingRequest(
+        action: ActionType,
+        reqID: Int,
+        completion: @escaping (RequestActionResponse, Bool) -> Void
+    ) {
         var urlString = ""
         var httpMethod = "PUT"
-        
-        //initialise success to false
-        success = false
         
         //set url string
         switch action {
@@ -40,18 +44,13 @@ class RelationRequestActionAPI: ObservableObject {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: urlString, httpMethod: httpMethod, token: token)
+        cancellable = NetworkManager.callAPI(urlString: urlString, httpMethod: httpMethod, token: token, session: urlSession)
             .receive(on: RunLoop.main)
-            .catch { _ in Just(self.response) }
-            .sink { [weak self] in
-                self?.response = $0
-                if NetworkManager.responseCode == 200 {
-                    self?.success = true
-                }
+            .catch { _ in Just(RequestActionResponse(message: LocalizableStringConstants.networkErrorString)) }
+            .sink {
+                let success = NetworkManager.responseCode == 200
+                completion($0, success)
         }
     }
 }
 
-struct ResponseMessage: Decodable {
-    let message: String?
-}

@@ -25,7 +25,7 @@ class ProfileViewModel: ObservableObject {
         needMentoring: false,
         availableToMentor: false
     )
-    @Published var updateProfileResponseData = ProfileModel.UpdateProfileResponseData(message: "")
+    @Published var updateProfileResponseData = ProfileModel.UpdateProfileResponseData(success: false, message: "")
     @Published var inActivity = false
     @Published var showAlert = false
     var alertTitle = LocalizedStringKey("")
@@ -79,44 +79,10 @@ class ProfileViewModel: ObservableObject {
         return editProfileData
     }
     
-    //makes api call to update profile
-    func updateProfile(updateProfileData: ProfileModel.ProfileData) {
-        //get auth token
-        guard let token = try? KeychainManager.getToken() else {
-            return
-        }
-        
-        //encoded upload data
-        guard let uploadData = try? JSONEncoder().encode(updateProfileData) else {
-            return
-        }
-        
-        self.inActivity = true
-        
-        //func to save updated profile in user defaults
-        func saveUpdatedProfile() {
-            let currentProfileData = getProfile()
-            var newProfileData = updateProfileData
-            newProfileData.username = currentProfileData.username
-            self.saveProfile(profile: newProfileData)
-        }
-        
-        //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, httpMethod: "PUT", uploadData: uploadData, token: token)
-            .receive(on: RunLoop.main)
-            .catch { _ in Just(self.updateProfileResponseData) }
-            .sink {
-                self.updateProfileResponseData = $0
-                self.inActivity = false
-                //Show alert after call completes
-                self.showAlert = true
-                if NetworkManager.responseCode == 200 {
-                    self.alertTitle = LocalizableStringConstants.success
-                    //update profile data in user defaults on success
-                    saveUpdatedProfile()
-                } else {
-                    self.alertTitle = LocalizableStringConstants.failure
-                }
-        }
+    //func to save updated profile in user defaults
+    func saveUpdatedProfile(updatedProfileData: ProfileModel.ProfileData) {
+        var newProfileData = updatedProfileData
+        newProfileData.username = getProfile().username
+        self.saveProfile(profile: newProfileData)
     }
 }

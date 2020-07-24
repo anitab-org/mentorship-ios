@@ -12,13 +12,7 @@ final class LoginModel {
         var password: String
     }
 
-    struct LoginResponseData: Decodable {
-        let message: String?
-        let accessToken: String?
-
-        enum CodingKeys: String, CodingKey {
-            case message
-            case accessToken = "access_token"
-        }
+    struct LoginResponseData {
+        var message: String?
     }
 }
