@@ -16,14 +16,14 @@ class MembersAPI: MembersService {
     }
 
     //Fetch Members
-    func fetchMembers(pageToLoad: Int, perPage: Int, completion: @escaping ([MembersModel.MembersResponseData], Bool) -> Void) {
+    func fetchMembers(pageToLoad: Int, perPage: Int, search: String, completion: @escaping ([MembersModel.MembersResponseData], Bool) -> Void) {
         //get auth token
         guard let token = try? KeychainManager.getToken() else {
             return
         }
 
         // Debug comment: cache policy to be changed later to revalidateCache
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members(page: pageToLoad, perPage: perPage), token: token, session: urlSession)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members(page: pageToLoad, perPage: perPage, search: search), token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just([MembersNetworkModel]()) }
             .sink {

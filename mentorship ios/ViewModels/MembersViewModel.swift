@@ -13,11 +13,19 @@ final class MembersViewModel: ObservableObject {
     @Published var membersResponseData = [MembersModel.MembersResponseData]()
     @Published var sendRequestResponseData = MembersModel.SendRequestResponseData(message: "", success: false)
     @Published var inActivity = false
+    @Published var searchString = ""
     
     //used in pagination for members list
-    var currentPage = 0
     let perPage = 20
+    var currentPage = 0
     var membersListFull = false
+    
+    var currentlySearching = false
+    
+    // to backup original data, restore back after search completes
+    var tempCurrentPage = 0
+    var tempMembersListFull = false
+    var tempMembersResponse = [MembersModel.MembersResponseData]()
     
     // MARK: - Functions
 
@@ -35,6 +43,21 @@ final class MembersViewModel: ObservableObject {
 
     func skillsString(skills: String) -> String {
         return "Skills: \(skills)"
+    }
+    
+    // purpose: save original data (non-filtered by search)
+    func backup() {
+        tempCurrentPage = currentPage
+        tempMembersListFull = membersListFull
+        tempMembersResponse = membersResponseData
+    }
+    
+    // restore backed up data after cancel button pressed in search bar
+    func restore() {
+        currentPage = tempCurrentPage
+        membersListFull = tempMembersListFull
+        membersResponseData = tempMembersResponse
+        currentlySearching = false
     }
     
 }

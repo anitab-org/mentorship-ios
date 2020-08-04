@@ -42,7 +42,7 @@ class MembersTests: XCTestCase {
         // MARK: List should be full.
         
         let expectation = XCTestExpectation(description: "fetch1")
-        membersService.fetchMembers(pageToLoad: 1, perPage: 20) { resp, listFull in
+        membersService.fetchMembers(pageToLoad: 1, perPage: 20, search: "") { resp, listFull in
             XCTAssertEqual(resp.count, 0)
             // list should be full, 0 < 20
             XCTAssertEqual(listFull, true)
@@ -53,7 +53,7 @@ class MembersTests: XCTestCase {
         // MARK: List should not be full.
         
         let expectation2 = XCTestExpectation(description: "fetch2")
-        membersService.fetchMembers(pageToLoad: 1, perPage: 0) { resp, listFull in
+        membersService.fetchMembers(pageToLoad: 1, perPage: 0, search: "") { resp, listFull in
             // 0 is NOT lesser than 0
             XCTAssertEqual(listFull, false)
             expectation2.fulfill()
@@ -111,6 +111,48 @@ class MembersTests: XCTestCase {
         XCTAssertEqual(membersVM.skillsString(skills: ""), "Skills: ")
     }
     
+    func testBackup() {
+        let membersVM = MembersViewModel()
+
+        // set variables that are backed up
+        membersVM.currentPage = 5
+        membersVM.membersListFull = true
+        membersVM.membersResponseData = .init()
+        
+        // test temp variables are different, i.ee. backup not done yet
+        XCTAssertNotEqual(membersVM.tempCurrentPage, 5)
+        XCTAssertNotEqual(membersVM.tempMembersListFull, true)
+
+        // call backup
+        membersVM.backup()
+        
+        // test backup happended successfuly
+        XCTAssertEqual(membersVM.tempCurrentPage, 5)
+        XCTAssertEqual(membersVM.tempMembersListFull, true)
+        XCTAssertEqual(membersVM.membersResponseData.count, 0)
+    }
+    
+    func testRestore() {
+        let membersVM = MembersViewModel()
+
+        // set variables that are used to restore original data
+        membersVM.tempCurrentPage = 10
+        membersVM.tempMembersListFull = true
+        membersVM.tempMembersResponse = .init()
+        
+        // test original data, not restored yet, should be differneet than temp variables
+        XCTAssertNotEqual(membersVM.currentPage, membersVM.tempCurrentPage)
+        XCTAssertNotEqual(membersVM.membersListFull, membersVM.tempMembersListFull)
+        
+        // call restore
+        membersVM.restore()
+        
+        // test original data, should be equal to temp variables now
+        XCTAssertEqual(membersVM.currentPage, membersVM.tempCurrentPage)
+        XCTAssertEqual(membersVM.membersListFull, membersVM.tempMembersListFull)
+        XCTAssertEqual(membersVM.membersResponseData.count, 0)
+    }
+    
     // MARK: - View Tests (Integration Tests)
 
     func testFetchMembersAction() throws {
@@ -148,6 +190,41 @@ class MembersTests: XCTestCase {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
+    }
+    
+    func testSearchAction() {
+        // view model and view
+        let membersVM = MembersViewModel()
+        let membersView = Members(membersViewModel: membersVM)
+        
+        // Call search method
+        membersView.search()
+        
+        // Test
+        XCTAssertEqual(membersVM.currentlySearching, true)
+        XCTAssertEqual(membersVM.currentPage, 0)
+        XCTAssertEqual(membersVM.membersResponseData.isEmpty, true)
+        XCTAssertEqual(membersVM.membersListFull, false)
+    }
+    
+    func testCancelSearch() {
+        // view model and view
+        let membersVM = MembersViewModel()
+        let membersView = Members(membersViewModel: membersVM)
+        
+        // Cancel method calls restore. Set temp variables that will be restored.
+        membersVM.tempCurrentPage = 5
+        membersVM.tempMembersListFull = true
+        membersVM.membersResponseData = .init()
+        
+        // Call cancel search method
+        membersView.cancelSearch()
+        
+        // Test
+        XCTAssertEqual(membersVM.searchString.isEmpty, true)
+        XCTAssertEqual(membersVM.currentPage, membersVM.tempCurrentPage)
+        XCTAssertEqual(membersVM.membersListFull, membersVM.tempMembersListFull)
+        XCTAssertEqual(membersVM.membersResponseData.count, membersVM.tempMembersResponse.count)
     }
     
     func testSendRequestAction() throws {

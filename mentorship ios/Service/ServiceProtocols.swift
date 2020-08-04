@@ -64,7 +64,7 @@ protocol RelationService {
 
 // MARK: - Members Service
 protocol MembersService {
-    func fetchMembers(pageToLoad: Int, perPage: Int, completion: @escaping ([MembersModel.MembersResponseData], Bool) -> Void)
+    func fetchMembers(pageToLoad: Int, perPage: Int, search: String, completion: @escaping ([MembersModel.MembersResponseData], Bool) -> Void)
     
     func sendRequest(menteeID: Int, mentorID: Int, endDate: Double, notes: String, completion: @escaping (MembersModel.SendRequestResponseData) -> Void)
 }

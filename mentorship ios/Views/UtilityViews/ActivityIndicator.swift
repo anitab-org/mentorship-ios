@@ -4,7 +4,6 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-import UIKit
 import SwiftUI
 
 struct ActivityIndicator: UIViewRepresentable {
