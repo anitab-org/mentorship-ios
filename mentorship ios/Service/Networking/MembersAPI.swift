@@ -9,6 +9,11 @@ import Combine
 
 class MembersAPI: MembersService {
     private var cancellable: AnyCancellable?
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
 
     //Fetch Members
     func fetchMembers(pageToLoad: Int, perPage: Int, completion: @escaping ([MembersModel.MembersResponseData], Bool) -> Void) {
@@ -18,7 +23,7 @@ class MembersAPI: MembersService {
         }
 
         // Debug comment: cache policy to be changed later to revalidateCache
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members(page: pageToLoad, perPage: perPage), token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members(page: pageToLoad, perPage: perPage), token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just([MembersNetworkModel]()) }
             .sink {
@@ -63,7 +68,7 @@ class MembersAPI: MembersService {
         }
 
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.sendRequest, httpMethod: "POST", uploadData: uploadData, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.sendRequest, httpMethod: "POST", uploadData: uploadData, token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(SendRequestNetworkModel(message: LocalizableStringConstants.networkErrorString)) }
             .sink {

@@ -4,7 +4,7 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-struct TaskStructure: Decodable, Identifiable, Equatable {
+struct TaskStructure: Codable, Identifiable, Equatable {
     let id: Int?
     let description: String?
     let isDone: Bool?

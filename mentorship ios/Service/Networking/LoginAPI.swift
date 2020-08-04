@@ -9,6 +9,11 @@ import Combine
 
 class LoginAPI: LoginService {
     private var cancellable: AnyCancellable?
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
     
     func login(
         loginData: LoginModel.LoginUploadData,
@@ -20,7 +25,7 @@ class LoginAPI: LoginService {
         }
         
         // make network request
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.login, httpMethod: "POST", uploadData: uploadData)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.login, httpMethod: "POST", uploadData: uploadData, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(LoginNetworkModel(message: LocalizableStringConstants.networkErrorString)) }
             .sink { response in

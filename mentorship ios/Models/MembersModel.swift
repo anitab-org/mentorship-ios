@@ -7,7 +7,7 @@
 final class MembersModel {
 
     // MARK: - Structures
-    struct MembersResponseData: Identifiable, MemberProperties {
+    struct MembersResponseData: Encodable, Identifiable, MemberProperties {
         let id: Int
 
         let username: String?
@@ -40,7 +40,7 @@ final class MembersModel {
         }
     }
 
-    struct SendRequestResponseData {
+    struct SendRequestResponseData: Encodable {
         let message: String?
         var success: Bool
     }

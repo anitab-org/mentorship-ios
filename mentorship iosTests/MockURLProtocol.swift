@@ -6,7 +6,6 @@
 
 import Foundation
 import XCTest
-@testable import mentorship_ios
 
 class MockURLProtocol: URLProtocol {
     static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?

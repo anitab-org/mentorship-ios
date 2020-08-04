@@ -29,8 +29,6 @@ class ProfileViewModel: ObservableObject {
     @Published var inActivity = false
     @Published var showAlert = false
     var alertTitle = LocalizedStringKey("")
-    private var cancellable: AnyCancellable?
-    
 
     // MARK: - Functions
     
@@ -44,12 +42,15 @@ class ProfileViewModel: ObservableObject {
 
     //gets profile object from user defaults
     func getProfile() -> ProfileModel.ProfileData {
+        // Get profile as Data from userdefaults.
         guard let profileData = UserDefaults.standard.data(forKey: UserDefaultsConstants.profile) else {
             return self.profileData
         }
+        // Use profile received as data to convert to desired by decoding
         guard let profile = try? JSONDecoder().decode(ProfileModel.ProfileData.self, from: profileData) else {
             return self.profileData
         }
+        // return profile
         return profile
     }
     

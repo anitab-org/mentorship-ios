@@ -6,19 +6,12 @@
 
 class HomeModel {
     // MARK: - Structures
-    struct HomeResponseData {
+    struct HomeResponseData: Codable {
         let asMentor: RequestsList?
         let asMentee: RequestsList?
         
         let tasksToDo: [TaskStructure]?
         let tasksDone: [TaskStructure]?
-        
-        enum CodingKeys: String, CodingKey {
-            case asMentor = "as_mentor"
-            case asMentee = "as_mentee"
-            case tasksToDo = "tasks_todo"
-            case tasksDone = "tasks_done"
-        }
     }
     
     enum UserType {

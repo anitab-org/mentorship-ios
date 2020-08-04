@@ -8,10 +8,10 @@ import XCTest
 @testable import mentorship_ios
 
 class SignUpTests: XCTestCase {
-    //init sign up view model
-    let signupVM = SignUpViewModel()
     // custom urlsession for mock network calls
     var urlSession: URLSession!
+    
+    // MARK: - Setup and Tear Down
 
     override func setUpWithError() throws {
         // Set url session for mock networking
@@ -21,7 +21,37 @@ class SignUpTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        urlSession = nil
+        super.tearDown()
+    }
+    
+    // MARK: - Service Tests
+    
+    func testSignUpService() throws {
+        // Login Service
+        let signUpService: SignUpService = SignUpAPI(urlSession: urlSession)
+        
+        // Set mock json and data
+        let mockJSON = SignUpModel.SignUpResponseData(message: "test data")
+        let mockData = try JSONEncoder().encode(mockJSON)
+
+        // Return data in mock request handler
+        MockURLProtocol.requestHandler = { request in
+            return (HTTPURLResponse(), mockData)
+        }
+        
+        // Set expectation. Used to test async code.
+        let expectation = XCTestExpectation(description: "response")
+        
+        // Set sign up data
+        let signUpData = SignUpModel.SignUpUploadData(name: "testName", username: "test", password: "password", email: "test", tncChecked: true, needMentoring: false, availableToMentor: false)
+        
+        // Make login request and test response data. Confirm password same as password.
+        signUpService.signUp(availabilityPickerSelection: 0, signUpData: signUpData, confirmPassword: "password") { resp in
+            XCTAssertEqual(resp.message, mockJSON.message)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 
     func testNonMatchingPasswordSignUp() {
@@ -35,7 +65,11 @@ class SignUpTests: XCTestCase {
         }
     }
     
+    // MARK: - ViewModel Tests
+    
     func testSignUpButtonDisabledState() {
+        let signupVM = SignUpViewModel()
+
         // MARK: - 1. When fields empty. Disabled state should be true.
         
         //set disabled state. Currently, data is empty.
@@ -64,5 +98,42 @@ class SignUpTests: XCTestCase {
         
         // empty passwords not allowed (though equal). Hence, button should be disabled.
         XCTAssertEqual(signUpDisabledState, true)
+    }
+    
+    // MARK: - View Tests (Integration Tests)
+    
+    func testSignUpAction() throws {
+        // Sign up service to inject in view for mock network calls
+        let signUpService: SignUpService = SignUpAPI(urlSession: urlSession)
+
+        // View model
+        let signUpVM = SignUpViewModel()
+        
+        // Sign up View
+        let signUpView = SignUp(signUpService: signUpService, signUpViewModel: signUpVM, isPresented: .constant(true))
+        
+        // Set mock json and data
+        let mockJSON = SignUpModel.SignUpResponseData(message: "test data")
+        let mockData = try JSONEncoder().encode(mockJSON)
+
+        // Return data in mock request handler
+        MockURLProtocol.requestHandler = { request in
+            return (HTTPURLResponse(), mockData)
+        }
+        
+        // View Model should be in initial stage. Test
+        XCTAssertEqual(signUpVM.signUpResponseData.message, "")
+        
+        // Perform sign up action
+        signUpView.signUp()
+        
+        // expectation. used to test async code.
+        let expectation = XCTestExpectation(description: "sign up")
+        // View model should be updated. DispatchQueue used to wait for action to complete and then test.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertEqual(signUpVM.signUpResponseData.message, mockJSON.message)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 }

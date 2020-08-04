@@ -25,7 +25,7 @@ final class SignUpModel {
         }
     }
 
-    struct SignUpResponseData {
+    struct SignUpResponseData: Encodable {
         var message: String?
     }
 }

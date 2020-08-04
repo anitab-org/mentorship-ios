@@ -12,7 +12,7 @@ final class LoginModel {
         var password: String
     }
 
-    struct LoginResponseData {
+    struct LoginResponseData: Encodable {
         var message: String?
     }
 }

@@ -11,6 +11,15 @@ struct Login: View {
     @State private var showSignUpPage: Bool = false
     @State private var inActivity = false
     @ObservedObject var loginViewModel = LoginViewModel()
+    
+    // Use service to login
+    func login() {
+        self.loginService.login(loginData: self.loginViewModel.loginData) { response in
+            // update login view model
+            self.loginViewModel.update(using: response)
+            self.inActivity = false
+        }
+    }
 
     var body: some View {
         VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
@@ -34,12 +43,7 @@ struct Login: View {
             Button("Login") {
                 // set inActivity to true (shows activity indicator)
                 self.inActivity = true
-                
-                self.loginService.login(loginData: self.loginViewModel.loginData) { response in
-                    // update login view model
-                    self.loginViewModel.update(using: response)
-                    self.inActivity = false
-                }
+                self.login()
             }
             .buttonStyle(BigBoldButtonStyle(disabled: loginViewModel.loginDisabled))
             .disabled(loginViewModel.loginDisabled)
@@ -59,7 +63,8 @@ struct Login: View {
                 Button.init(action: { self.showSignUpPage.toggle() }) {
                     Text("Signup")
                         .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
-                }.sheet(isPresented: $showSignUpPage) {
+                }
+                .sheet(isPresented: $showSignUpPage) {
                     SignUp(isPresented: self.$showSignUpPage)
                 }
             }

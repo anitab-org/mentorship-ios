@@ -9,6 +9,11 @@ import Combine
 
 class ProfileAPI: ProfileService {
     private var cancellable: AnyCancellable?
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
     
     // get user profile from backend
     func getProfile(completion: @escaping (ProfileModel.ProfileData) -> Void) {
@@ -19,7 +24,7 @@ class ProfileAPI: ProfileService {
         print(token)
         
         //parallel request for profile and home
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(ProfileViewModel().getProfile()) }
             .sink { profile in
@@ -44,7 +49,7 @@ class ProfileAPI: ProfileService {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, httpMethod: "PUT", uploadData: uploadData, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, httpMethod: "PUT", uploadData: uploadData, token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(UpdateProfileNetworkModel(message: LocalizableStringConstants.networkErrorString)) }
             .sink {

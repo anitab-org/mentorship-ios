@@ -9,8 +9,13 @@ import Combine
 
 class HomeAPI: HomeService {
     private var cancellable: AnyCancellable?
+    let urlSession: URLSession
     // local variable. Helpful in state preservation (used in catch operator)
     var homeNetworkModel = HomeNetworkModel(asMentor: nil, asMentee: nil, tasksToDo: nil, tasksDone: nil)
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
     
     func fetchDashboard(completion: @escaping (HomeModel.HomeResponseData) -> Void) {
         //get auth token
@@ -19,7 +24,7 @@ class HomeAPI: HomeService {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.home, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.home, token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(self.homeNetworkModel) }
             .sink { home in

@@ -10,6 +10,11 @@ import Combine
 class RelationAPI: RelationService {
     private var cancellable: AnyCancellable?
     private var tasksCancellable: AnyCancellable?
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
     
     func fetchCurrentRelation(completion: @escaping (RequestStructure) -> Void) {
         //get auth token
@@ -18,7 +23,7 @@ class RelationAPI: RelationService {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.currentRelation, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.currentRelation, token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(RelationModel().currentRelation) }
             .sink {
@@ -33,7 +38,7 @@ class RelationAPI: RelationService {
         }
         
         // make api call
-        tasksCancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.getCurrentTasks(id: id), token: token)
+        tasksCancellable = NetworkManager.callAPI(urlString: URLStringConstants.MentorshipRelation.getCurrentTasks(id: id), token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(RelationModel().tasks) }
             .sink {
@@ -59,7 +64,8 @@ class RelationAPI: RelationService {
             urlString: URLStringConstants.MentorshipRelation.addNewTask(reqID: relationID),
             httpMethod: "POST",
             uploadData: uploadData,
-            token: token)
+            token: token,
+            session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(NetworkResponse(message: LocalizableStringConstants.networkErrorString)) }
             .sink {
@@ -80,7 +86,8 @@ class RelationAPI: RelationService {
         cancellable = NetworkManager.callAPI(
             urlString: URLStringConstants.MentorshipRelation.markAsComplete(reqID: relationID, taskID: taskID),
             httpMethod: "PUT",
-            token: token)
+            token: token,
+            session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(NetworkResponse(message: LocalizableStringConstants.networkErrorString)) }
             .sink {

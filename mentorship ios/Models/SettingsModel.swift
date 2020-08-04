@@ -22,7 +22,7 @@ class SettingsModel {
         ]
     }
     
-    struct DeleteAccountResponseData: Decodable {
+    struct DeleteAccountResponseData: Encodable {
         let message: String?
         let success: Bool
     }

@@ -14,7 +14,7 @@ class RelationModel {
     let task = TaskStructure(id: 0, description: "", isDone: false, createdAt: 0, completedAt: 0)
     
     // MARK: - Structures
-    struct ResponseData {
+    struct ResponseData: Encodable {
         let message: String?
         let success: Bool
     }

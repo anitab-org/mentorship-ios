@@ -9,6 +9,11 @@ import Combine
 
 class SettingsAPI: SettingsService {
     private var cancellable: AnyCancellable?
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
 
     // Delete Account
     func deleteAccount(completion: @escaping (SettingsModel.DeleteAccountResponseData) -> Void) {
@@ -18,7 +23,7 @@ class SettingsAPI: SettingsService {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, httpMethod: "DELETE", token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.user, httpMethod: "DELETE", token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(NetworkResponseModel(message: LocalizableStringConstants.networkErrorString)) }
             .sink {
@@ -51,7 +56,7 @@ class SettingsAPI: SettingsService {
         }
         
         //api call
-        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.changePassword, httpMethod: "PUT", uploadData: uploadData, token: token)
+        cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.changePassword, httpMethod: "PUT", uploadData: uploadData, token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just(NetworkResponseModel(message: LocalizableStringConstants.networkErrorString)) }
             .sink { response in

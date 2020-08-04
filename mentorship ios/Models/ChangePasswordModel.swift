@@ -15,7 +15,7 @@ class ChangePasswordModel {
         }
     }
     
-    struct ChangePasswordResponseData {
+    struct ChangePasswordResponseData: Encodable {
         let message: String?
         var success: Bool
     }

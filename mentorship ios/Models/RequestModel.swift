@@ -4,11 +4,11 @@
 //  Created for AnitaB.org Mentorship-iOS 
 //
 
-struct RequestsList: Decodable {
+struct RequestsList: Codable {
     let sent: RequestStructures?
     let received: RequestStructures?
     
-    struct RequestStructures: Decodable {
+    struct RequestStructures: Codable {
         let accepted: [RequestStructure]?
         let rejected: [RequestStructure]?
         let completed: [RequestStructure]?
@@ -17,7 +17,7 @@ struct RequestsList: Decodable {
     }
 }
 
-struct RequestStructure: Decodable, Identifiable {
+struct RequestStructure: Codable, Identifiable {
     let id: Int?
     let mentor: Info?
     let mentee: Info?
@@ -30,7 +30,7 @@ struct RequestStructure: Decodable, Identifiable {
     }
     
     //info struct for mentor/mentee information
-    struct Info: Decodable {
+    struct Info: Codable {
         let id: Int?
         let userName: String?
         let name: String?

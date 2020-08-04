@@ -22,7 +22,7 @@ final class MembersViewModel: ObservableObject {
     // MARK: - Functions
 
     func availabilityString(canBeMentee: Bool, canBeMentor: Bool) -> LocalizedStringKey {
-        if canBeMentor && canBeMentor {
+        if canBeMentee && canBeMentor {
             return LocalizableStringConstants.canBeBoth
         } else if canBeMentee {
             return LocalizableStringConstants.canBeMentee

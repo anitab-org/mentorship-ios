@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct ChangePassword: View {
-    let settingsService: SettingsService = SettingsAPI()
+    var settingsService: SettingsService = SettingsAPI()
     @ObservedObject var changePasswordViewModel = ChangePasswordViewModel()
     @Environment(\.presentationMode) var presentationMode
     

@@ -20,6 +20,8 @@ class MentorshipTests: XCTestCase {
     
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        urlSession = nil
+        super.tearDown()
     }
     
     func testRequestAction() throws {
@@ -33,19 +35,17 @@ class MentorshipTests: XCTestCase {
             return (HTTPURLResponse(), mockData)
         }
         
+        // Expectation. Used for testing async code.
+        let expectation = XCTestExpectation(description: "response")
+        
         // Declare service and test response
         let requestActionService: RequestActionService = RequestActionAPI(urlSession: urlSession)
         requestActionService.actOnPendingRequest(action: .accept, reqID: 0) { response, _ in
             // Test if correct response is returned.
             XCTAssertEqual(response.message, mockJSON.message)
+            expectation.fulfill()
         }
-    }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        wait(for: [expectation], timeout: 1)
     }
     
     //this test requires a stable internet connection
