@@ -14,6 +14,10 @@ struct ContentView: View {
     @ViewBuilder var body: some View {
         if authModel.isLogged! {
             TabBar(selection: $selection)
+                .onAppear {
+                    // reset selection and show home page whenever login done
+                    self.selection = 0
+            }
         } else {
             Login()
         }

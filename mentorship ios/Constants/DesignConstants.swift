@@ -41,6 +41,7 @@ struct DesignConstants {
         static let textFieldFrameExpansion: CGFloat = 10
         static let listCellFrameExpansion: CGFloat = 10
         static let insetListCellFrameExpansion: CGFloat = 6
+        static let textInListCell: CGFloat = 4
     }
 
     struct Width {
@@ -93,6 +94,14 @@ struct DesignConstants {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
             formatter.timeStyle = .none
+            return formatter
+        }
+        
+        static var taskTime: DateFormatter {
+            let formatter = DateFormatter()
+            formatter.doesRelativeDateFormatting = true
+            formatter.dateStyle = .short
+            formatter.timeStyle = .short
             return formatter
         }
     }

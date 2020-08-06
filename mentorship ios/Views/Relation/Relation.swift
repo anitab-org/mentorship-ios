@@ -9,6 +9,7 @@ import SwiftUI
 struct Relation: View {
     var relationService: RelationService = RelationAPI()
     @ObservedObject var relationViewModel = RelationViewModel()
+    @ObservedObject var taskCommentsViewModel = TaskCommentsViewModel()
     @State var showAlert = false
     
     var endDate: Date {
@@ -22,12 +23,17 @@ struct Relation: View {
         
         // make api call to fetch current relation
         self.relationService.fetchCurrentRelation { response in
-            // map repsonse to view model
+            // map repsonse to relation view model
             response.update(viewModel: self.relationViewModel)
             self.relationViewModel.inActivity = false
             self.relationViewModel.firstTimeLoad = false
+            // update task comments vm
+            self.taskCommentsViewModel.reqName = self.relationViewModel.personName
             //chain api call. get current tasks using id from current relation
             if let currentID = response.id {
+                // update task comments vm
+                self.taskCommentsViewModel.reqID = currentID
+                // make api call
                 self.relationService.fetchTasks(id: currentID) { tasks, success in
                     self.relationViewModel.handleFetchedTasks(tasks: tasks, success: success)
                 }
@@ -84,7 +90,7 @@ struct Relation: View {
                     .listRowBackground(DesignConstants.Colors.formBackgroundColor)
                     
                     //Tasks To Do List section
-                    TasksToDoSection(tasksToDo: relationViewModel.toDoTasks) { task in
+                    TasksSection(tasks: relationViewModel.toDoTasks, isToDoSection: true, navToTaskComments: true) { task in
                         //set tapped task
                         RelationViewModel.taskTapped = task
                         //show alert for marking as complete confirmation
@@ -100,7 +106,7 @@ struct Relation: View {
                     }
                     
                     //Tasks Done List section
-                    TasksDoneSection(tasksDone: relationViewModel.doneTasks)
+                    TasksSection(tasks: relationViewModel.doneTasks, navToTaskComments: true)
                 }
                 
                 //show activity spinner if in activity
@@ -125,6 +131,7 @@ struct Relation: View {
             .onAppear {
                 self.fetchRelationAndTasks()
             }
+            .environmentObject(self.taskCommentsViewModel)
         }
     }
 }
