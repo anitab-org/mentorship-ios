@@ -30,8 +30,8 @@ class TaskCommentsTests: XCTestCase {
         
         // Set mock json and data
         let mockJSON: [TaskCommentsModel.TaskCommentsResponse] = [
-        .init(id: nil, userID: nil, creationDate: nil, comment: "Task 1"),
-        .init(id: nil, userID: nil, creationDate: nil, comment: nil)
+        .init(id: 0, userID: nil, creationDate: nil, comment: "Task 1"),
+        .init(id: 1, userID: nil, creationDate: nil, comment: nil)
         ]
         let mockData = try JSONEncoder().encode(mockJSON)
         
@@ -45,7 +45,7 @@ class TaskCommentsTests: XCTestCase {
         taskCommentsService.fetchTaskComments(reqID: 0, taskID: 0) { resp in
             XCTAssertEqual(resp.count, 2)
             XCTAssertEqual(resp[0].comment, mockJSON[0].comment)
-            XCTAssertEqual(resp[1].id, nil)
+            XCTAssertEqual(resp[1].id, mockJSON[1].id)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
@@ -55,7 +55,7 @@ class TaskCommentsTests: XCTestCase {
         let taskCommentsService: TaskCommentsService = TaskCommentsAPI(urlSession: urlSession)
         
         // Set mock json and data
-        let mockJSON = TaskCommentsModel.PostCommentResponse(message: "test", success: false)
+        let mockJSON = TaskCommentsModel.MessageResponse(message: "test", success: false)
         let mockData = try JSONEncoder().encode(mockJSON)
         
         // Return data from mock handler
@@ -68,6 +68,28 @@ class TaskCommentsTests: XCTestCase {
         taskCommentsService.postTaskComment(reqID: 0, taskID: 0, commentData: .init(comment: "comment")) { resp in
             XCTAssertEqual(resp.message, mockJSON.message)
             XCTAssertEqual(resp.success, false)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+    
+    func testReportTaskComment() throws {
+        let taskCommentsService: TaskCommentsService = TaskCommentsAPI(urlSession: urlSession)
+        
+        // Set mock json and data
+        let mockJSON = TaskCommentsModel.MessageResponse(message: "test", success: true)
+        let mockData = try JSONEncoder().encode(mockJSON)
+        
+        // Return data from mock handler
+        MockURLProtocol.requestHandler = { request in
+            return (HTTPURLResponse(), mockData)
+        }
+        
+        // Expectation
+        let expectation = XCTestExpectation(description: "response")
+        taskCommentsService.reportComment(reqID: 0, taskID: 0, commentID: 0) { resp in
+            XCTAssertEqual(resp.message, mockJSON.message)
+            XCTAssertEqual(resp.success, true)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)

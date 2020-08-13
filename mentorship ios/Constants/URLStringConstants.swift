@@ -38,6 +38,9 @@ struct URLStringConstants {
         static func postTaskComment(reqID: Int, taskID: Int) -> String {
             return baseURL + "mentorship_relation/\(reqID)/task/\(taskID)/comment"
         }
+        static func reportTaskComment(reqID: Int, taskID: Int, commentID: Int) -> String {
+            return baseURL + "mentorship_relation/\(reqID)/task/\(taskID)/comment/\(commentID)/report"
+        }
         static func accept(reqID: Int) -> String {
             return baseURL + "mentorship_relation/\(reqID)/accept"
         }

@@ -22,7 +22,7 @@ class MembersAPI: MembersService {
             return
         }
 
-        // Debug comment: cache policy to be changed later to revalidateCache
+        // api call
         cancellable = NetworkManager.callAPI(urlString: URLStringConstants.Users.members(page: pageToLoad, perPage: perPage, search: search), token: token, session: urlSession)
             .receive(on: RunLoop.main)
             .catch { _ in Just([MembersNetworkModel]()) }

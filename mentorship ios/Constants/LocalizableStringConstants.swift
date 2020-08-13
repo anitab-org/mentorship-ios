@@ -29,6 +29,10 @@ struct LocalizableStringConstants {
     static let tasksToDo = LocalizedStringKey("Tasks To Do")
     static let showEarlier = LocalizedStringKey("Show Earlier")
     static let enterComment = LocalizedStringKey("Enter comment")
+    static let reportComment = LocalizedStringKey("Report This Comment")
+    static let reportCommentMessage = LocalizedStringKey("Report comment message")
+    static let actionsforComment = LocalizedStringKey("Actions for Comment")
+    static let report = LocalizedStringKey("Report")
     static let endDate = LocalizedStringKey("End Date")
     static let notes = LocalizedStringKey("Notes")
     static let send = LocalizedStringKey("Send")
@@ -86,5 +90,6 @@ struct LocalizableStringConstants {
     //Value string convention: All capitalized
     enum ActivityTextKeys: LocalizedStringKey {
         case updating = "UPDATING"
+        case reporting = "REPORTING"
     }
 }

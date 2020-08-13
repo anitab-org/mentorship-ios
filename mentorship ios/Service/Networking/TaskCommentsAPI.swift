@@ -46,7 +46,7 @@ class TaskCommentsAPI: TaskCommentsService {
         reqID: Int,
         taskID: Int,
         commentData: TaskCommentsModel.PostCommentUploadData,
-        completion: @escaping (TaskCommentsModel.PostCommentResponse) -> Void
+        completion: @escaping (TaskCommentsModel.MessageResponse) -> Void
     ) {
         //get auth token
         guard let token = try? KeychainManager.getToken() else {
@@ -66,16 +66,42 @@ class TaskCommentsAPI: TaskCommentsService {
             token: token,
             session: urlSession)
             .receive(on: RunLoop.main)
-            .catch { _ in Just(PostCommentResponse(message: LocalizableStringConstants.networkErrorString)) }
+            .catch { _ in Just(MessageResponse(message: LocalizableStringConstants.networkErrorString)) }
             .sink {
                 let success = NetworkManager.responseCode == 201
-                let response = TaskCommentsModel.PostCommentResponse(message: $0.message, success: success)
+                let response = TaskCommentsModel.MessageResponse(message: $0.message, success: success)
+                completion(response)
+        }
+    }
+    
+    func reportComment(
+        reqID: Int,
+        taskID: Int,
+        commentID: Int,
+        completion: @escaping (TaskCommentsModel.MessageResponse) -> Void
+    ) {
+        //get auth token
+        guard let token = try? KeychainManager.getToken() else {
+            return
+        }
+        
+        //api call
+        cancellable = NetworkManager.callAPI(
+            urlString: URLStringConstants.MentorshipRelation.reportTaskComment(reqID: reqID, taskID: taskID, commentID: commentID),
+            httpMethod: "POST",
+            token: token,
+            session: urlSession)
+            .receive(on: RunLoop.main)
+            .catch { _ in Just(MessageResponse(message: LocalizableStringConstants.networkErrorString)) }
+            .sink {
+                let success = NetworkManager.responseCode == 200
+                let response = TaskCommentsModel.MessageResponse(message: $0.message, success: success)
                 completion(response)
         }
     }
     
     struct CommentsNetworkResponse: Decodable {
-        let id: Int?
+        let id: Int
         let userID: Int?
         let creationDate: Double?
         let comment: String?
@@ -87,7 +113,7 @@ class TaskCommentsAPI: TaskCommentsService {
         }
     }
     
-    struct PostCommentResponse: Decodable {
+    struct MessageResponse: Decodable {
         let message: String?
     }
 }

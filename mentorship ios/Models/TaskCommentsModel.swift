@@ -12,7 +12,7 @@ class TaskCommentsModel {
             lhs.creationDate ?? 0 < rhs.creationDate ?? 0
         }
         
-        let id: Int?
+        let id: Int
         let userID: Int?
         let creationDate: Double?
         let comment: String?
@@ -22,7 +22,7 @@ class TaskCommentsModel {
         var comment: String
     }
     
-    struct PostCommentResponse: Encodable {
+    struct MessageResponse: Encodable {
         let message: String?
         let success: Bool
     }

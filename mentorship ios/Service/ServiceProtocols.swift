@@ -74,7 +74,14 @@ protocol TaskCommentsService {
         reqID: Int,
         taskID: Int,
         commentData: TaskCommentsModel.PostCommentUploadData,
-        completion: @escaping (TaskCommentsModel.PostCommentResponse) -> Void
+        completion: @escaping (TaskCommentsModel.MessageResponse) -> Void
+    )
+    
+    func reportComment(
+        reqID: Int,
+        taskID: Int,
+        commentID: Int,
+        completion: @escaping (TaskCommentsModel.MessageResponse) -> Void
     )
 }
 

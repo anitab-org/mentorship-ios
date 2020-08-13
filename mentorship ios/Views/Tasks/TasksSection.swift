@@ -32,9 +32,13 @@ struct TasksSection: View {
     func taskCell(task: TaskStructure) -> some View {
         //Main HStack, shows icon and task
         HStack {
-            Image(systemName: self.iconName)
-                .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
-                .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
+            Button(action: { self.markAsCompleteAction(task) }) {
+                Image(systemName: self.iconName)
+                    .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
+                    .padding(.trailing, DesignConstants.Padding.insetListCellFrameExpansion)
+
+            }
+            .buttonStyle(BorderlessButtonStyle())
             
             Text(task.description ?? "-")
                 .font(.subheadline)

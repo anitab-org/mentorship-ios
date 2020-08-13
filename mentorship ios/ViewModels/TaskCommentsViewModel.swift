@@ -9,16 +9,24 @@ import Combine
 class TaskCommentsViewModel: ObservableObject {
     @Published var taskCommentsResponse = [TaskCommentsModel.TaskCommentsResponse]()
     @Published var newComment = TaskCommentsModel.PostCommentUploadData(comment: "")
-    @Published var postCommentResponse = TaskCommentsModel.PostCommentResponse(message: "", success: false)
     // isLoading state, used to show activity indicator while loading.
     @Published var isLoading = false
     // Initially only the latest comments are shown and earlier comments are hidden.
     // Used to handle this state. Also, the button to 'Show Earlier' uses this and is only shown if required.
     @Published var showingEarlier = false
-    // Show error alert if task not added successfully
-    @Published var showErrorAlert = false
+    // Show message alert if task not added successfully or after report comment operation completes
+    @Published var showMessageAlert = false
+    // Show alert to confirm reporting of a task comment action
+    @Published var showReportViolationAlert = false
+    // Report of comment in activity, true while service being used
+    @Published var reportCommentInActivity = false
+    var taskCommentIDToReport = -1
+    
+    // limit of number of latest comments to show
     let latestCommentsLimit = 4
+    // name of other member in relation
     var reqName: String = ""
+    // relation id
     var reqID: Int = -1
     
     // Check if number of comments are more than set limit to show latest comments.

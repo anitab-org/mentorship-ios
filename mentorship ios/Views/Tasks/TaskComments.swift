@@ -12,7 +12,10 @@ struct TaskComments: View {
     let taskID: Int
     let taskName: String
     let userID = ProfileViewModel().getProfile().id
+    @State var messageAlertTitle = LocalizedStringKey("")
+    @State var messageAlertMessage = ""
     
+    // Use service to fetch task comment
     func fetchComments() {
         taskCommentsService.fetchTaskComments(reqID: taskCommentsVM.reqID, taskID: taskID) { comments in
             self.taskCommentsVM.isLoading = false
@@ -20,92 +23,100 @@ struct TaskComments: View {
         }
     }
     
+    // Use service to post a new comment
     func postComment() {
         self.taskCommentsService.postTaskComment(
             reqID: self.taskCommentsVM.reqID,
             taskID: self.taskID,
             commentData: self.taskCommentsVM.newComment
         ) { resp in
-            // update view model with responses
-            self.taskCommentsVM.postCommentResponse = resp
             // if post comment successful, update comments and clear text field
             if resp.success {
                 self.fetchComments()
                 self.taskCommentsVM.newComment.comment = ""
             }
-            // else, show error alert
+                // else, show error alert
             else {
-                self.taskCommentsVM.showErrorAlert = true
+                self.taskCommentsVM.showMessageAlert = true
+                self.messageAlertTitle = LocalizableStringConstants.failure
+                self.messageAlertMessage = resp.message ?? LocalizableStringConstants.networkErrorString
             }
         }
     }
     
-    func commentCell(comment: TaskCommentsModel.TaskCommentsResponse) -> some View {
-        // Comment cell
-        VStack(alignment: .leading, spacing: DesignConstants.Form.Spacing.minimalSpacing) {
-            // Sender name and time
-            HStack {
-                Text(self.taskCommentsVM.getCommentAuthorName(authorID: comment.userID!, userID: userID))
-                    .font(.headline)
-                
-                Spacer()
-                
-                Text(DesignConstants.DateFormat.taskTime.string(from: Date(timeIntervalSince1970: comment.creationDate ?? 0)))
-                    .font(.footnote)
-                    .foregroundColor(DesignConstants.Colors.subtitleText)
-            }
-            .padding(.vertical, DesignConstants.Padding.textInListCell)
-            
-            // Comment
-            Text(comment.comment ?? "")
-                .font(.subheadline)
-                .padding(.bottom, DesignConstants.Padding.textInListCell)
+    // Use service to report a comment for violation of code of conduct
+    func reportComment() {
+        taskCommentsVM.reportCommentInActivity = true
+        taskCommentsService.reportComment(reqID: taskCommentsVM.reqID, taskID: taskID, commentID: taskCommentsVM.taskCommentIDToReport) { resp in
+            // set in activity to false
+            self.taskCommentsVM.reportCommentInActivity = false
+            // show message alert
+            self.taskCommentsVM.showMessageAlert = true
+            // set alert title and message
+            self.messageAlertTitle = resp.success ? LocalizableStringConstants.success : LocalizableStringConstants.failure
+            self.messageAlertMessage = resp.message ?? LocalizableStringConstants.networkErrorString
         }
     }
     
     var body: some View {
-        VStack {
-            // List showing comments
-            List {
-                //heading
-                Section(header: Text(self.taskName).font(.title).bold()) {
-                    EmptyView()
-                }
-                
-                // activity indicator, show when comments screen first accessed
-                if self.taskCommentsVM.isLoading {
-                    ActivityIndicator(isAnimating: .constant(true))
-                }
-                    // task comments
-                else {
-                    if !taskCommentsVM.showingEarlier && taskCommentsVM.commentsMoreThanLimit {
-                        Button(LocalizableStringConstants.showEarlier) {
-                            self.taskCommentsVM.showingEarlier = true
+        ZStack {
+            VStack {
+                // List showing comments
+                List {
+                    //heading
+                    Section(header: Text(self.taskName).font(.title).bold()) {
+                        EmptyView()
+                    }
+                    
+                    // activity indicator, show when comments screen first accessed
+                    if self.taskCommentsVM.isLoading {
+                        ActivityIndicator(isAnimating: .constant(true))
+                    }
+                        // task comments
+                    else {
+                        if !taskCommentsVM.showingEarlier && taskCommentsVM.commentsMoreThanLimit {
+                            Button(LocalizableStringConstants.showEarlier) {
+                                self.taskCommentsVM.showingEarlier = true
+                            }
+                        }
+                        ForEach(taskCommentsVM.commentsToShow) { comment in
+                            TaskCommentCell(comment: comment, userID: self.userID)
+                                .alert(isPresented: self.$taskCommentsVM.showReportViolationAlert) {
+                                    Alert(
+                                        title: Text(LocalizableStringConstants.reportComment),
+                                        message: Text(LocalizableStringConstants.reportCommentMessage),
+                                        primaryButton: .cancel(),
+                                        secondaryButton: .destructive(Text(LocalizableStringConstants.report)) {
+                                            self.reportComment()
+                                        }
+                                    )
+                            }
                         }
                     }
-                    ForEach(taskCommentsVM.commentsToShow) { comment in
-                        self.commentCell(comment: comment)
-                    }
                 }
-            }
-            
-            // Text field at bottom with send button
-            HStack {
-                // Text Field
-                TextField(LocalizableStringConstants.enterComment, text: $taskCommentsVM.newComment.comment)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                // Send Button
-                Button(LocalizableStringConstants.send) {
-                    self.postComment()
+                // Text field at bottom with send button
+                HStack {
+                    // Text Field
+                    TextField(LocalizableStringConstants.enterComment, text: $taskCommentsVM.newComment.comment)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    // Send Button
+                    Button(LocalizableStringConstants.send) {
+                        self.postComment()
+                    }
+                    .disabled(self.taskCommentsVM.sendButtonDisabled)
                 }
-                .disabled(self.taskCommentsVM.sendButtonDisabled)
+                .padding(.horizontal)
+                .modifier(KeyboardAware())
+                
+                // Spacer for bottom
+                Spacer()
             }
-            .padding(.horizontal)
-            .modifier(KeyboardAware())
             
-            // Spacer for bottom
-            Spacer()
+            if taskCommentsVM.reportCommentInActivity {
+                ActivityWithText(isAnimating: .constant(true), textType: .reporting)
+            }
         }
         .navigationBarTitle(LocalizableStringConstants.ScreenNames.comments)
         .onAppear {
@@ -113,10 +124,10 @@ struct TaskComments: View {
             self.taskCommentsVM.showingEarlier = false
             self.fetchComments()
         }
-        .alert(isPresented: self.$taskCommentsVM.showErrorAlert) {
-            return Alert(
-                title: Text(LocalizableStringConstants.failure),
-                message: Text(self.taskCommentsVM.postCommentResponse.message ?? LocalizableStringConstants.networkErrorString),
+        .alert(isPresented: self.$taskCommentsVM.showMessageAlert) {
+            Alert(
+                title: Text(messageAlertTitle),
+                message: Text(messageAlertMessage),
                 dismissButton: .default(Text(LocalizableStringConstants.okay))
             )
         }
