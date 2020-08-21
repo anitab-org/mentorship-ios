@@ -68,6 +68,7 @@ struct Members: View {
             }
             .navigationBarTitle(LocalizableStringConstants.ScreenNames.members)
         }
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
