@@ -130,6 +130,21 @@ class RelationTests: XCTestCase {
     
     // MARK: - RelationViewModel tests
     
+    func testResetDataForAddTaskScreen() {
+        let relationVM = RelationViewModel()
+        
+        // set some values to response and new task description
+        relationVM.newTask.description = "test"
+        relationVM.responseData.message = "message"
+        
+        // reset
+        relationVM.resetDataForAddTaskScreen()
+        
+        // Test
+        XCTAssertEqual(relationVM.newTask.description.isEmpty, true)
+        XCTAssertEqual(relationVM.responseData.message?.isEmpty, true)
+    }
+    
     func testPersonNameAndType() {
         let relationVM = RelationViewModel()
         

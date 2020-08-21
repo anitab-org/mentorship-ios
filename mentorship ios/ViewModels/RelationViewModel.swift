@@ -51,6 +51,13 @@ class RelationViewModel: ObservableObject {
     }
     
     // MARK: - Functions
+    
+    // resets values in add task screen. Used in onAppear modifier in the view
+    func resetDataForAddTaskScreen() {
+        newTask.description = ""
+        responseData.message = ""
+    }
+    
     func handleFetchedTasks(tasks: [TaskStructure], success: Bool) {
         if success {
             doneTasks.removeAll()

@@ -55,7 +55,8 @@ struct AddTask: View {
                 self.presentationMode.wrappedValue.dismiss()
             })
             .onAppear {
-                self.relationViewModel.newTask.description = ""
+                // reset the new task description and error message desc to ""
+                self.relationViewModel.resetDataForAddTaskScreen()
             }
         }
     }

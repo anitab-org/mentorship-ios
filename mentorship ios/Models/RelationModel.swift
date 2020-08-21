@@ -15,7 +15,7 @@ class RelationModel {
     
     // MARK: - Structures
     struct ResponseData: Encodable {
-        let message: String?
+        var message: String?
         let success: Bool
     }
     
