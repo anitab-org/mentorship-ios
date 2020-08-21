@@ -41,6 +41,8 @@ struct AddTask: View {
                     self.addTask()
                 }
                 .buttonStyle(BigBoldButtonStyle())
+                .disabled(relationViewModel.addTaskDisabled)
+                .opacity(relationViewModel.addTaskDisabled ? DesignConstants.Opacity.disabledViewOpacity : 1)
                 
                 //error message
                 Text(self.relationViewModel.responseData.message ?? "")

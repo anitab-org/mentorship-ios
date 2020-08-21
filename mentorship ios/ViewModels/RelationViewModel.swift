@@ -26,6 +26,10 @@ class RelationViewModel: ObservableObject {
     static var taskTapped = RelationModel().task
     private var cancellable: AnyCancellable?
     
+    var addTaskDisabled: Bool {
+        return newTask.description.isEmpty
+    }
+    
     var personName: String {
         // User profile
         let userProfile = ProfileViewModel().getProfile()

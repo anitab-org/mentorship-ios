@@ -130,6 +130,20 @@ class RelationTests: XCTestCase {
     
     // MARK: - RelationViewModel tests
     
+    func testAddTaskDisabledIsTrue() {
+        let relationVM = RelationViewModel()
+        // new task description is empty, add task button should be disabled
+        XCTAssertTrue(relationVM.addTaskDisabled)
+    }
+    
+    func testAddTaskDisabledIsFalse() {
+        let relationVM = RelationViewModel()
+        // assign non empty value to new task description
+        relationVM.newTask.description = "test"
+        // add task must be allowed now (enabled)
+        XCTAssertFalse(relationVM.addTaskDisabled)
+    }
+    
     func testResetDataForAddTaskScreen() {
         let relationVM = RelationViewModel()
         
