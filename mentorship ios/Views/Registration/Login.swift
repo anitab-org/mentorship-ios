@@ -9,57 +9,49 @@ import SwiftUI
 struct Login: View {
     var loginService: LoginService = LoginAPI()
     @State private var showSignUpPage: Bool = false
-    @State private var inActivity = false
-    @ObservedObject var loginViewModel = LoginViewModel()
+    @EnvironmentObject var loginViewModel: LoginViewModel
+    @Environment(\.colorScheme) var colorScheme
     
     // Use service to login
     func login() {
         self.loginService.login(loginData: self.loginViewModel.loginData) { response in
             // update login view model
             self.loginViewModel.update(using: response)
-            self.inActivity = false
+            self.loginViewModel.inActivity = false
         }
     }
-
+    
     var body: some View {
         VStack(spacing: DesignConstants.Form.Spacing.bigSpacing) {
             //top image of mentorship logo
             Image(ImageNameConstants.mentorshipLogoImageName)
                 .resizable()
                 .scaledToFit()
-
+            
             //username and password text fields
             VStack(spacing: DesignConstants.Form.Spacing.smallSpacing) {
                 TextField("Username/Email", text: $loginViewModel.loginData.username)
                     .textFieldStyle(RoundFilledTextFieldStyle())
                     .autocapitalization(.none)
                     .keyboardType(.emailAddress)
-
+                
                 SecureField("Password", text: $loginViewModel.loginData.password)
                     .textFieldStyle(RoundFilledTextFieldStyle())
             }
-
+            
             //login button
             Button("Login") {
                 // set inActivity to true (shows activity indicator)
-                self.inActivity = true
+                self.loginViewModel.inActivity = true
                 self.login()
             }
             .buttonStyle(BigBoldButtonStyle(disabled: loginViewModel.loginDisabled))
             .disabled(loginViewModel.loginDisabled)
-
-            //activity indicator or show user message text
-            if inActivity {
-                ActivityIndicator(isAnimating: $inActivity)
-            } else {
-                Text(self.loginViewModel.loginResponseData.message ?? "")
-                    .modifier(ErrorText())
-            }
-
+            
             //text and sign up button
-            VStack(spacing: DesignConstants.Form.Spacing.minimalSpacing) {
+            HStack(spacing: DesignConstants.Form.Spacing.minimalSpacing) {
                 Text(LocalizableStringConstants.noAccountText)
-
+                
                 Button.init(action: { self.showSignUpPage.toggle() }) {
                     Text("Signup")
                         .foregroundColor(DesignConstants.Colors.defaultIndigoColor)
@@ -68,9 +60,44 @@ struct Login: View {
                     SignUp(isPresented: self.$showSignUpPage)
                 }
             }
-
-            //spacer to push content to top
-            Spacer()
+            
+            //activity indicator or show user message text
+            if self.loginViewModel.inActivity {
+                ActivityIndicator(isAnimating: $loginViewModel.inActivity)
+            } else if !(self.loginViewModel.loginResponseData.message?.isEmpty ?? true) {
+                Text(self.loginViewModel.loginResponseData.message ?? "")
+                    .modifier(ErrorText())
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            
+            VStack(spacing: DesignConstants.Spacing.smallSpacing) {
+                // Divider for social sign in options
+                ZStack {
+                    Divider()
+                    Text("OR").background(DesignConstants.Colors.primaryBackground)
+                }
+                
+                // Social sign in buttons
+                HStack {
+                    // Apple sign in Button. Adaptive to light/dark mode
+                    if colorScheme == .light {
+                        AppleSignInButton(dark: true).onTapGesture {
+                            self.loginViewModel.attemptAppleLogin()
+                        }
+                    } else {
+                        AppleSignInButton(dark: false).onTapGesture {
+                            self.loginViewModel.attemptAppleLogin()
+                        }
+                    }
+                    
+                    // Google sign in button
+                    GoogleSignInButton()
+                        .onTapGesture {
+                            SocialSignIn().attemptSignInGoogle()
+                    }
+                }
+                .frame(height: DesignConstants.Height.socialSignInButton)
+            }
         }
         .modifier(AllPadding())
     }

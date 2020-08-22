@@ -50,6 +50,7 @@ struct DesignConstants {
 
     struct Height {
         static let textViewHeight: CGFloat = 100
+        static let socialSignInButton: CGFloat = 47
     }
 
     struct CornerRadius {
@@ -67,6 +68,7 @@ struct DesignConstants {
 
     struct Colors {
         static let defaultIndigoColor = Color(.systemIndigo)
+        static let primaryBackground = Color(.systemBackground)
         static let secondaryBackground = Color(.secondarySystemBackground)
         static let formBackgroundColor = Color(.systemGroupedBackground)
         static let subtitleText = Color.secondary

@@ -11,6 +11,12 @@ protocol LoginService {
         loginData: LoginModel.LoginUploadData,
         completion: @escaping (LoginModel.LoginResponseData) -> Void
     )
+    
+    func socialSignInCallback(
+        socialSignInData: LoginModel.SocialSignInData,
+        socialSignInType: LoginModel.SocialSignInType,
+        completion: @escaping (LoginModel.LoginResponseData) -> Void
+    )
 }
 
 // MARK: - SignUp Service

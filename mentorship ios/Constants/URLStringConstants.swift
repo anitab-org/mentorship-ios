@@ -11,6 +11,8 @@ let baseURL: String = "https://mentorship-backend-temp.herokuapp.com/"
 struct URLStringConstants {
     struct Users {
         static let login: String = baseURL + "login"
+        static let googleAuthCallback = baseURL + "google/auth/callback"
+        static let appleAuthCallback = baseURL + "apple/auth/callback"
         static let signUp: String = baseURL + "register"
         static func members(page: Int, perPage: Int, search: String) -> String {
             return baseURL + "users?page=\(page)&per_page=\(perPage)&search=\(search)"
