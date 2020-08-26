@@ -23,19 +23,15 @@ class HomeTests: XCTestCase {
         super.tearDown()
     }
     
-    // BUG - response always nil (print(resp))
-    /*func testHomeService() throws {
+    // MARK: - Serivce Tests
+    
+    func testHomeService() throws {
         // Home Service
         let homeService: HomeService = HomeAPI(urlSession: urlSession)
 
         // Set mock json and data
-        let mockJSON = HomeModel.HomeResponseData(
-            asMentor: nil,
-            asMentee: RequestsList(sent: nil, received: nil),
-            tasksToDo: [TaskStructure(id: 0, description: "", isDone: true, createdAt: 0, completedAt: 0)],
-            tasksDone: [TaskStructure]()
-        )
-        let mockData = try JSONEncoder().encode(mockJSON)
+        let mockJSON = homeResponseJSONString
+        let mockData = mockJSON.data(using: .utf8)!
         
         // Return data in mock request handler
         MockURLProtocol.requestHandler = { request in
@@ -47,10 +43,10 @@ class HomeTests: XCTestCase {
         
         // Make fetch dashboard request and test response data.
         homeService.fetchDashboard { resp in
-            XCTAssertEqual(resp.tasksToDo?.count, mockJSON.tasksToDo?.count)
-            XCTAssertEqual(resp.tasksDone?.count, mockJSON.tasksDone?.count)
+            XCTAssertEqual(resp.tasksToDo?.count, 1)
+            XCTAssertEqual(resp.tasksDone?.count, 2)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
-    }*/
+    }
 }
