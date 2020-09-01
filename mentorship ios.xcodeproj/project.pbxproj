@@ -368,6 +368,7 @@
 				53D4545324CD50F500083215 /* HomeTests.swift */,
 				53A6DDEF24BE52A100D5DFCE /* ProfileTests.swift */,
 				53A6DC8324CDAC7C00E4FE14 /* RelationTests.swift */,
+				53AC6DE624D2BF8700F7FDE3 /* TaskCommentsTests.swift */,
 				53A6DC8524CDC4EF00E4FE14 /* MembersTests.swift */,
 				53A6DC8724CDCBCA00E4FE14 /* SettingsTests.swift */,
 				534B69D924CB6DAE007646E6 /* MockURLProtocol.swift */,

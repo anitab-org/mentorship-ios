@@ -16,10 +16,15 @@ class TaskCommentsTests: XCTestCase {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         urlSession = URLSession(configuration: configuration)
+        
+        // set temp keychain token
+        // api calls require a token, otherwise tests fail
+        try KeychainManager.setToken(username: "", tokenString: "")
     }
 
     override func tearDownWithError() throws {
         urlSession = nil
+        try KeychainManager.deleteToken()
         super.tearDown()
     }
 

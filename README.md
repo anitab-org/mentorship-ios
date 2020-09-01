@@ -34,9 +34,6 @@ For contributing, you first need to configure the remotes and then submit pull r
 
 Please read our [Contributing Guidelines](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/contributing_guidelines.md), [Code of Conduct](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/code_of_conduct.md), and [Reporting Guidelines](https://github.com/anitab-org/mentorship-ios/blob/develop/.github/reporting_guidelines.md).
 
-## A note on the unit test suite of the app
-The app features a comprehensive set of unit tests to verify that everything works as expected. A lot of these unit tests are for the networking code in the app and hence run the code for fetching of user auth token from the keychain. For this reason, before running the test suite, it is essential to login in the app.
-
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
