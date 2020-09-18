@@ -62,6 +62,7 @@ struct ChangePassword: View {
                 dismissButton: .default(Text(LocalizableStringConstants.okay)) {
                     //pop navigation view after okay button pressed
                     self.presentationMode.wrappedValue.dismiss()
+                    self.changePasswordViewModel.changePasswordResponseData.success = true
                 })
         }
     }
