@@ -87,12 +87,13 @@ struct SendRequest: View {
             .navigationBarItems(leading: Button(LocalizableStringConstants.cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
             }))
-                .alert(isPresented: $membersViewModel.sendRequestResponseData.success) {
+            .alert(isPresented: $membersViewModel.sendRequestResponseData.success) {
                 Alert(
                     title: Text(LocalizableStringConstants.success),
                     message: Text(membersViewModel.sendRequestResponseData.message ?? "Mentorship relation was sent successfully."),
                     dismissButton: .cancel(Text(LocalizableStringConstants.okay), action: {
                         self.presentationMode.wrappedValue.dismiss()
+                        self.membersViewModel.sendRequestResponseData.success = true
                     })
                 )
             }

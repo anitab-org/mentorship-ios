@@ -72,7 +72,7 @@ class MembersAPI: MembersService {
             .receive(on: RunLoop.main)
             .catch { _ in Just(SendRequestNetworkModel(message: LocalizableStringConstants.networkErrorString)) }
             .sink {
-                let success = NetworkManager.responseCode == 200
+                let success = NetworkManager.responseCode == 201
                 let responseData = MembersModel.SendRequestResponseData(message: $0.message, success: success)
                 completion(responseData)
         }

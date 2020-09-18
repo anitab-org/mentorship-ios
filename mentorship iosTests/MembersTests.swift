@@ -70,7 +70,7 @@ class MembersTests: XCTestCase {
         let membersService: MembersService = MembersAPI(urlSession: urlSession)
 
         // Set mock json and data
-        let mockJSON = MembersModel.SendRequestResponseData(message: "test", success: true)
+        let mockJSON = MembersModel.SendRequestResponseData(message: "test", success: false)
         let mockData = try JSONEncoder().encode(mockJSON)
         
         // Return data form mock request handler
@@ -82,7 +82,7 @@ class MembersTests: XCTestCase {
         let expectation = XCTestExpectation(description: "response")
         membersService.sendRequest(menteeID: 0, mentorID: 1, endDate: 0, notes: "") { resp in
             XCTAssertEqual(resp.message, mockJSON.message)
-            XCTAssertEqual(resp.success, true)
+            XCTAssertEqual(resp.success, false)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1)
