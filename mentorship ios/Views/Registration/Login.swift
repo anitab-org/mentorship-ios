@@ -99,6 +99,9 @@ struct Login: View {
                 .frame(height: DesignConstants.Height.socialSignInButton)
             }
         }
+        .onDisappear {
+            self.loginViewModel.resetLogin()
+        }
         .modifier(AllPadding())
     }
 }

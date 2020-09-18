@@ -111,6 +111,22 @@ class LoginTests: XCTestCase {
         //Test
         XCTAssertEqual(loginDisabledState, false)
     }
+
+    func testLoginReset() {
+        let loginVM = LoginViewModel()
+
+        loginVM.loginData = LoginModel.LoginUploadData(username: "username", password: "password")
+
+        //MARK:- When reset is called, username and password should be reset
+
+        loginVM.resetLogin()
+
+        let currentLoginData = loginVM.loginData
+
+        //Test
+        XCTAssertEqual("", currentLoginData.username)
+        XCTAssertEqual("", currentLoginData.password)
+    }
     
     // MARK: - Integration Tests
     

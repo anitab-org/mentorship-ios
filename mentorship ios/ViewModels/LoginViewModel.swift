@@ -30,5 +30,10 @@ class LoginViewModel: ObservableObject {
     func attemptAppleLogin() {
         appleSignInCoordinator.handleAuthorizationAppleIDButtonPress()
     }
+
+    // used to reset the login data on a successful login
+    func resetLogin() {
+        self.loginData = .init(username: "", password: "")
+    }
     
 }
