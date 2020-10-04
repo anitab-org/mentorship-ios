@@ -127,4 +127,24 @@ class SettingsTests: XCTestCase {
         
         wait(for: [expectation], timeout: 1)
     }
+    
+    func testChangePasswordReset() {
+        // View Model
+        let changePasswordVM = ChangePasswordViewModel()
+
+        // Set mock data
+        changePasswordVM.changePasswordData = ChangePasswordModel.ChangePasswordUploadData(currentPassword: "old", newPassword: "new")
+        changePasswordVM.confirmPassword = "new"
+        changePasswordVM.changePasswordResponseData = ChangePasswordModel.ChangePasswordResponseData(message: "test", success: true)
+
+        // reset data of View Model
+        changePasswordVM.resetData()
+
+        // test
+        XCTAssertEqual("", changePasswordVM.changePasswordData.currentPassword)
+        XCTAssertEqual("", changePasswordVM.changePasswordData.newPassword)
+        XCTAssertEqual("", changePasswordVM.confirmPassword)
+        XCTAssertEqual("", changePasswordVM.changePasswordResponseData.message)
+        XCTAssertEqual(false, changePasswordVM.changePasswordResponseData.success)
+    }
 }

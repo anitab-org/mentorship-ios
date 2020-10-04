@@ -21,4 +21,10 @@ class ChangePasswordViewModel: ObservableObject {
         }
         return false
     }
+    
+    func resetData(){
+        self.changePasswordData = ChangePasswordModel.ChangePasswordUploadData(currentPassword: "", newPassword: "")
+        self.changePasswordResponseData = ChangePasswordModel.ChangePasswordResponseData(message: "", success: false)
+        self.confirmPassword = ""
+    }
 }

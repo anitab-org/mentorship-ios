@@ -65,6 +65,9 @@ struct ChangePassword: View {
                     self.changePasswordViewModel.changePasswordResponseData.success = true
                 })
         }
+        .onDisappear {
+            self.changePasswordViewModel.resetData()
+        }
     }
 }
 
