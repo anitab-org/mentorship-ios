@@ -77,4 +77,28 @@ class HomeTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 1)
     }
+     
+    func testUserFirstName() {
+ 
+        //Test computed first name
+        let testHome = Home()
+        
+        // Set User name for general first name isolation
+        testHome.homeViewModel.userName = "Jane Alice Smith"
+        XCTAssertEqual(testHome.userFirstName, "Jane")
+        
+        // Set User name with leading spaces
+        testHome.homeViewModel.userName = "  Jane Alice Smith"
+        XCTAssertEqual(testHome.userFirstName, "Jane")
+        
+        // Set User name for proper name capitalization
+        testHome.homeViewModel.userName = "jaNe Alice Smith"
+        XCTAssertEqual(testHome.userFirstName, "Jane")
+        
+        // Set User name as optional nil
+        testHome.homeViewModel.userName = nil
+        XCTAssertEqual(testHome.userFirstName, "")
+ 
+    }
+    
 }
