@@ -41,7 +41,7 @@ struct SendRequest: View {
 
     var body: some View {
         NavigationView {
-            Form {
+            List {
                 //heading
                 Section(header: Text("To \(memberName)").font(.title).fontWeight(.heavy)) {
                     EmptyView()
@@ -60,7 +60,7 @@ struct SendRequest: View {
 
                     TextField(LocalizableStringConstants.notes, text: $notes)
                 }
-                .padding(.vertical, DesignConstants.Padding.listCellFrameExpansion)
+              //  .padding(.vertical, DesignConstants.Padding.listCellFrameExpansion)
 
                 //send button
                 Section {
@@ -82,6 +82,7 @@ struct SendRequest: View {
                     .listRowBackground(DesignConstants.Colors.formBackgroundColor)
                 }
             }
+            .listStyle(GroupedListStyle())
             .navigationBarTitle(LocalizableStringConstants.relationRequest)
             .navigationBarItems(leading: Button(LocalizableStringConstants.cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
