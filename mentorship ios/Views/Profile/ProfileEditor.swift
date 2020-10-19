@@ -63,6 +63,7 @@ struct ProfileEditor: View {
                         ProfileEditField(type: .interests, value: Binding($editProfileData.interests)!)
                     }
                 }
+                .listStyle(GroupedListStyle())
                 .disabled(profileViewModel.inActivity)
                 
                 if profileViewModel.inActivity {

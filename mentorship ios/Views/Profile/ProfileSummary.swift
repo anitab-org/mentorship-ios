@@ -14,7 +14,7 @@ struct ProfileSummary: View {
     @State private var showProfileEditor = false
     
     var body: some View {
-        Form {
+        List {
             //By using a parent section, the subsections join.
             Section {
                 //Name
@@ -29,6 +29,7 @@ struct ProfileSummary: View {
                 .font(.subheadline)
                 .listRowBackground(DesignConstants.Colors.formBackgroundColor)
         }
+        .listStyle(GroupedListStyle())
         .navigationBarTitle(LocalizableStringConstants.profile)
         .navigationBarItems(trailing:
             Button("Edit") {

@@ -81,7 +81,6 @@ struct Home: View {
                 TasksSection(tasks: homeViewModel.homeResponseData.tasksDone)
 
             }
-            .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Welcome \(userFirstName)!")
             .navigationBarItems(trailing:
