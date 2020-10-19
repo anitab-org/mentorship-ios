@@ -49,7 +49,7 @@ struct Home: View {
     
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 //Top space
                 Section {
                     EmptyView()
