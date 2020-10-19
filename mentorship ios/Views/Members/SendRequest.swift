@@ -82,7 +82,6 @@ struct SendRequest: View {
                     .listRowBackground(DesignConstants.Colors.formBackgroundColor)
                 }
             }
-            .modifier(KeyboardAware())
             .navigationBarTitle(LocalizableStringConstants.relationRequest)
             .navigationBarItems(leading: Button(LocalizableStringConstants.cancel, action: {
                 self.presentationMode.wrappedValue.dismiss()
