@@ -60,7 +60,6 @@ struct SendRequest: View {
 
                     TextField(LocalizableStringConstants.notes, text: $notes)
                 }
-              //  .padding(.vertical, DesignConstants.Padding.listCellFrameExpansion)
 
                 //send button
                 Section {
