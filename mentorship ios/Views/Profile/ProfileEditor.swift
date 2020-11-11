@@ -35,7 +35,7 @@ struct ProfileEditor: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Form {
+                List {
                     //basic data
                     Section {
                         //name
@@ -63,6 +63,7 @@ struct ProfileEditor: View {
                         ProfileEditField(type: .interests, value: Binding($editProfileData.interests)!)
                     }
                 }
+                .listStyle(GroupedListStyle())
                 .disabled(profileViewModel.inActivity)
                 
                 if profileViewModel.inActivity {
@@ -70,7 +71,6 @@ struct ProfileEditor: View {
                 }
                 
             }
-            .modifier(KeyboardAware())
             .navigationBarTitle(LocalizableStringConstants.editProfile)
             .navigationBarItems(leading:
                 Button(action: { self.presentation.wrappedValue.dismiss() }) {
