@@ -49,7 +49,7 @@ struct Home: View {
     
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 //Top space
                 Section {
                     EmptyView()
@@ -81,7 +81,6 @@ struct Home: View {
                 TasksSection(tasks: homeViewModel.homeResponseData.tasksDone)
 
             }
-            .listStyle(GroupedListStyle())
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Welcome \(userFirstName)!")
             .navigationBarItems(trailing:

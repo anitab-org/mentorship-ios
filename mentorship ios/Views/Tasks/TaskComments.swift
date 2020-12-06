@@ -108,7 +108,6 @@ struct TaskComments: View {
                     .disabled(self.taskCommentsVM.sendButtonDisabled)
                 }
                 .padding(.horizontal)
-                .modifier(KeyboardAware())
                 
                 // Spacer for bottom
                 Spacer()
