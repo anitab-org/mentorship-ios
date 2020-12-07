@@ -65,6 +65,14 @@ struct Relation: View {
             }
         }
     }
+
+    @ViewBuilder func trailingNavigationBarItem() -> some View {
+        if let id = relationViewModel.currentRelation.id, id != 0 {
+            Button(LocalizableStringConstants.addTask) {
+                self.relationViewModel.addTask.toggle()
+            }
+        } 
+    }
     
     var body: some View {
         NavigationView {
@@ -116,9 +124,7 @@ struct Relation: View {
             }
             .environment(\.horizontalSizeClass, .regular)
             .navigationBarTitle("Current Relation")
-            .navigationBarItems(trailing: Button(LocalizableStringConstants.addTask) {
-                self.relationViewModel.addTask.toggle()
-            })
+            .navigationBarItems(trailing: trailingNavigationBarItem())
             .sheet(isPresented: $relationViewModel.addTask) {
                 AddTask(relationViewModel: self.relationViewModel)
             }
